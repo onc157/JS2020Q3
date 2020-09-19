@@ -316,3 +316,5 @@ body {
 
 .section-header .section-inner {
   background: no-repeat url(../assets/img/bg-header.png); }
+  .section-header .section-inner .header-menu .header-title {
+    display: none; }
