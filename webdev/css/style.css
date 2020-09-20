@@ -376,7 +376,7 @@ body {
     width: 504px;
     font-size: 18px;
     line-height: 140%;
-    margin-bottom: 30px; }
+    margin-bottom: 29px; }
   .section-your-life .section-inner .your-life__button {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -387,17 +387,111 @@ body {
     font-size: 14px;
     outline: none;
     border: none;
-    margin-bottom: 166px;
-    transition: .4s; }
+    padding-top: 3px;
+    transition: .4s;
+    margin-bottom: 167px; }
     .section-your-life .section-inner .your-life__button:hover {
       background-color: #009cc2; }
   .section-your-life .section-inner .social-links {
     display: flex;
     list-style: none;
-    padding-left: 0; }
+    padding-left: 0;
+    margin-bottom: 206px; }
     .section-your-life .section-inner .social-links__item {
       transition: 1s; }
       .section-your-life .section-inner .social-links__item:hover {
         transform: rotate(360deg); }
     .section-your-life .section-inner .social-links .social-links__item + .social-links__item {
+      margin-left: 30px; }
+
+.section-rappresent .section-inner {
+  display: flex; }
+  .section-rappresent .section-inner .rappresent-content {
+    width: 407px;
+    margin: 174px 248px 0 269px; }
+    .section-rappresent .section-inner .rappresent-content__title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      color: #373737;
+      width: 370px;
+      font-size: 24px;
+      line-height: 122%;
+      letter-spacing: 1px;
+      margin-bottom: 21px; }
+    .section-rappresent .section-inner .rappresent-content__description {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      color: #4e4e4e;
+      font-size: 14px;
+      line-height: 145%;
+      margin-bottom: 29px; }
+    .section-rappresent .section-inner .rappresent-content__button {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      background-color: #00afdb;
+      color: #fff;
+      width: 184px;
+      height: 46px;
+      font-size: 14px;
+      outline: none;
+      border: none;
+      padding-top: 3px;
+      transition: .4s; }
+      .section-rappresent .section-inner .rappresent-content__button:hover {
+        background-color: #009cc2; }
+  .section-rappresent .section-inner .rappresent-photo {
+    margin-bottom: 136px; }
+
+.section-community .section-inner {
+  display: flex;
+  background-color: #f5f6f7;
+  padding-left: 270px;
+  overflow: hidden; }
+  .section-community .section-inner .community-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center; }
+    .section-community .section-inner .community-content__logo {
+      margin: 155px 0 16px 0; }
+    .section-community .section-inner .community-content__title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      width: 298px;
+      color: #373737;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 2.4px;
+      margin-bottom: 11px;
+      padding-left: 1px; }
+    .section-community .section-inner .community-content__description {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      color: #4e4e4e;
+      font-size: 14px;
+      line-height: 146%;
+      margin: 0 0 10px -1px; }
+  .section-community .section-inner .community-slider {
+    margin-top: 83px; }
+    .section-community .section-inner .community-slider .slider-control {
+      margin: 0 0 18px 680px; }
+      .section-community .section-inner .community-slider .slider-control__arrow {
+        transition: .4s; }
+      .section-community .section-inner .community-slider .slider-control__arrow:hover {
+        opacity: .5; }
+      .section-community .section-inner .community-slider .slider-control__slide {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        color: #373737;
+        font-size: 18px;
+        line-height: 100%; }
+        .section-community .section-inner .community-slider .slider-control__slide--active {
+          margin-left: 11px;
+          margin-bottom: 20px; }
+        .section-community .section-inner .community-slider .slider-control__slide--last {
+          margin-right: 11px; }
+    .section-community .section-inner .community-slider .slider-wrapper {
+      margin-left: 138px;
+      margin-bottom: 136px;
+      display: flex; }
+    .section-community .section-inner .community-slider .slider-wrapper__item + .slider-wrapper__item {
       margin-left: 30px; }
