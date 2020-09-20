@@ -307,4 +307,373 @@ template {
   box-sizing: border-box; }
 
 body {
-  background-color: aqua; }
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  background: no-repeat 50% 0% url(../assets/img/bg-header.png);
+  max-width: 1600px;
+  margin: 0 auto; }
+
+.section-header .section-inner {
+  position: relative; }
+  .section-header .section-inner .header-menu {
+    margin-bottom: 134px; }
+    .section-header .section-inner .header-menu .header-title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 1px;
+      display: none; }
+    .section-header .section-inner .header-menu .header-logo {
+      position: absolute;
+      top: 25px;
+      left: 778px; }
+    .section-header .section-inner .header-menu .header-list {
+      display: flex;
+      width: 596px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 39px 0 37px; }
+      .section-header .section-inner .header-menu .header-list .header-item {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        transition: .6s; }
+        .section-header .section-inner .header-menu .header-list .header-item a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 14px;
+          line-height: 140%; }
+        .section-header .section-inner .header-menu .header-list .header-item:hover {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 500;
+          border-bottom: 1px solid #fff; }
+      .section-header .section-inner .header-menu .header-list .header-item:nth-child(2n + 1) {
+        margin-right: 85px; }
+      .section-header .section-inner .header-menu .header-list .header-item:nth-child(4n + 2) {
+        margin-right: 246px; }
+      .section-header .section-inner .header-menu .header-list .header-item--active {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        color: #fff;
+        border-bottom: 1px solid #fff; }
+
+.section-your-life .section-inner {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .section-your-life .section-inner .your-life__title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    letter-spacing: 4.5px;
+    margin: 0 0 22.5px 5px; }
+  .section-your-life .section-inner .your-life__description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    width: 504px;
+    font-size: 18px;
+    line-height: 140%;
+    margin-bottom: 29px; }
+  .section-your-life .section-inner .your-life__button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    background-color: #00afdb;
+    color: #fff;
+    width: 184px;
+    height: 46px;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    padding-top: 3px;
+    transition: .4s;
+    margin-bottom: 167px; }
+    .section-your-life .section-inner .your-life__button:hover {
+      background-color: #009cc2; }
+  .section-your-life .section-inner .social-links {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 206px; }
+    .section-your-life .section-inner .social-links__item {
+      transition: 1s; }
+      .section-your-life .section-inner .social-links__item:hover {
+        transform: rotate(360deg); }
+    .section-your-life .section-inner .social-links .social-links__item + .social-links__item {
+      margin-left: 30px; }
+
+.section-rappresent .section-inner {
+  display: flex; }
+  .section-rappresent .section-inner .rappresent-content {
+    width: 407px;
+    margin: 174px 248px 0 269px; }
+    .section-rappresent .section-inner .rappresent-content__title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      color: #373737;
+      width: 370px;
+      font-size: 24px;
+      line-height: 122%;
+      letter-spacing: 1px;
+      margin-bottom: 21px; }
+    .section-rappresent .section-inner .rappresent-content__description {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      color: #4e4e4e;
+      font-size: 14px;
+      line-height: 145%;
+      margin-bottom: 29px; }
+    .section-rappresent .section-inner .rappresent-content__button {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      background-color: #00afdb;
+      color: #fff;
+      width: 184px;
+      height: 46px;
+      font-size: 14px;
+      outline: none;
+      border: none;
+      padding-top: 3px;
+      transition: .4s; }
+      .section-rappresent .section-inner .rappresent-content__button:hover {
+        background-color: #009cc2; }
+  .section-rappresent .section-inner .rappresent-photo {
+    margin-bottom: 136px; }
+
+.section-community .section-inner {
+  display: flex;
+  background-color: #f5f6f7;
+  padding-left: 270px;
+  overflow: hidden; }
+  .section-community .section-inner .community-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center; }
+    .section-community .section-inner .community-content__logo {
+      margin: 155px 0 16px 0; }
+    .section-community .section-inner .community-content__title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      width: 298px;
+      color: #373737;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 2.4px;
+      margin-bottom: 11px;
+      padding-left: 1px; }
+    .section-community .section-inner .community-content__description {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      color: #4e4e4e;
+      font-size: 14px;
+      line-height: 146%;
+      margin: 0 0 10px -1px; }
+  .section-community .section-inner .community-slider {
+    margin-top: 83px; }
+    .section-community .section-inner .community-slider .slider-control {
+      margin: 0 0 18px 680px; }
+      .section-community .section-inner .community-slider .slider-control__arrow {
+        transition: .4s; }
+      .section-community .section-inner .community-slider .slider-control__arrow:hover {
+        opacity: .5; }
+      .section-community .section-inner .community-slider .slider-control__slide {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        color: #373737;
+        font-size: 18px;
+        line-height: 100%; }
+        .section-community .section-inner .community-slider .slider-control__slide--active {
+          margin-left: 11px;
+          margin-bottom: 20px; }
+        .section-community .section-inner .community-slider .slider-control__slide--last {
+          margin-right: 11px; }
+    .section-community .section-inner .community-slider .slider-wrapper {
+      margin-left: 138px;
+      margin-bottom: 136px;
+      display: flex; }
+    .section-community .section-inner .community-slider .slider-wrapper__item + .slider-wrapper__item {
+      margin-left: 30px; }
+
+.section-implement .section-inner {
+  display: flex;
+  padding: 120px 0 136px 269px; }
+  .section-implement .section-inner .implement-content {
+    padding: 198px 0 0 139px; }
+    .section-implement .section-inner .implement-content__title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      color: #373737;
+      font-size: 24px;
+      line-height: 122%;
+      letter-spacing: 1px;
+      margin-bottom: 21px; }
+    .section-implement .section-inner .implement-content__description {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      color: #4e4e4e;
+      width: 407px;
+      font-size: 14px;
+      line-height: 145%;
+      margin-bottom: 29px; }
+    .section-implement .section-inner .implement-content__button {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      background-color: #00afdb;
+      color: #fff;
+      width: 184px;
+      height: 46px;
+      font-size: 14px;
+      outline: none;
+      border: none;
+      padding-top: 3px;
+      transition: .4s;
+      width: 180px; }
+      .section-implement .section-inner .implement-content__button:hover {
+        background-color: #009cc2; }
+
+.section-signup .section-inner {
+  background: url(/assets/img/bg-signup.png);
+  padding: 200px 0 220px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .section-signup .section-inner .signup__title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin: 0 0 31px 2px; }
+  .section-signup .section-inner .subscribe-form {
+    display: flex;
+    width: 407px;
+    height: 46px;
+    padding-left: 1px; }
+    .section-signup .section-inner .subscribe-form input {
+      height: auto;
+      flex-basis: 83.8%;
+      font-size: 14px;
+      outline: none;
+      border: none;
+      padding: 3px 0 0 24px; }
+    .section-signup .section-inner .subscribe-form__button {
+      background-color: #00afdb;
+      outline: none;
+      flex-basis: 16.2%;
+      border: none;
+      padding-top: 5px;
+      transition: .4s; }
+      .section-signup .section-inner .subscribe-form__button:hover {
+        background-color: #009cc2; }
+      .section-signup .section-inner .subscribe-form__button svg path {
+        transition: .4s; }
+      .section-signup .section-inner .subscribe-form__button:active .logo-check path {
+        opacity: .5;
+        transform: translate(1px, 1px); }
+
+.section-download .section-inner {
+  background-color: #f5f6f7;
+  padding: 119px 0 180px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .section-download .section-inner .download__title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #373737;
+    font-size: 24px;
+    line-height: 122%;
+    letter-spacing: 1px;
+    margin-bottom: 21px;
+    margin-left: 2px; }
+  .section-download .section-inner .download__description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #4e4e4e;
+    width: 480px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 145%;
+    margin-bottom: 29px; }
+  .section-download .section-inner .download-buttons {
+    display: flex; }
+    .section-download .section-inner .download-buttons .buttons__item {
+      display: flex;
+      color: #fff;
+      text-decoration: none;
+      background-color: #00afdb; }
+      .section-download .section-inner .download-buttons .buttons__item--left {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        display: flex;
+        width: 127px;
+        height: 46px;
+        padding: 3px 0 0 1px;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        transition: .4s; }
+      .section-download .section-inner .download-buttons .buttons__item--left:hover {
+        background-color: #009cc2; }
+      .section-download .section-inner .download-buttons .buttons__item--right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 59px;
+        height: 46px;
+        background-color: #009cc2; }
+        .section-download .section-inner .download-buttons .buttons__item--right svg path {
+          transition: .4s; }
+      .section-download .section-inner .download-buttons .buttons__item--right:hover .logo__shop path {
+        fill: black; }
+    .section-download .section-inner .download-buttons .buttons__item + .buttons__item {
+      margin-left: 30px; }
+
+.section-footer .section-inner {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  background-color: #000;
+  padding: 74px 160px 92px 160px; }
+  .section-footer .section-inner .footer-menu {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    display: flex;
+    font-size: 14px;
+    line-height: 140%;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .section-footer .section-inner .footer-menu__item {
+      transition: .4s;
+      position: relative; }
+      .section-footer .section-inner .footer-menu__item a {
+        color: #fff;
+        text-decoration: none; }
+      .section-footer .section-inner .footer-menu__item:hover {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        border-bottom: 1px solid #fff; }
+      .section-footer .section-inner .footer-menu__item:nth-child(1n + 2)::after {
+        content: "";
+        position: absolute;
+        top: 6px;
+        left: -21px;
+        width: 1px;
+        height: 8px;
+        background-color: #4e4e4e; }
+    .section-footer .section-inner .footer-menu .footer-menu__item + .footer-menu__item {
+      margin-left: 41px; }
+  .section-footer .section-inner .footer-logo {
+    position: absolute;
+    top: 60px;
+    left: 778px; }
+  .section-footer .section-inner .footer-signature {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #818181;
+    font-size: 14px;
+    line-height: 140%; }
+ }
