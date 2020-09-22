@@ -534,7 +534,7 @@ body {
         background-color: #009cc2; }
 
 .section-signup .section-inner {
-  background: url(/assets/img/bg-signup.png);
+  background: url(../assets/img/bg-signup.png);
   padding: 200px 0 220px 0;
   display: flex;
   flex-direction: column;
