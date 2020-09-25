@@ -10,6 +10,8 @@ class Calculator {
         this.currentOperand = ''
         this.previousOperand = ''
         this.operation = undefined
+
+        this.sqrtOperand = undefined
     }
 
     delete() {
@@ -22,14 +24,14 @@ class Calculator {
     }
 
     chooseOperation(operation) {
-        if (this.currentOperand === '') return
+        if (this.currentOperand === '') return;
         if (this.previousOperand !== '') {
-            this.compute()
+          this.compute();
         }
-        this.operation = operation
-        this.previousOperand = this.currentOperand
-        this.currentOperand = ''
-    }
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
+      }
 
     compute() {
         let computation
@@ -49,6 +51,9 @@ class Calculator {
             case '÷':
                 computation = prev / current;
                 break
+            case '√':
+                computation = Math.sqrt(prev);
+                break
             default:
                 return;
         }
@@ -56,6 +61,15 @@ class Calculator {
         this.currentOperand = computation
         this.operation = undefined
         this.previousOperand = ''
+    }
+
+    sqrtCompute() {
+        let computation
+        const current = parseFloat(this.currentOperand)
+        computation = Math.sqrt(current);
+        this.readyToReset = true;
+        this.currentOperand = computation
+        this.operation = undefined
     }
 
     getDisplayNumber(number) {
@@ -92,6 +106,8 @@ class Calculator {
 
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
+const sqrtButton = document.querySelector('[data-sqrt]');
+// const powButton = document.querySelector('[data-pow]');
 const equalsButton = document.querySelector('[data-equals]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
@@ -103,9 +119,9 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
 
-        if(calculator.previousOperand === "" &&
-        calculator.currentOperand !== "" &&
-    calculator.readyToReset) {
+        if (calculator.previousOperand === "" &&
+            calculator.currentOperand !== "" &&
+            calculator.readyToReset) {
             calculator.currentOperand = ""
             calculator.readyToReset = false;
         }
@@ -134,5 +150,10 @@ allClearButton.addEventListener('click', button => {
 
 deleteButton.addEventListener('click', button => {
     calculator.delete()
+    calculator.updateDisplay()
+})
+
+sqrtButton.addEventListener('click', button => {
+    calculator.sqrtCompute()
     calculator.updateDisplay()
 })
