@@ -37,17 +37,23 @@ class Calculator {
 
     compute() {
         let computation
+        let precision
         const prev = parseFloat(this.previousOperand)
+        const precisionPrev = (prev.toString().includes('.')) ? prev.toString().split('.')[1].length : 0
         const current = parseFloat(this.currentOperand)
+        const precisionCurrent = (current.toString().includes('.')) ? current.toString().split('.')[1].length : 0
         if (isNaN(prev) || isNaN(current)) return
         switch (this.operation) {
             case '+':
+                precision = Math.max(precisionPrev, precisionCurrent);
                 computation = prev + current;
                 break
             case '-':
+                precision = Math.max(precisionPrev, precisionCurrent);
                 computation = prev - current;
                 break
             case '*':
+                precision = precisionPrev + precisionCurrent;
                 computation = prev * current;
                 break
             case '÷':
@@ -55,12 +61,16 @@ class Calculator {
                 break
             case '^':
                 computation = prev ** current;
-                break
+                this.readyToReset = true;
+                this.currentOperand = computation
+                this.operation = undefined
+                this.previousOperand = ''
+                return
             default:
                 return;
         }
         this.readyToReset = true;
-        this.currentOperand = computation
+        this.currentOperand = +computation.toFixed(precision)
         this.operation = undefined
         this.previousOperand = ''
     }
@@ -81,7 +91,6 @@ class Calculator {
 
     plusMinusCompute() {
         let computation
-        const prev = parseFloat(this.previousOperand)
         const current = parseFloat(this.currentOperand)
         computation = current * -1;
         this.readyToReset = true;
