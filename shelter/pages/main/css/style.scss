@@ -1,24 +1,64 @@
 @import 'normalize.scss';
+// === Fonts ===
+
+@font-face {
+    font-family: 'Georgia, Normal';
+    src: url('../../../assets/fonts/Georgia.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Georgia, Italic';
+    src: url('../../../assets/fonts/Georgia\ Italic.ttf');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Arial, Normal';
+    src: url('../../../assets/fonts/Arial.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arial, Italic';
+    src: url('../../../assets/fonts/Arial\ Italic.ttf');
+    font-weight: 400;
+    font-style: italic;
+}
+
+// === / Fonts ===
 
 // === Mixins ===
-// @mixin font-main {
-//     font-family:
-// }
+@mixin font-main {
+    font-family: Arial, Normal;
+    font-weight: 400;
+}
 
-// @mixin font-regular {
-//     font-family:
-//     font-weight: 400;
-// }
+@mixin font-georgia-normal {
+    font-family: Georgia, Italic;
+    font-weight: 400;
+    font-style: normal;
+}
+@mixin font-georgia-italic {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-style: italic;
+}
 
-// @mixin font-medium {
-//     font-family:
-//     font-weight: 500;
-// }
+@mixin font-arial-normal {
+    font-family: Arial, Normal;
+    font-weight: 400;
+    font-style: normal;
+}
 
-// @mixin font-bold {
-//     font-family:
-//     font-weight: 700;
-// }
+@mixin font-arial-italic {
+    font-family: Arial, Italic;
+    font-weight: 400;
+    font-style: italic;
+}
 
 // @mixin button-main{}
 
@@ -33,11 +73,19 @@ $color-white: #fff;
     box-sizing: border-box;
 }
 
-body {}
+body {
+    font-size: 25px;
+}
 
-.section-outer {}
+.section-outer {
+    width: 1920px;
+    margin: 0 auto;
+}
 
-.section-inner {}
+.section-inner {
+    width: 1200px;
+    margin: 0 auto;
+}
 // === / Common ===
 
 // === Header ===
