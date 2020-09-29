@@ -4,29 +4,29 @@
 @font-face {
     font-family: 'Georgia, Normal';
     src: url('../../../assets/fonts/Georgia.ttf');
-    font-weight: 400;
     font-style: normal;
+    font-weight: 400;
 }
 
 @font-face {
     font-family: 'Georgia, Italic';
     src: url('../../../assets/fonts/Georgia\ Italic.ttf');
-    font-weight: 400;
     font-style: italic;
+    font-weight: 400;
 }
 
 @font-face {
     font-family: 'Arial, Normal';
     src: url('../../../assets/fonts/Arial.ttf');
-    font-weight: 400;
     font-style: normal;
+    font-weight: 400;
 }
 
 @font-face {
     font-family: 'Arial, Italic';
     src: url('../../../assets/fonts/Arial\ Italic.ttf');
-    font-weight: 400;
     font-style: italic;
+    font-weight: 400;
 }
 
 // === / Fonts ===
@@ -39,25 +39,26 @@
 
 @mixin font-georgia-normal {
     font-family: Georgia, Italic;
-    font-weight: 400;
     font-style: normal;
+    font-weight: 400;
 }
+
 @mixin font-georgia-italic {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 400;
     font-style: italic;
+    font-weight: 400;
 }
 
 @mixin font-arial-normal {
     font-family: Arial, Normal;
-    font-weight: 400;
     font-style: normal;
+    font-weight: 400;
 }
 
 @mixin font-arial-italic {
     font-family: Arial, Italic;
-    font-weight: 400;
     font-style: italic;
+    font-weight: 400;
 }
 
 // @mixin button-main{}
@@ -65,7 +66,18 @@
 // === / Mixins ===
 
 // === Variables ===
-$color-white: #fff;
+$color-light-s: #fafafa;
+$color-light-l: #f6f6f6;
+$color-light-xl: #fff;
+$color-dark-s: #cdcdcd;
+$color-dark-m: #b2b2b2;
+$color-dark-l: #545454;
+$color-dark-xl: #4c4c4c;
+$color-dark-2xl: #444;
+$color-dark-3xl: #292929;
+$color-primary: #f1cdb3;
+$color-primary-light: #fddcc4;
+
 // === / Variables ===
 
 // === Common ===
@@ -74,20 +86,38 @@ $color-white: #fff;
 }
 
 body {
-    font-size: 1rem;
+    @include font-main();
+    max-width: 1920px;
+    margin: 0 auto;
+    background: no-repeat 50% 0% url(../../../assets/images/header-background.png);
 }
 
-.section-outer {
-    width: 1920px;
-    margin: 0 auto;
-}
+.section-outer {}
 
 .section-inner {
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 // === / Common ===
 
 // === Header ===
+.section-header {
+    .section-inner {
+        .header-logo {
+            &__title {
+            }
+            &__description {}
+        }
 
+        .header-menu {
+            .header-list {
+                &__item {
+                    a {
+
+                    }
+                }
+            }
+        }
+    }
+}
 // === / Header ===
