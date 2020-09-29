@@ -233,13 +233,43 @@ body {
 
 .section-about {
     .section-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 175px 100px 175px;
+
         .about-pets {
             img {}
         }
 
         .about-content {
-            &__title {}
-            &__description {}
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+            padding-top: 15px;
+
+            &__title {
+                @include font-georgia-normal();
+                width: 370px;
+                margin-bottom: 24px;
+                font-size: 35px;
+                line-height: 130%;
+                color: $color-dark-l;
+                letter-spacing: 0.06em;
+            }
+
+            &__description {
+                @include font-arial-normal();
+                margin: 0;
+                width: 430px;
+                font-size: 15px;
+                line-height: 160%;
+                color: $color-dark-xl;
+
+                &:nth-child(even) {
+                    margin-bottom: 25px;
+                }
+            }
         }
     }
 }
