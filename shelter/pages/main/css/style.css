@@ -441,7 +441,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 80px 175px 100px 175px; }
+  padding: 80px 175px 96px 175px; }
   .section-about .section-inner .about-content {
     display: flex;
     flex-direction: column;
@@ -463,8 +463,114 @@ body {
       font-weight: 400;
       margin: 0;
       width: 430px;
-      font-size: 15pgulpx;
+      font-size: 15px;
       line-height: 160%;
       color: #4c4c4c; }
       .section-about .section-inner .about-content__description:nth-child(even) {
         margin-bottom: 25px; }
+
+.section-our-friends {
+  background: #f6f6f6; }
+  .section-our-friends .section-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 81px 0 100px 0; }
+    .section-our-friends .section-inner .our-friends__title {
+      font-family: Georgia, Italic;
+      font-style: normal;
+      font-weight: 400;
+      padding-left: 3px;
+      margin-bottom: 59px;
+      font-size: 35px;
+      line-height: 130%;
+      color: #545454;
+      text-align: center;
+      letter-spacing: 0.06em; }
+    .section-our-friends .section-inner .slider-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .section-our-friends .section-inner .slider-wrapper__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border: 2px solid #f1cdb3;
+        border-radius: 100px;
+        transition: .4s; }
+        .section-our-friends .section-inner .slider-wrapper__button:hover {
+          cursor: pointer;
+          border: 2px solid #fddcc4;
+          background-color: #fddcc4;
+          box-shadow: 0 0 10px 1px #f1cdb3; }
+      .section-our-friends .section-inner .slider-wrapper .items-wrapper {
+        display: flex; }
+        .section-our-friends .section-inner .slider-wrapper .items-wrapper__item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          padding: 30px 0;
+          width: 270px;
+          height: 435px;
+          border-radius: 9px;
+          background: #fafafa;
+          transition: .4s; }
+          .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--name {
+            font-family: Georgia, Italic;
+            font-style: normal;
+            font-weight: 400;
+            margin: 0 0 4px 2px;
+            font-size: 20px;
+            line-height: 23px;
+            color: #545454;
+            letter-spacing: 0.06em; }
+          .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--button {
+            font-family: Georgia, Italic;
+            font-style: normal;
+            font-weight: 400;
+            width: 187px;
+            height: 52px;
+            font-size: 17px;
+            line-height: 130%;
+            color: #292929;
+            letter-spacing: 0.06em;
+            background-color: #fff;
+            border: 2px solid #f1cdb3;
+            border-radius: 100px;
+            outline: none;
+            transition: .4s; }
+            .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--button:hover {
+              cursor: pointer;
+              border: 2px solid #fddcc4;
+              background-color: #fddcc4;
+              box-shadow: 0 0 10px 1px #f1cdb3; }
+          .section-our-friends .section-inner .slider-wrapper .items-wrapper__item:hover {
+            background-color: #fff;
+            cursor: pointer; }
+        .section-our-friends .section-inner .slider-wrapper .items-wrapper__item + .items-wrapper__item {
+          margin-left: 90px; }
+    .section-our-friends .section-inner .our-friends__rest {
+      display: flex;
+      justify-content: center;
+      padding-top: 60px; }
+      .section-our-friends .section-inner .our-friends__rest--button {
+        font-family: Georgia, Italic;
+        font-style: normal;
+        font-weight: 400;
+        width: 261px;
+        height: 52px;
+        font-size: 17px;
+        line-height: 130%;
+        color: #292929;
+        letter-spacing: 0.06em;
+        background-color: #f1cdb3;
+        border: none;
+        border-radius: 100px;
+        outline: none;
+        transition: .4s; }
+        .section-our-friends .section-inner .our-friends__rest--button:hover {
+          cursor: pointer;
+          background-color: #fddcc4;
+          box-shadow: 0 0 10px 1px #f1cdb3; }

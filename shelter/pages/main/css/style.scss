@@ -236,7 +236,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 80px 175px 100px 175px;
+        padding: 80px 175px 96px 175px;
 
         .about-pets {
             img {}
@@ -262,7 +262,7 @@ body {
                 @include font-arial-normal();
                 margin: 0;
                 width: 430px;
-                font-size: 15pgulpx;
+                font-size: 15px;
                 line-height: 160%;
                 color: $color-dark-xl;
 
@@ -279,22 +279,133 @@ body {
 // === Our-friends ===
 
 .section-our-friends {
+    background: $color-light-l;
+
     .section-inner {
-        .our-friends__title {}
+        display: flex;
+        flex-direction: column;
+        padding: 81px 0 100px 0;
+
+        .our-friends__title {
+            @include font-georgia-normal();
+            padding-left: 3px;
+            margin-bottom: 59px;
+            font-size: 35px;
+            line-height: 130%;
+            color: $color-dark-l;
+            text-align: center;
+            letter-spacing: 0.06em;
+        }
+
         .slider-wrapper {
-            &__left-button {}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &__button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 52px;
+                height: 52px;
+                border: 2px solid $color-primary;
+                border-radius: 100px;
+                transition: .4s;
+
+                &:hover {
+                    cursor: pointer;
+                    border: 2px solid $color-primary-light;
+                    background-color: $color-primary-light;
+                    box-shadow: 0 0 10px 1px $color-primary;
+                }
+            }
 
             .items-wrapper {
+                display: flex;
+
                 &__item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 30px 0;
+                    width: 270px;
+                    height: 435px;
+                    border-radius: 9px;
+                    background: $color-light-s;
+                    transition: .4s;
+
                     &--photo {}
-                    &--name {}
-                    &--button {}
+
+                    &--name {
+                        @include font-georgia-normal();
+                        margin: 0 0 4px 2px;
+                        font-size: 20px;
+                        line-height: 23px;
+                        color: $color-dark-l;
+                        letter-spacing: 0.06em;
+                    }
+
+                    &--button {
+                        @include font-georgia-normal();
+                        width: 187px;
+                        height: 52px;
+                        font-size: 17px;
+                        line-height: 130%;
+                        color: $color-dark-3xl;
+                        letter-spacing: 0.06em;
+                        background-color: $color-light-xl;
+                        border: 2px solid $color-primary;
+                        border-radius: 100px;
+                        outline: none;
+                        transition: .4s;
+
+                        &:hover {
+                            cursor: pointer;
+                            border: 2px solid $color-primary-light;
+                            background-color: $color-primary-light;
+                            box-shadow: 0 0 10px 1px $color-primary;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $color-light-xl;
+                        cursor: pointer;
+                    }
+                }
+
+                &__item + .items-wrapper__item {
+                    margin-left: 90px;
                 }
            }
-
-           &__right-button {}
         }
-        .our-friends__button {}
+
+        .our-friends__rest {
+            display: flex;
+            justify-content: center;
+            padding-top: 60px;
+
+            &--button {
+                @include font-georgia-normal();
+                width: 261px;
+                height: 52px;
+                font-size: 17px;
+                line-height: 130%;
+                color: $color-dark-3xl;
+                letter-spacing: 0.06em;
+                background-color: $color-primary;
+                border: none;
+                border-radius: 100px;
+                outline: none;
+                transition: .4s;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: $color-primary-light;
+                    box-shadow: 0 0 10px 1px $color-primary;
+                }
+            }
+        }
     }
 }
 
