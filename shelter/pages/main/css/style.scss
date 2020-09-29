@@ -229,10 +229,22 @@ body {
 }
 // === / Not-only ===
 
+// === About ===
 
+.section-about {
+    .section-inner {
+        .about-pets {
+            img {}
+        }
 
+        .about-content {
+            &__title {}
+            &__description {}
+        }
+    }
+}
 
-// === / Header ===
-// === / Header ===
+// === / About ===
+
 // === / Header ===
 // === / Header ===
