@@ -170,7 +170,20 @@ body {
 // === / Header ===
 
 // === Not-only ===
+.section-not-only {
+    .section-inner {
+        .not-only-content {
+            &__title {
+            }
+            &__description {}
+            &__button {}
+        }
 
+        .not-only-dog {
+            img {}
+        }
+    }
+}
 // === / Not-only ===
 
 
