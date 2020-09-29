@@ -262,7 +262,7 @@ body {
                 @include font-arial-normal();
                 margin: 0;
                 width: 430px;
-                font-size: 15px;
+                font-size: 15pgulpx;
                 line-height: 160%;
                 color: $color-dark-xl;
 
@@ -276,5 +276,26 @@ body {
 
 // === / About ===
 
-// === / Header ===
-// === / Header ===
+// === Our-friends ===
+
+.section-our-friends {
+    .section-inner {
+        .our-friends__title {}
+        .slider-wrapper {
+            &__left-button {}
+
+            .items-wrapper {
+                &__item {
+                    &--photo {}
+                    &--name {}
+                    &--button {}
+                }
+           }
+
+           &__right-button {}
+        }
+        .our-friends__button {}
+    }
+}
+
+// === / Our-friends ===
