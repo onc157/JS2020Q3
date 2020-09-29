@@ -388,3 +388,51 @@ body {
         border-bottom: 3px solid #f1cdb3; }
     .section-header .section-inner .header-menu .header-list .header-list__item + .header-list__item {
       margin-left: 36px; }
+
+.section-not-only .section-inner {
+  display: flex;
+  padding-top: 59px; }
+  .section-not-only .section-inner .not-only-content {
+    margin-right: 42px; }
+    .section-not-only .section-inner .not-only-content__title {
+      font-family: Georgia, Italic;
+      font-style: normal;
+      font-weight: 400;
+      width: 310px;
+      padding-top: 164px;
+      margin-bottom: 41px;
+      font-size: 44px;
+      line-height: 130%;
+      color: #fff; }
+    .section-not-only .section-inner .not-only-content__description {
+      font-family: Arial, Normal;
+      font-style: normal;
+      font-weight: 400;
+      width: 460px;
+      margin-bottom: 41px;
+      font-size: 15px;
+      line-height: 160%;
+      color: #cdcdcd; }
+    .section-not-only .section-inner .not-only-content__button {
+      font-family: Georgia, Italic;
+      font-style: normal;
+      font-weight: 400;
+      width: 207px;
+      height: 52px;
+      font-size: 17px;
+      line-height: 130%;
+      color: #292929;
+      letter-spacing: 0.06em;
+      background-color: #f1cdb3;
+      border: none;
+      border-radius: 100px;
+      outline: none;
+      transition: .4s; }
+      .section-not-only .section-inner .not-only-content__button:hover {
+        cursor: pointer;
+        background-color: #fddcc4;
+        box-shadow: 0 0 10px 1px #f1cdb3; }
+  .section-not-only .section-inner .not-only-dog {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; }

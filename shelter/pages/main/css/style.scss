@@ -172,14 +172,57 @@ body {
 // === Not-only ===
 .section-not-only {
     .section-inner {
+        display: flex;
+        padding-top: 59px;
+
         .not-only-content {
+            margin-right: 42px;
+
             &__title {
+                @include font-georgia-normal();
+                width: 310px;
+                padding-top: 164px;
+                margin-bottom: 41px;
+                font-size: 44px;
+                line-height: 130%;
+                color: $color-light-xl;
             }
-            &__description {}
-            &__button {}
+
+            &__description {
+                @include font-arial-normal();
+                width: 460px;
+                margin-bottom: 41px;
+                font-size: 15px;
+                line-height: 160%;
+                color: $color-dark-s;
+            }
+
+            &__button {
+                @include font-georgia-normal();
+                width: 207px;
+                height: 52px;
+                font-size: 17px;
+                line-height: 130%;
+                color: $color-dark-3xl;
+                letter-spacing: 0.06em;
+                background-color: $color-primary;
+                border: none;
+                border-radius: 100px;
+                outline: none;
+                transition: .4s;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: $color-primary-light;
+                    box-shadow: 0 0 10px 1px $color-primary;
+                }
+            }
         }
 
         .not-only-dog {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
             img {}
         }
     }
