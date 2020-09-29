@@ -103,21 +103,80 @@ body {
 // === Header ===
 .section-header {
     .section-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 60px;
+
         .header-logo {
             &__title {
+                @include font-georgia-normal();
+                margin: 0 0 10px 0;
+                font-size: 32px;
+                line-height: 110%;
+                color: $color-primary;
+                letter-spacing: 0.06em;
             }
-            &__description {}
+
+            &__description {
+                @include font-arial-normal();
+                margin: 0 0 0 4px;
+                font-size: 13px;
+                line-height: 15px;
+                color: $color-light-xl;
+                letter-spacing: 0.1em;
+            }
         }
 
         .header-menu {
             .header-list {
-                &__item {
-                    a {
+                display: flex;
+                padding-bottom: 5px;
 
+                &__item {
+                    list-style: none;
+
+                    a {
+                        @include font-arial-normal();
+                        font-size: 15px;
+                        line-height: 160%;
+                        color: $color-dark-s;
+                        text-decoration: none;
+                        transition: .3s;
+
+                        &:hover {
+                            padding-bottom: 4px;
+                            color: $color-light-s;
+                            border-bottom: 3px solid $color-primary;
+                        }
+                    }
+
+                    &:first-child {
+                        a {
+                            padding-bottom: 4px;
+                            color: $color-light-s;
+                            border-bottom: 3px solid $color-primary;
+                        }
                     }
                 }
-            }
+
+                .header-list__item + .header-list__item {
+                    margin-left: 36px;
+                }
+        }
         }
     }
 }
+// === / Header ===
+
+// === Not-only ===
+
+// === / Not-only ===
+
+
+
+
+// === / Header ===
+// === / Header ===
+// === / Header ===
 // === / Header ===
