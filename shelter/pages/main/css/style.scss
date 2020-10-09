@@ -453,12 +453,32 @@ body {
                     letter-spacing: 0.06em;
                 }
             }
-
-            // .help-items__item + .help-items__item {
-            //     margin-left: 120px;
-            // }
         }
     }
 }
 
 // === / Help ===
+
+// === In addition ===
+
+.section-in-addition {
+    .section-inner {
+        .in-addition__photo {
+            img {}
+        }
+
+        .in-addition-donation {
+            &__title {}
+            &__bank {}
+            &__card {
+                &--logo {
+                    img {}
+                }
+                &--number {}
+            }
+            &__description {}
+        }
+    }
+}
+
+// === / In addition ===
