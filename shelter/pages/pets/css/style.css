@@ -339,3 +339,57 @@ body {
 .section-inner {
   max-width: 1200px;
   margin: 0 auto; }
+
+.section-header {
+  position: sticky;
+  top: 0; }
+  .section-header .section-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0; }
+    .section-header .section-inner .header-logo__title {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: normal;
+      font-weight: 400;
+      margin: 0 0 9px 0;
+      font-size: 32px;
+      line-height: 110%;
+      color: #545454;
+      letter-spacing: 0.06em; }
+    .section-header .section-inner .header-logo__description {
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      margin: 0 0 0 4px;
+      font-size: 13px;
+      line-height: 15px;
+      color: #292929;
+      letter-spacing: 0.1em; }
+    .section-header .section-inner .header-menu .header-list {
+      display: flex;
+      padding-bottom: 5px; }
+      .section-header .section-inner .header-menu .header-list__item {
+        list-style: none; }
+        .section-header .section-inner .header-menu .header-list__item a {
+          font-family: Arial, sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 160%;
+          color: #545454;
+          text-decoration: none;
+          transition: .3s; }
+          .section-header .section-inner .header-menu .header-list__item a:hover {
+            padding-bottom: 4px;
+            color: #292929;
+            border-bottom: 3px solid #f1cdb3; }
+        .section-header .section-inner .header-menu .header-list__item:nth-child(2) a {
+          padding-bottom: 4px;
+          color: #292929;
+          border-bottom: 3px solid #f1cdb3; }
+      .section-header .section-inner .header-menu .header-list .header-list__item + .header-list__item {
+        margin-left: 36px; }
+
+.one {
+  height: 5000px; }
