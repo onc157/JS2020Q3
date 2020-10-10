@@ -504,3 +504,120 @@ body {
           background-color: #fddcc4;
           border: 2px solid #fddcc4;
           box-shadow: 0 0 10px 1px #f1cdb3; }
+
+.section-footer {
+  background: no-repeat 50% 0% url(../../../assets/images/footer-gradient-background.png); }
+  .section-footer .section-inner {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px; }
+    .section-footer .section-inner .footer-questions__title {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: normal;
+      font-weight: 400;
+      padding-top: 17px;
+      margin-bottom: 36px;
+      font-size: 35px;
+      line-height: 130%;
+      color: #fff;
+      letter-spacing: 0.06em; }
+    .section-footer .section-inner .footer-questions__email {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 33px;
+      text-decoration: none; }
+      .section-footer .section-inner .footer-questions__email--logo {
+        padding-top: 3px;
+        margin-right: 20px; }
+      .section-footer .section-inner .footer-questions__email--address {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 115%;
+        color: #f1cdb3;
+        letter-spacing: 0.06em; }
+      .section-footer .section-inner .footer-questions__email::after {
+        position: absolute;
+        left: -10px;
+        width: 300px;
+        height: 40px;
+        padding: 5px;
+        content: "";
+        background-color: #0005;
+        border-radius: 10px;
+        opacity: 0;
+        transition: .4s; }
+      .section-footer .section-inner .footer-questions__email:hover::after {
+        opacity: .5; }
+    .section-footer .section-inner .footer-questions__phone {
+      position: relative;
+      display: flex;
+      align-items: center;
+      text-decoration: none; }
+      .section-footer .section-inner .footer-questions__phone--logo {
+        padding-top: 3px;
+        margin-right: 20px; }
+      .section-footer .section-inner .footer-questions__phone--number {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 115%;
+        color: #f1cdb3;
+        letter-spacing: 0.06em; }
+      .section-footer .section-inner .footer-questions__phone::after {
+        position: absolute;
+        left: -10px;
+        width: 300px;
+        height: 40px;
+        padding: 5px;
+        content: "";
+        background-color: #0005;
+        border-radius: 10px;
+        opacity: 0;
+        transition: .4s; }
+      .section-footer .section-inner .footer-questions__phone:hover::after {
+        opacity: .5; }
+    .section-footer .section-inner .footer-visit {
+      padding-right: 6px; }
+      .section-footer .section-inner .footer-visit__title {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: normal;
+        font-weight: 400;
+        padding-top: 17px;
+        margin-bottom: 33px;
+        font-size: 35px;
+        line-height: 130%;
+        color: #fff;
+        letter-spacing: 0.06em; }
+      .section-footer .section-inner .footer-visit__address {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        text-decoration: none; }
+        .section-footer .section-inner .footer-visit__address--logo {
+          margin-right: 19px; }
+        .section-footer .section-inner .footer-visit__address--location {
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 115%;
+          color: #f1cdb3;
+          letter-spacing: 0.06em; }
+        .section-footer .section-inner .footer-visit__address::after {
+          position: absolute;
+          left: -10px;
+          width: 300px;
+          height: 40px;
+          padding: 5px;
+          content: "";
+          background-color: #0005;
+          border-radius: 10px;
+          opacity: 0;
+          transition: .4s; }
+        .section-footer .section-inner .footer-visit__address:hover::after {
+          opacity: .5; }

@@ -338,3 +338,115 @@ body {
 }
 
 // === / Our-friends ===
+
+// === / Footer ===
+
+.section-footer {
+    background: no-repeat 50% 0% url(../../../assets/images/footer-gradient-background.png);
+
+    .section-inner {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 40px;
+
+        .footer-questions {
+            &__title {
+                @include font-georgia-normal();
+
+                padding-top: 17px;
+                margin-bottom: 36px;
+                font-size: 35px;
+                line-height: 130%;
+                color: $color-light-xl;
+                letter-spacing: 0.06em;
+            }
+
+            &__email {
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-bottom: 33px;
+                text-decoration: none;
+
+                &--logo {
+                    padding-top: 3px;
+                    margin-right: 20px;
+                }
+
+                &--address {
+                    @include font-georgia-normal();
+
+                    font-size: 20px;
+                    line-height: 115%;
+                    color: $color-primary;
+                    letter-spacing: 0.06em;
+                }
+
+                @include after-footer-animation();
+            }
+
+            &__phone {
+                position: relative;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+
+                &--logo {
+                    padding-top: 3px;
+                    margin-right: 20px;
+                }
+
+                &--number {
+                    @include font-georgia-normal();
+
+                    font-size: 20px;
+                    line-height: 115%;
+                    color: $color-primary;
+                    letter-spacing: 0.06em;
+                }
+
+                @include after-footer-animation();
+            }
+        }
+
+        .footer-visit {
+            padding-right: 6px;
+
+            &__title {
+                @include font-georgia-normal();
+
+                padding-top: 17px;
+                margin-bottom: 33px;
+                font-size: 35px;
+                line-height: 130%;
+                color: $color-light-xl;
+                letter-spacing: 0.06em;
+            }
+
+            &__address {
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                text-decoration: none;
+
+                &--logo {
+                    margin-right: 19px;
+                }
+
+                &--location {
+                    @include font-georgia-normal();
+
+                    font-size: 20px;
+                    line-height: 115%;
+                    color: $color-primary;
+                    letter-spacing: 0.06em;
+                }
+
+                @include after-footer-animation();
+            }
+        }
+    }
+}
+
+// === / Footer ===
