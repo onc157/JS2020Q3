@@ -95,15 +95,13 @@ $color-dark-3xl: #292929;
 $color-primary: #f1cdb3;
 $color-primary-light: #fddcc4;
 
-$screen-sm: 576px;
+$screen-sm: 319px;
 $screen-md: 768px;
-$screen-lg: 992px;
-$screen-xl: 1200px;
+$screen-lg: 1099px;
 
-$screen-xs-max: 575px;
-$screen-sm-max: 767px;
-$screen-md-max: 991px;
-$screen-lg-max: 1199px;
+$screen-sm-max: 320px;
+$screen-md-max: 767px;
+$screen-lg-max: 1100px;
 
 // === / Variables ===
 
@@ -115,12 +113,14 @@ $screen-lg-max: 1199px;
 body {
     @include font-main();
 
-    max-width: 1280px;
+    max-width: 1920px;
     margin: 0 auto;
-    background: no-repeat 50% 0% url(../../../assets/images/header-background.png);
+
 }
 
-.section-outer {}
+.section-outer {
+    padding: 0 30px;
+}
 
 .section-inner {
     max-width: 1200px;
@@ -130,11 +130,14 @@ body {
 
 // === Header ===
 .section-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+
     .section-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: 60px;
 
         .header-logo {
             &__title {
@@ -197,23 +200,35 @@ body {
             }
         }
     }
+
+    @media (max-width: $screen-lg) {
+        .section-inner {
+            padding-top: 30px;
+        }
+    }
+
+    @media (min-width: $screen-lg-max) {
+        .section-inner {
+            padding-top: 60px;
+        }
+    }
 }
 // === / Header ===
 
 // === Not-only ===
 .section-not-only {
+    background: url(../../../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
+
     .section-inner {
         display: flex;
-        padding-top: 59px;
+        padding-top: 180px;
 
         .not-only-content {
-            margin-right: 42px;
 
             &__title {
                 @include font-georgia-normal();
 
                 width: 310px;
-                padding-top: 164px;
                 margin-bottom: 41px;
                 font-size: 44px;
                 line-height: 130%;
@@ -257,6 +272,43 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+        }
+    }
+
+    @media (max-width: $screen-lg) {
+        .section-inner {
+            flex-direction: column;
+            align-items: center;
+
+            .not-only-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                &__title {
+                    align-self: flex-start;
+                }
+            }
+
+            .not-only-dog {
+                align-self: flex-end;
+                padding-top: 100px;
+                img {
+                    width: 569px;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-lg-max) {
+        .section-inner {
+            .not-only-content {
+                margin-right: 42px;
+
+                &__title {
+                    padding-top: 164px;
+                }
+            }
         }
     }
 }
@@ -303,6 +355,12 @@ body {
                     margin-bottom: 25px;
                 }
             }
+        }
+    }
+
+    @media (max-width: $screen-lg) {
+        .section-inner {
+            flex-direction: column-reverse;
         }
     }
 }
@@ -442,6 +500,18 @@ body {
             }
         }
     }
+
+    @media (max-width: $screen-lg) {
+        .section-inner {
+            .slider-wrapper {
+                .items-wrapper {
+                    .item-3 {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // === / Our-friends ===
@@ -487,6 +557,16 @@ body {
                     line-height: 115%;
                     color: $color-dark-l;
                     letter-spacing: 0.06em;
+                }
+            }
+        }
+    }
+
+    @media (max-width: $screen-lg) {
+        .section-inner {
+            .help-items {
+                &__item {
+                    margin: 0 30px 55px;
                 }
             }
         }
@@ -582,6 +662,12 @@ body {
             }
         }
     }
+
+    @media (max-width: $screen-lg) {
+        .section-inner {
+            flex-direction: column-reverse;
+        }
+    }
 }
 
 // === / In addition ===
@@ -596,6 +682,9 @@ body {
         justify-content: space-between;
         padding-top: 40px;
 
+        .footer-wrapper {
+
+        }
         .footer-questions {
             &__title {
                 @include font-georgia-normal();
@@ -692,6 +781,12 @@ body {
 
                 @include after-footer-animation();
             }
+        }
+    }
+
+    @media (max-width: $screen-lg) {
+        .section-inner {
+            flex-wrap: wrap;
         }
     }
 }
