@@ -467,7 +467,7 @@ body {
     .section-inner {
         display: flex;
         justify-content: center;
-        padding: 82px 0 100px 0;
+        padding: 82px 0 101px 0;
 
         .in-addition__photo {
             padding-top: 10px;
@@ -544,3 +544,96 @@ body {
 }
 
 // === / In addition ===
+
+// === / Footer ===
+
+.section-footer {
+    background: no-repeat 50% 0% url(../../../assets/images/footer-gradient-background.png);
+
+    .section-inner {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 40px;
+
+        .footer-questions {
+            &__title {
+                @include font-georgia-normal();
+                padding-top: 17px;
+                margin-bottom: 36px;
+                font-size: 35px;
+                line-height: 130%;
+                color: $color-light-xl;
+                letter-spacing: 0.06em;
+            }
+            &__email {
+                display: flex;
+                align-items: center;
+                margin-bottom: 33px;
+
+                &--logo {
+                    padding-top: 3px;
+                    margin-right: 20px;
+                }
+                &--address {
+                    @include font-georgia-normal();
+                    font-size: 20px;
+                    line-height: 115%;
+                    color: $color-primary;
+                    letter-spacing: 0.06em;
+                }
+            }
+            &__phone {
+                display: flex;
+                align-items: center;
+
+                &--logo {
+                    padding-top: 3px;
+                    margin-right: 20px;
+                }
+                &--number {
+                    @include font-georgia-normal();
+                    font-size: 20px;
+                    line-height: 115%;
+                    color: $color-primary;
+                    letter-spacing: 0.06em;
+                }
+            }
+        }
+
+        .footer-visit {
+            padding-right: 6px;
+
+            &__title {
+                @include font-georgia-normal();
+
+                padding-top: 17px;
+                margin-bottom: 33px;
+                font-size: 35px;
+                line-height: 130%;
+                color: $color-light-xl;
+                letter-spacing: 0.06em;
+            }
+
+            &__address {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+
+                &--logo {
+                    margin-right: 19px;
+                }
+
+                &--location {
+                    @include font-georgia-normal();
+
+                    font-size: 20px;
+                    line-height: 115%;
+                    color: $color-primary;
+                    letter-spacing: 0.06em;
+                }
+            }
+        }
+    }
+}
+
+// === / Footer ===
