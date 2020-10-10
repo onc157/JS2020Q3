@@ -304,25 +304,25 @@ template {
   display: none; }
 
 @font-face {
-  font-family: 'Georgia, Normal';
+  font-family: Georgia, 'Times New Roman', Times, serif;
   src: url("../../../assets/fonts/Georgia.ttf");
   font-style: normal;
   font-weight: 400; }
 
 @font-face {
-  font-family: 'Georgia, Italic';
+  font-family: Georgia, 'Times New Roman', Times, serif;
   src: url("../../../assets/fonts/Georgia Italic.ttf");
   font-style: italic;
   font-weight: 400; }
 
 @font-face {
-  font-family: 'Arial, Normal';
+  font-family: Arial, sans-serif;
   src: url("../../../assets/fonts/Arial.ttf");
   font-style: normal;
   font-weight: 400; }
 
 @font-face {
-  font-family: 'Arial, Italic';
+  font-family: Arial, sans-serif;
   src: url("../../../assets/fonts/Arial Italic.ttf");
   font-style: italic;
   font-weight: 400; }
@@ -331,7 +331,7 @@ template {
   box-sizing: border-box; }
 
 body {
-  font-family: Arial, Normal;
+  font-family: Arial, sans-serif;
   font-weight: 400;
   max-width: 1920px;
   margin: 0 auto;
@@ -347,7 +347,7 @@ body {
   justify-content: space-between;
   padding-top: 60px; }
   .section-header .section-inner .header-logo__title {
-    font-family: Georgia, Italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
     font-weight: 400;
     margin: 0 0 9px 0;
@@ -356,7 +356,7 @@ body {
     color: #f1cdb3;
     letter-spacing: 0.06em; }
   .section-header .section-inner .header-logo__description {
-    font-family: Arial, Normal;
+    font-family: Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     margin: 0 0 0 4px;
@@ -370,7 +370,7 @@ body {
     .section-header .section-inner .header-menu .header-list__item {
       list-style: none; }
       .section-header .section-inner .header-menu .header-list__item a {
-        font-family: Arial, Normal;
+        font-family: Arial, sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 15px;
@@ -395,7 +395,7 @@ body {
   .section-not-only .section-inner .not-only-content {
     margin-right: 42px; }
     .section-not-only .section-inner .not-only-content__title {
-      font-family: Georgia, Italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       width: 310px;
@@ -405,7 +405,7 @@ body {
       line-height: 130%;
       color: #fff; }
     .section-not-only .section-inner .not-only-content__description {
-      font-family: Arial, Normal;
+      font-family: Arial, sans-serif;
       font-style: normal;
       font-weight: 400;
       width: 460px;
@@ -414,7 +414,7 @@ body {
       line-height: 160%;
       color: #cdcdcd; }
     .section-not-only .section-inner .not-only-content__button {
-      font-family: Georgia, Italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       width: 207px;
@@ -448,7 +448,7 @@ body {
     align-self: flex-start;
     padding-top: 15px; }
     .section-about .section-inner .about-content__title {
-      font-family: Georgia, Italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       width: 370px;
@@ -458,11 +458,11 @@ body {
       color: #545454;
       letter-spacing: 0.06em; }
     .section-about .section-inner .about-content__description {
-      font-family: Arial, Normal;
+      font-family: Arial, sans-serif;
       font-style: normal;
       font-weight: 400;
-      margin: 0;
       width: 430px;
+      margin: 0;
       font-size: 15px;
       line-height: 160%;
       color: #4c4c4c; }
@@ -476,7 +476,7 @@ body {
     flex-direction: column;
     padding: 81px 0 100px 0; }
     .section-our-friends .section-inner .our-friends__title {
-      font-family: Georgia, Italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       padding-left: 3px;
@@ -501,8 +501,8 @@ body {
         transition: .4s; }
         .section-our-friends .section-inner .slider-wrapper__button:hover {
           cursor: pointer;
-          border: 2px solid #fddcc4;
           background-color: #fddcc4;
+          border: 2px solid #fddcc4;
           box-shadow: 0 0 10px 1px #f1cdb3; }
       .section-our-friends .section-inner .slider-wrapper .items-wrapper {
         display: flex; }
@@ -518,7 +518,7 @@ body {
           border-radius: 9px;
           transition: .4s; }
           .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--name {
-            font-family: Georgia, Italic;
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-style: normal;
             font-weight: 400;
             margin: 0 0 4px 2px;
@@ -527,7 +527,7 @@ body {
             color: #545454;
             letter-spacing: 0.06em; }
           .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--button {
-            font-family: Georgia, Italic;
+            font-family: Georgia, 'Times New Roman', Times, serif;
             font-style: normal;
             font-weight: 400;
             width: 187px;
@@ -543,12 +543,12 @@ body {
             transition: .4s; }
             .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--button:hover {
               cursor: pointer;
-              border: 2px solid #fddcc4;
               background-color: #fddcc4;
+              border: 2px solid #fddcc4;
               box-shadow: 0 0 10px 1px #f1cdb3; }
           .section-our-friends .section-inner .slider-wrapper .items-wrapper__item:hover {
-            background-color: #fff;
-            cursor: pointer; }
+            cursor: pointer;
+            background-color: #fff; }
         .section-our-friends .section-inner .slider-wrapper .items-wrapper__item + .items-wrapper__item {
           margin-left: 90px; }
     .section-our-friends .section-inner .our-friends__rest {
@@ -556,7 +556,7 @@ body {
       justify-content: center;
       padding-top: 60px; }
       .section-our-friends .section-inner .our-friends__rest--button {
-        font-family: Georgia, Italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-style: normal;
         font-weight: 400;
         width: 261px;
@@ -578,7 +578,7 @@ body {
 .section-help .section-inner {
   padding: 81px 0 45px 0; }
   .section-help .section-inner .help__title {
-    font-family: Georgia, Italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
     font-weight: 400;
     padding-left: 2px;
@@ -601,7 +601,7 @@ body {
       .section-help .section-inner .help-items__item--logo {
         margin-bottom: 26px; }
       .section-help .section-inner .help-items__item--title {
-        font-family: Georgia, Italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
@@ -619,7 +619,7 @@ body {
       padding-top: 10px;
       margin-right: 30px; }
     .section-in-addition .section-inner .in-addition-donation__title {
-      font-family: Georgia, Italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       margin-bottom: 20px;
@@ -628,7 +628,7 @@ body {
       color: #545454;
       letter-spacing: 0.06em; }
     .section-in-addition .section-inner .in-addition-donation__bank {
-      font-family: Georgia, Italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       margin-bottom: 20px;
@@ -651,7 +651,7 @@ body {
       .section-in-addition .section-inner .in-addition-donation__card--logo {
         padding-top: 3px; }
       .section-in-addition .section-inner .in-addition-donation__card--number {
-        font-family: Georgia, Italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
@@ -669,7 +669,7 @@ body {
         box-shadow: 0 0 10px 1px #f1cdb3;
         transform: translate(2px, 2px); }
     .section-in-addition .section-inner .in-addition-donation__description {
-      font-family: Arial, Italic;
+      font-family: Arial, sans-serif;
       font-style: italic;
       font-weight: 400;
       width: 380px;
@@ -684,7 +684,7 @@ body {
     justify-content: space-between;
     padding-top: 40px; }
     .section-footer .section-inner .footer-questions__title {
-      font-family: Georgia, Italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       padding-top: 17px;
@@ -701,7 +701,7 @@ body {
         padding-top: 3px;
         margin-right: 20px; }
       .section-footer .section-inner .footer-questions__email--address {
-        font-family: Georgia, Italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
@@ -715,7 +715,7 @@ body {
         padding-top: 3px;
         margin-right: 20px; }
       .section-footer .section-inner .footer-questions__phone--number {
-        font-family: Georgia, Italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
@@ -725,7 +725,7 @@ body {
     .section-footer .section-inner .footer-visit {
       padding-right: 6px; }
       .section-footer .section-inner .footer-visit__title {
-        font-family: Georgia, Italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-style: normal;
         font-weight: 400;
         padding-top: 17px;
@@ -741,7 +741,7 @@ body {
         .section-footer .section-inner .footer-visit__address--logo {
           margin-right: 19px; }
         .section-footer .section-inner .footer-visit__address--location {
-          font-family: Georgia, Italic;
+          font-family: Georgia, 'Times New Roman', Times, serif;
           font-style: normal;
           font-weight: 400;
           font-size: 20px;

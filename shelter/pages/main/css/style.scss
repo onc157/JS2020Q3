@@ -2,28 +2,28 @@
 // === Fonts ===
 
 @font-face {
-    font-family: 'Georgia, Normal';
+    font-family: Georgia, 'Times New Roman', Times, serif;
     src: url('../../../assets/fonts/Georgia.ttf');
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Georgia, Italic';
+    font-family: Georgia, 'Times New Roman', Times, serif;
     src: url('../../../assets/fonts/Georgia\ Italic.ttf');
     font-style: italic;
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Arial, Normal';
+    font-family: Arial, sans-serif;
     src: url('../../../assets/fonts/Arial.ttf');
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Arial, Italic';
+    font-family: Arial, sans-serif;
     src: url('../../../assets/fonts/Arial\ Italic.ttf');
     font-style: italic;
     font-weight: 400;
@@ -33,12 +33,12 @@
 
 // === Mixins ===
 @mixin font-main {
-    font-family: Arial, Normal;
+    font-family: Arial, sans-serif;
     font-weight: 400;
 }
 
 @mixin font-georgia-normal {
-    font-family: Georgia, Italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: normal;
     font-weight: 400;
 }
@@ -50,13 +50,13 @@
 }
 
 @mixin font-arial-normal {
-    font-family: Arial, Normal;
+    font-family: Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
 }
 
 @mixin font-arial-italic {
-    font-family: Arial, Italic;
+    font-family: Arial, sans-serif;
     font-style: italic;
     font-weight: 400;
 }
@@ -87,6 +87,7 @@ $color-primary-light: #fddcc4;
 
 body {
     @include font-main();
+
     max-width: 1920px;
     margin: 0 auto;
     background: no-repeat 50% 0% url(../../../assets/images/header-background.png);
@@ -111,6 +112,7 @@ body {
         .header-logo {
             &__title {
                 @include font-georgia-normal();
+
                 margin: 0 0 9px 0;
                 font-size: 32px;
                 line-height: 110%;
@@ -120,6 +122,7 @@ body {
 
             &__description {
                 @include font-arial-normal();
+
                 margin: 0 0 0 4px;
                 font-size: 13px;
                 line-height: 15px;
@@ -138,6 +141,7 @@ body {
 
                     a {
                         @include font-arial-normal();
+
                         font-size: 15px;
                         line-height: 160%;
                         color: $color-dark-s;
@@ -163,7 +167,7 @@ body {
                 .header-list__item + .header-list__item {
                     margin-left: 36px;
                 }
-        }
+            }
         }
     }
 }
@@ -180,6 +184,7 @@ body {
 
             &__title {
                 @include font-georgia-normal();
+
                 width: 310px;
                 padding-top: 164px;
                 margin-bottom: 41px;
@@ -190,6 +195,7 @@ body {
 
             &__description {
                 @include font-arial-normal();
+
                 width: 460px;
                 margin-bottom: 41px;
                 font-size: 15px;
@@ -199,6 +205,7 @@ body {
 
             &__button {
                 @include font-georgia-normal();
+
                 width: 207px;
                 height: 52px;
                 font-size: 17px;
@@ -223,7 +230,6 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            img {}
         }
     }
 }
@@ -238,9 +244,7 @@ body {
         justify-content: space-between;
         padding: 80px 175px 96px 175px;
 
-        .about-pets {
-            img {}
-        }
+        .about-pets {}
 
         .about-content {
             display: flex;
@@ -250,6 +254,7 @@ body {
 
             &__title {
                 @include font-georgia-normal();
+
                 width: 370px;
                 margin-bottom: 24px;
                 font-size: 35px;
@@ -260,8 +265,9 @@ body {
 
             &__description {
                 @include font-arial-normal();
-                margin: 0;
+
                 width: 430px;
+                margin: 0;
                 font-size: 15px;
                 line-height: 160%;
                 color: $color-dark-xl;
@@ -288,6 +294,7 @@ body {
 
         .our-friends__title {
             @include font-georgia-normal();
+
             padding-left: 3px;
             margin-bottom: 59px;
             font-size: 35px;
@@ -314,8 +321,8 @@ body {
 
                 &:hover {
                     cursor: pointer;
-                    border: 2px solid $color-primary-light;
                     background-color: $color-primary-light;
+                    border: 2px solid $color-primary-light;
                     box-shadow: 0 0 10px 1px $color-primary;
                 }
             }
@@ -339,6 +346,7 @@ body {
 
                     &--name {
                         @include font-georgia-normal();
+
                         margin: 0 0 4px 2px;
                         font-size: 20px;
                         line-height: 23px;
@@ -348,6 +356,7 @@ body {
 
                     &--button {
                         @include font-georgia-normal();
+
                         width: 187px;
                         height: 52px;
                         font-size: 17px;
@@ -359,26 +368,25 @@ body {
                         border-radius: 100px;
                         outline: none;
                         transition: .4s;
-                        //padding-left: 7px;
 
                         &:hover {
                             cursor: pointer;
-                            border: 2px solid $color-primary-light;
                             background-color: $color-primary-light;
+                            border: 2px solid $color-primary-light;
                             box-shadow: 0 0 10px 1px $color-primary;
                         }
                     }
 
                     &:hover {
-                        background-color: $color-light-xl;
                         cursor: pointer;
+                        background-color: $color-light-xl;
                     }
                 }
 
                 &__item + .items-wrapper__item {
                     margin-left: 90px;
                 }
-           }
+            }
         }
 
         .our-friends__rest {
@@ -388,6 +396,7 @@ body {
 
             &--button {
                 @include font-georgia-normal();
+
                 width: 261px;
                 height: 52px;
                 font-size: 17px;
@@ -420,6 +429,7 @@ body {
 
         .help__title {
             @include font-georgia-normal();
+
             padding-left: 2px;
             margin-bottom: 59px;
             font-size: 35px;
@@ -447,6 +457,7 @@ body {
 
                 &--title {
                     @include font-georgia-normal();
+
                     font-size: 20px;
                     line-height: 115%;
                     color: $color-dark-l;
@@ -472,26 +483,29 @@ body {
         .in-addition__photo {
             padding-top: 10px;
             margin-right: 30px;
-            img {}
         }
 
         .in-addition-donation {
             &__title {
                 @include font-georgia-normal();
+
                 margin-bottom: 20px;
                 font-size: 35px;
                 line-height: 130%;
                 color: $color-dark-l;
                 letter-spacing: 0.06em;
             }
+
             &__bank {
                 @include font-georgia-normal();
+
                 margin-bottom: 20px;
                 font-size: 15px;
                 line-height: 110%;
                 color: $color-dark-l;
                 letter-spacing: 0.06em;
             }
+
             &__card {
                 display: flex;
                 align-items: center;
@@ -511,6 +525,7 @@ body {
 
                 &--number {
                     @include font-georgia-normal();
+
                     font-size: 20px;
                     line-height: 115%;
                     color: $color-dark-l;
@@ -534,6 +549,7 @@ body {
 
             &__description {
                 @include font-arial-italic();
+
                 width: 380px;
                 font-size: 12px;
                 line-height: 18px;
@@ -558,6 +574,7 @@ body {
         .footer-questions {
             &__title {
                 @include font-georgia-normal();
+
                 padding-top: 17px;
                 margin-bottom: 36px;
                 font-size: 35px;
@@ -565,6 +582,7 @@ body {
                 color: $color-light-xl;
                 letter-spacing: 0.06em;
             }
+
             &__email {
                 display: flex;
                 align-items: center;
@@ -574,14 +592,17 @@ body {
                     padding-top: 3px;
                     margin-right: 20px;
                 }
+
                 &--address {
                     @include font-georgia-normal();
+
                     font-size: 20px;
                     line-height: 115%;
                     color: $color-primary;
                     letter-spacing: 0.06em;
                 }
             }
+
             &__phone {
                 display: flex;
                 align-items: center;
@@ -590,8 +611,10 @@ body {
                     padding-top: 3px;
                     margin-right: 20px;
                 }
+
                 &--number {
                     @include font-georgia-normal();
+
                     font-size: 20px;
                     line-height: 115%;
                     color: $color-primary;
