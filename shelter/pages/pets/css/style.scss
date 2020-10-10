@@ -1,0 +1,121 @@
+@import 'normalize.scss';
+// === Fonts ===
+
+@font-face {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    src: url('../../../assets/fonts/Georgia.ttf');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    src: url('../../../assets/fonts/Georgia\ Italic.ttf');
+    font-style: italic;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Arial, sans-serif;
+    src: url('../../../assets/fonts/Arial.ttf');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Arial, sans-serif;
+    src: url('../../../assets/fonts/Arial\ Italic.ttf');
+    font-style: italic;
+    font-weight: 400;
+}
+
+// === / Fonts ===
+
+// === Mixins ===
+@mixin font-main {
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+}
+
+@mixin font-georgia-normal {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+@mixin font-georgia-italic {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+@mixin font-arial-normal {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+@mixin font-arial-italic {
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+@mixin after-footer-animation {
+    &::after {
+        position: absolute;
+        left: -10px;
+        width: 300px;
+        height: 40px;
+        padding: 5px;
+        content: "";
+        background-color: #0005;
+        border-radius: 10px;
+        opacity: 0;
+        transition: .4s;
+    }
+
+    &:hover::after {
+        opacity: .5;
+    }
+}
+
+// === / Mixins ===
+
+// === Variables ===
+$color-light-s: #fafafa;
+$color-light-l: #f6f6f6;
+$color-light-xl: #fff;
+$color-dark-s: #cdcdcd;
+$color-dark-m: #b2b2b2;
+$color-dark-l: #545454;
+$color-dark-xl: #4c4c4c;
+$color-dark-2xl: #444;
+$color-dark-3xl: #292929;
+$color-primary: #f1cdb3;
+$color-primary-light: #fddcc4;
+
+// === / Variables ===
+
+// === Common ===
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include font-main();
+
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.section-outer {}
+
+.section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+// === / Common ===
+
+// === Header ===
+// === / Header ===
