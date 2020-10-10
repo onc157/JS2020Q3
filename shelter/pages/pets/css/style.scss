@@ -121,6 +121,7 @@ body {
 .section-header {
     position: sticky;
     top: 0;
+    background-color: $color-light-xl;
 
     .section-inner {
         display: flex;
@@ -194,3 +195,146 @@ body {
     height: 5000px;
 }
 // === / Header ===
+
+// === Our-friends ===
+
+.section-our-friends {
+    background: $color-light-l;
+
+    .section-inner {
+        display: flex;
+        flex-direction: column;
+        padding: 80px 0 100px 0;
+
+        .our-friends__title {
+            @include font-georgia-normal();
+
+            padding-left: 3px;
+            margin-bottom: 59px;
+            font-size: 35px;
+            line-height: 130%;
+            color: $color-dark-l;
+            text-align: center;
+            letter-spacing: 0.06em;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .items-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                &__item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 270px;
+                    height: 435px;
+                    padding-bottom: 30px;
+                    margin-bottom: 30px;
+                    background: $color-light-s;
+                    border-radius: 9px;
+                    transition: .4s;
+
+                    &--name {
+                        @include font-georgia-normal();
+
+                        margin: 0 0 4px 2px;
+                        font-size: 20px;
+                        line-height: 23px;
+                        color: $color-dark-l;
+                        letter-spacing: 0.06em;
+                    }
+
+                    &--button {
+                        @include font-georgia-normal();
+
+                        width: 187px;
+                        height: 52px;
+                        font-size: 17px;
+                        line-height: 130%;
+                        color: $color-dark-3xl;
+                        letter-spacing: 0.06em;
+                        background-color: $color-light-xl;
+                        border: 2px solid $color-primary;
+                        border-radius: 100px;
+                        outline: none;
+                        transition: .4s;
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color: $color-primary-light;
+                            border: 2px solid $color-primary-light;
+                            box-shadow: 0 0 10px 1px $color-primary;
+                        }
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: $color-light-xl;
+                    }
+                }
+            }
+        }
+
+        .slider-buttons {
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+
+            &__item {
+                @include font-georgia-normal();
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 52px;
+                height: 52px;
+                padding: 0 0 2px 1px;
+                margin: 0 10px 0;
+                font-size: 20px;
+                line-height: 115%;
+                color: $color-dark-3xl;
+                letter-spacing: 0.06em;
+                background: none;
+                border-radius: 100px;
+                outline: none;
+                transition: .4s;
+            }
+
+            &__left {
+                color: $color-dark-s;
+                border: 2px solid $color-dark-s;
+            }
+
+            &__center {
+                border: 2px solid $color-primary;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: $color-primary-light;
+                    border: 2px solid $color-primary-light;
+                    box-shadow: 0 0 10px 1px $color-primary;
+                }
+            }
+
+            &__right {
+                border: 2px solid $color-primary;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: $color-primary-light;
+                    border: 2px solid $color-primary-light;
+                    box-shadow: 0 0 10px 1px $color-primary;
+                }
+            }
+        }
+    }
+}
+
+// === / Our-friends ===

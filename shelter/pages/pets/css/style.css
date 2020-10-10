@@ -342,7 +342,8 @@ body {
 
 .section-header {
   position: sticky;
-  top: 0; }
+  top: 0;
+  background-color: #fff; }
   .section-header .section-inner {
     display: flex;
     align-items: center;
@@ -393,3 +394,113 @@ body {
 
 .one {
   height: 5000px; }
+
+.section-our-friends {
+  background: #f6f6f6; }
+  .section-our-friends .section-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 0 100px 0; }
+    .section-our-friends .section-inner .our-friends__title {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: normal;
+      font-weight: 400;
+      padding-left: 3px;
+      margin-bottom: 59px;
+      font-size: 35px;
+      line-height: 130%;
+      color: #545454;
+      text-align: center;
+      letter-spacing: 0.06em; }
+    .section-our-friends .section-inner .slider-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .section-our-friends .section-inner .slider-wrapper .items-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; }
+        .section-our-friends .section-inner .slider-wrapper .items-wrapper__item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          width: 270px;
+          height: 435px;
+          padding-bottom: 30px;
+          margin-bottom: 30px;
+          background: #fafafa;
+          border-radius: 9px;
+          transition: .4s; }
+          .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--name {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-style: normal;
+            font-weight: 400;
+            margin: 0 0 4px 2px;
+            font-size: 20px;
+            line-height: 23px;
+            color: #545454;
+            letter-spacing: 0.06em; }
+          .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--button {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-style: normal;
+            font-weight: 400;
+            width: 187px;
+            height: 52px;
+            font-size: 17px;
+            line-height: 130%;
+            color: #292929;
+            letter-spacing: 0.06em;
+            background-color: #fff;
+            border: 2px solid #f1cdb3;
+            border-radius: 100px;
+            outline: none;
+            transition: .4s; }
+            .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--button:hover {
+              cursor: pointer;
+              background-color: #fddcc4;
+              border: 2px solid #fddcc4;
+              box-shadow: 0 0 10px 1px #f1cdb3; }
+          .section-our-friends .section-inner .slider-wrapper .items-wrapper__item:hover {
+            cursor: pointer;
+            background-color: #fff; }
+    .section-our-friends .section-inner .slider-buttons {
+      display: flex;
+      justify-content: center;
+      padding-top: 30px; }
+      .section-our-friends .section-inner .slider-buttons__item {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: normal;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        padding: 0 0 2px 1px;
+        margin: 0 10px 0;
+        font-size: 20px;
+        line-height: 115%;
+        color: #292929;
+        letter-spacing: 0.06em;
+        background: none;
+        border-radius: 100px;
+        outline: none;
+        transition: .4s; }
+      .section-our-friends .section-inner .slider-buttons__left {
+        color: #cdcdcd;
+        border: 2px solid #cdcdcd; }
+      .section-our-friends .section-inner .slider-buttons__center {
+        border: 2px solid #f1cdb3; }
+        .section-our-friends .section-inner .slider-buttons__center:hover {
+          cursor: pointer;
+          background-color: #fddcc4;
+          border: 2px solid #fddcc4;
+          box-shadow: 0 0 10px 1px #f1cdb3; }
+      .section-our-friends .section-inner .slider-buttons__right {
+        border: 2px solid #f1cdb3; }
+        .section-our-friends .section-inner .slider-buttons__right:hover {
+          cursor: pointer;
+          background-color: #fddcc4;
+          border: 2px solid #fddcc4;
+          box-shadow: 0 0 10px 1px #f1cdb3; }
