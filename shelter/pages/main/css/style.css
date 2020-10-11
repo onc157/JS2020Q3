@@ -552,6 +552,10 @@ body {
           background-color: #fddcc4;
           border: 2px solid #fddcc4;
           box-shadow: 0 0 10px 1px #f1cdb3; }
+      .section-our-friends .section-inner .slider-wrapper .slider-button__left {
+        margin-right: 5px; }
+      .section-our-friends .section-inner .slider-wrapper .slider-button__right {
+        margin-left: 5px; }
       .section-our-friends .section-inner .slider-wrapper .items-wrapper {
         display: flex; }
         .section-our-friends .section-inner .slider-wrapper .items-wrapper__item {
