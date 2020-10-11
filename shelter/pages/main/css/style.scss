@@ -221,7 +221,6 @@ body {
 
     .section-inner {
         display: flex;
-        padding-top: 180px;
 
         .not-only-content {
 
@@ -229,7 +228,6 @@ body {
                 @include font-georgia-normal();
 
                 width: 310px;
-                margin-bottom: 41px;
                 font-size: 44px;
                 line-height: 130%;
                 color: $color-light-xl;
@@ -272,6 +270,9 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            img{
+                width: 100%;
+            }
         }
     }
 
@@ -279,6 +280,7 @@ body {
         .section-inner {
             flex-direction: column;
             align-items: center;
+            padding-top: 151px;
 
             .not-only-content {
                 display: flex;
@@ -287,6 +289,7 @@ body {
 
                 &__title {
                     align-self: flex-start;
+                    margin-bottom: 42px;
                 }
             }
 
@@ -302,11 +305,14 @@ body {
 
     @media (min-width: $screen-lg-max) {
         .section-inner {
+            padding-top: 180px;
+
             .not-only-content {
                 margin-right: 42px;
 
                 &__title {
                     padding-top: 164px;
+                    margin-bottom: 41px;
                 }
             }
         }
@@ -321,15 +327,12 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 80px 175px 96px 175px;
 
         .about-pets {}
 
         .about-content {
             display: flex;
             flex-direction: column;
-            align-self: flex-start;
-            padding-top: 15px;
 
             &__title {
                 @include font-georgia-normal();
@@ -361,6 +364,26 @@ body {
     @media (max-width: $screen-lg) {
         .section-inner {
             flex-direction: column-reverse;
+            padding-bottom: 96px;
+
+            .about-content {
+                padding-top: 81px;
+            }
+
+            .about-pets {
+                padding-top: 80px;
+            }
+        }
+    }
+
+    @media (min-width: $screen-lg-max) {
+        .section-inner {
+            padding: 80px 175px 96px 175px;
+
+            .about-content {
+                align-self: flex-start;
+                padding-top: 15px;
+            }
         }
     }
 }
@@ -465,10 +488,6 @@ body {
                         background-color: $color-light-xl;
                     }
                 }
-
-                &__item + .items-wrapper__item {
-                    margin-left: 90px;
-                }
             }
         }
 
@@ -507,6 +526,22 @@ body {
                 .items-wrapper {
                     .item-3 {
                         display: none;
+                    }
+
+                    &__item + .items-wrapper__item {
+                        margin-left: 40px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-lg-max) {
+        .section-inner {
+            .slider-wrapper {
+                .items-wrapper {
+                    &__item + .items-wrapper__item {
+                        margin-left: 90px;
                     }
                 }
             }

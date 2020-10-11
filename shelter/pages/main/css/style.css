@@ -403,14 +403,12 @@ body {
 .section-not-only {
   background: url(../../../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%); }
   .section-not-only .section-inner {
-    display: flex;
-    padding-top: 180px; }
+    display: flex; }
     .section-not-only .section-inner .not-only-content__title {
       font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
       font-weight: 400;
       width: 310px;
-      margin-bottom: 41px;
       font-size: 44px;
       line-height: 130%;
       color: #fff; }
@@ -446,37 +444,41 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: flex-end; }
+      .section-not-only .section-inner .not-only-dog img {
+        width: 100%; }
   @media (max-width: 1099px) {
     .section-not-only .section-inner {
       flex-direction: column;
-      align-items: center; }
+      align-items: center;
+      padding-top: 151px; }
       .section-not-only .section-inner .not-only-content {
         display: flex;
         flex-direction: column;
         align-items: center; }
         .section-not-only .section-inner .not-only-content__title {
-          align-self: flex-start; }
+          align-self: flex-start;
+          margin-bottom: 42px; }
       .section-not-only .section-inner .not-only-dog {
         align-self: flex-end;
         padding-top: 100px; }
         .section-not-only .section-inner .not-only-dog img {
           width: 569px; } }
   @media (min-width: 1100px) {
-    .section-not-only .section-inner .not-only-content {
-      margin-right: 42px; }
-      .section-not-only .section-inner .not-only-content__title {
-        padding-top: 164px; } }
+    .section-not-only .section-inner {
+      padding-top: 180px; }
+      .section-not-only .section-inner .not-only-content {
+        margin-right: 42px; }
+        .section-not-only .section-inner .not-only-content__title {
+          padding-top: 164px;
+          margin-bottom: 41px; } }
 
 .section-about .section-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 80px 175px 96px 175px; }
+  justify-content: space-between; }
   .section-about .section-inner .about-content {
     display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    padding-top: 15px; }
+    flex-direction: column; }
     .section-about .section-inner .about-content__title {
       font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
@@ -501,7 +503,19 @@ body {
 
 @media (max-width: 1099px) {
   .section-about .section-inner {
-    flex-direction: column-reverse; } }
+    flex-direction: column-reverse;
+    padding-bottom: 96px; }
+    .section-about .section-inner .about-content {
+      padding-top: 81px; }
+    .section-about .section-inner .about-pets {
+      padding-top: 80px; } }
+
+@media (min-width: 1100px) {
+  .section-about .section-inner {
+    padding: 80px 175px 96px 175px; }
+    .section-about .section-inner .about-content {
+      align-self: flex-start;
+      padding-top: 15px; } }
 
 .section-our-friends {
   background: #f6f6f6; }
@@ -583,8 +597,6 @@ body {
           .section-our-friends .section-inner .slider-wrapper .items-wrapper__item:hover {
             cursor: pointer;
             background-color: #fff; }
-        .section-our-friends .section-inner .slider-wrapper .items-wrapper__item + .items-wrapper__item {
-          margin-left: 90px; }
     .section-our-friends .section-inner .our-friends__rest {
       display: flex;
       justify-content: center;
@@ -610,7 +622,12 @@ body {
           box-shadow: 0 0 10px 1px #f1cdb3; }
   @media (max-width: 1099px) {
     .section-our-friends .section-inner .slider-wrapper .items-wrapper .item-3 {
-      display: none; } }
+      display: none; }
+    .section-our-friends .section-inner .slider-wrapper .items-wrapper__item + .items-wrapper__item {
+      margin-left: 40px; } }
+  @media (min-width: 1100px) {
+    .section-our-friends .section-inner .slider-wrapper .items-wrapper__item + .items-wrapper__item {
+      margin-left: 90px; } }
 
 .section-help .section-inner {
   padding: 81px 0 45px 0; }
