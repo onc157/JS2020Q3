@@ -656,7 +656,7 @@ body {
 
     @media (max-width: $screen-md) {
         .section-inner {
-            padding: 42px 0 100px 0;
+            padding: 42px 0 42px 0;
 
             .our-friends__title {
                 margin-bottom: 42px;
@@ -756,14 +756,11 @@ body {
 
 .section-help {
     .section-inner {
-        padding: 81px 0 45px 0;
 
         .help__title {
             @include font-georgia-normal();
 
             padding-left: 2px;
-            margin-bottom: 59px;
-            font-size: 35px;
             line-height: 130%;
             color: $color-dark-l;
             text-align: center;
@@ -773,7 +770,6 @@ body {
         .help-items {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             padding-left: 1px;
 
             &__item {
@@ -781,15 +777,9 @@ body {
                 flex-direction: column;
                 align-items: center;
 
-                &--logo {
-                    margin-bottom: 26px;
-                }
-
                 &--title {
                     @include font-georgia-normal();
 
-                    font-size: 20px;
-                    line-height: 115%;
                     color: $color-dark-l;
                     letter-spacing: 0.06em;
                 }
@@ -797,7 +787,69 @@ body {
         }
     }
 
-    @media (max-width: $screen-lg) {
+    // +++ branchmarks +++
+
+    @media (max-width: $screen-md) {
+        .section-inner {
+            padding: 42px 5px 12px 5px;
+
+            .help__title {
+                margin-bottom: 42px;
+                font-size: 25px;
+            }
+
+            .help-items {
+                justify-content: space-between;
+
+                &__item {
+                    width: 130px;
+                    margin: 0 0 30px;
+
+                    &--logo {
+                        margin-bottom: 17px;
+
+                        img {
+                            width: 50px;
+                        }
+                    }
+
+                    &--title {
+                        font-size: 15px;
+                        line-height: 110%;
+                        letter-spacing: 0.06em;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) {
+        .section-inner {
+            padding: 81px 0 45px 0;
+
+            .help__title {
+                margin-bottom: 59px;
+                font-size: 35px;
+            }
+
+            .help-items {
+                justify-content: center;
+
+                &__item {
+                    &--logo {
+                        margin-bottom: 26px;
+                    }
+
+                    &--title {
+                        font-size: 20px;
+                        line-height: 115%;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) and (max-width: $screen-lg) {
         .section-inner {
             .help-items {
                 &__item {
@@ -807,6 +859,8 @@ body {
             }
         }
     }
+
+    @media (max-width: $screen-lg) {}
 
     @media (min-width: $screen-lg-max) {
         .section-inner {
@@ -902,6 +956,8 @@ body {
             }
         }
     }
+
+    // +++ branchmarks +++
 
     @media (max-width: $screen-md) {
         .section-inner {
