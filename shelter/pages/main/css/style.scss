@@ -292,7 +292,6 @@ body {
                 &:hover {
                     cursor: pointer;
                     background-color: $color-primary-light;
-                    box-shadow: 0 0 10px 1px $color-primary;
                 }
             }
         }
@@ -544,7 +543,6 @@ body {
                     cursor: pointer;
                     background-color: $color-primary-light;
                     border: 2px solid $color-primary-light;
-                    box-shadow: 0 0 10px 1px $color-primary;
                 }
             }
 
@@ -600,13 +598,13 @@ body {
                             cursor: pointer;
                             background-color: $color-primary-light;
                             border: 2px solid $color-primary-light;
-                            box-shadow: 0 0 10px 1px $color-primary;
                         }
                     }
 
                     &:hover {
                         cursor: pointer;
                         background-color: $color-light-xl;
+                        box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
                     }
                 }
             }
@@ -635,7 +633,6 @@ body {
                 &:hover {
                     cursor: pointer;
                     background-color: $color-primary-light;
-                    box-shadow: 0 0 10px 1px $color-primary;
                 }
             }
         }
@@ -825,14 +822,11 @@ body {
                 &:hover {
                     cursor: pointer;
                     background-color: $color-primary-light;
-                    box-shadow: 0 0 10px 1px $color-primary;
-                    transform: translate(-2px, -2px);
                 }
 
                 &:active {
                     cursor: pointer;
                     background-color: $color-primary-light;
-                    box-shadow: 0 0 10px 1px $color-primary;
                     transform: translate(2px, 2px);
                 }
             }

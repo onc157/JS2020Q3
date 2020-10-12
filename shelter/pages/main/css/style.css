@@ -452,8 +452,7 @@ body {
       transition: .4s; }
       .section-not-only .section-inner .not-only-content__button:hover {
         cursor: pointer;
-        background-color: #fddcc4;
-        box-shadow: 0 0 10px 1px #f1cdb3; }
+        background-color: #fddcc4; }
     .section-not-only .section-inner .not-only-dog {
       display: flex;
       flex-direction: column;
@@ -597,8 +596,7 @@ body {
         .section-our-friends .section-inner .slider-wrapper__button:hover {
           cursor: pointer;
           background-color: #fddcc4;
-          border: 2px solid #fddcc4;
-          box-shadow: 0 0 10px 1px #f1cdb3; }
+          border: 2px solid #fddcc4; }
       .section-our-friends .section-inner .slider-wrapper .slider-button__left {
         margin-right: 5px; }
       .section-our-friends .section-inner .slider-wrapper .slider-button__right {
@@ -643,11 +641,11 @@ body {
             .section-our-friends .section-inner .slider-wrapper .items-wrapper__item--button:hover {
               cursor: pointer;
               background-color: #fddcc4;
-              border: 2px solid #fddcc4;
-              box-shadow: 0 0 10px 1px #f1cdb3; }
+              border: 2px solid #fddcc4; }
           .section-our-friends .section-inner .slider-wrapper .items-wrapper__item:hover {
             cursor: pointer;
-            background-color: #fff; }
+            background-color: #fff;
+            box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04); }
     .section-our-friends .section-inner .our-friends__rest {
       display: flex;
       justify-content: center;
@@ -669,8 +667,7 @@ body {
         transition: .4s; }
         .section-our-friends .section-inner .our-friends__rest--button:hover {
           cursor: pointer;
-          background-color: #fddcc4;
-          box-shadow: 0 0 10px 1px #f1cdb3; }
+          background-color: #fddcc4; }
   @media (max-width: 750px) {
     .section-our-friends .section-inner .slider-wrapper__button {
       display: none; }
@@ -774,13 +771,10 @@ body {
         letter-spacing: 0.06em; }
       .section-in-addition .section-inner .in-addition-donation__card:hover {
         cursor: pointer;
-        background-color: #fddcc4;
-        box-shadow: 0 0 10px 1px #f1cdb3;
-        transform: translate(-2px, -2px); }
+        background-color: #fddcc4; }
       .section-in-addition .section-inner .in-addition-donation__card:active {
         cursor: pointer;
         background-color: #fddcc4;
-        box-shadow: 0 0 10px 1px #f1cdb3;
         transform: translate(2px, 2px); }
     .section-in-addition .section-inner .in-addition-donation__description {
       font-family: Arial, sans-serif;
