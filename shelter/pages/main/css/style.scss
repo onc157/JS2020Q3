@@ -65,9 +65,9 @@
     &::after {
         position: absolute;
         left: -10px;
-        width: 300px;
+        width: 295px;
         height: 40px;
-        padding: 5px;
+        padding: 5px 0;
         content: "";
         background-color: #0005;
         border-radius: 10px;
@@ -95,13 +95,13 @@ $color-dark-3xl: #292929;
 $color-primary: #f1cdb3;
 $color-primary-light: #fddcc4;
 
-$screen-sm: 319px;
-$screen-md: 768px;
-$screen-lg: 1099px;
+// incorrect breakpoints :(
 
-$screen-sm-max: 320px;
-$screen-md-max: 767px;
-$screen-lg-max: 1100px;
+$screen-md: 750px;
+$screen-lg: 1100px;
+
+$screen-md-max: 749px;
+$screen-lg-max: 1099px;
 
 // === / Variables ===
 
@@ -118,8 +118,18 @@ body {
 
 }
 
-.section-outer {
-    padding: 0 30px;
+.section-outer {}
+
+@media (max-width: $screen-md) {
+    .section-outer {
+        padding: 0 10px;
+    }
+}
+
+@media (min-width: $screen-md-max) {
+    .section-outer {
+        padding: 0 30px;
+    }
 }
 
 .section-inner {
@@ -201,7 +211,31 @@ body {
         }
     }
 
-    @media (max-width: $screen-lg) {
+    @media (max-width: $screen-md) {
+        .section-inner {
+            padding-top: 31px;
+
+            .header-menu {
+                display: none;
+            }
+
+            .header-burger {
+                margin-right: 43px;
+                padding-top: 4px;
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) {
+        .section-inner {
+            .header-burger {
+                margin-right: 0;
+                display: none;
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) and (max-width: $screen-lg) {
         .section-inner {
             padding-top: 30px;
         }
@@ -227,8 +261,6 @@ body {
             &__title {
                 @include font-georgia-normal();
 
-                width: 310px;
-                font-size: 44px;
                 line-height: 130%;
                 color: $color-light-xl;
             }
@@ -236,7 +268,6 @@ body {
             &__description {
                 @include font-arial-normal();
 
-                width: 460px;
                 margin-bottom: 41px;
                 font-size: 15px;
                 line-height: 160%;
@@ -270,8 +301,69 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            img{
+
+            img {
                 width: 100%;
+            }
+        }
+    }
+
+    @media (max-width: $screen-md) {
+        .section-inner {
+            .not-only-content {
+                &__title {
+                    align-self: center;
+                    width: 230px;
+                    font-size: 25px;
+                    text-align: center;
+                    letter-spacing: 0.06em;
+                }
+
+                &__description {
+                    width: 300px;
+                    text-align: center;
+                }
+            }
+
+            .not-only-dog {
+                padding-top: 105px;
+
+                img {
+                    width: 260px;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) {
+        .section-inner {
+            .not-only-content {
+                &__title {
+                    width: 310px;
+                    font-size: 44px;
+                }
+
+                &__description {
+                    width: 460px;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md) and (max-width: $screen-lg) {
+        .section-inner {
+            .not-only-content {
+                &__title {
+                    align-self: flex-start;
+                }
+            }
+
+            .not-only-dog {
+                padding-top: 100px;
+
+                img {
+                    width: 569px;
+                }
             }
         }
     }
@@ -288,17 +380,12 @@ body {
                 align-items: center;
 
                 &__title {
-                    align-self: flex-start;
                     margin-bottom: 42px;
                 }
             }
 
             .not-only-dog {
                 align-self: flex-end;
-                padding-top: 100px;
-                img {
-                    width: 569px;
-                }
             }
         }
     }
@@ -337,7 +424,6 @@ body {
             &__title {
                 @include font-georgia-normal();
 
-                width: 370px;
                 margin-bottom: 24px;
                 font-size: 35px;
                 line-height: 130%;
@@ -348,7 +434,6 @@ body {
             &__description {
                 @include font-arial-normal();
 
-                width: 430px;
                 margin: 0;
                 font-size: 15px;
                 line-height: 160%;
@@ -356,6 +441,34 @@ body {
 
                 &:nth-child(even) {
                     margin-bottom: 25px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: $screen-md) {
+        .section-inner {
+            .about-content {
+                &__title {
+                    width: 300px;
+                }
+
+                &__description {
+                    width: 270px;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) {
+        .section-inner {
+            .about-content {
+                &__title {
+                    width: 370px;
+                }
+
+                &__description {
+                    width: 430px;
                 }
             }
         }
@@ -528,6 +641,27 @@ body {
         }
     }
 
+    @media (max-width: $screen-md) { // TODO
+        .section-inner {
+            .slider-wrapper {
+                &__button {
+                    display: none;
+                }
+
+                .items-wrapper {
+                    .item-2 {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) {
+        .section-inner {
+        }
+    }
+
     @media (max-width: $screen-lg) {
         .section-inner {
             .slider-wrapper {
@@ -636,7 +770,11 @@ body {
     .section-inner {
         display: flex;
 
-        .in-addition__photo {}
+        .in-addition__photo {
+            img {
+                width: 100%;
+            }
+        }
 
         .in-addition-donation {
             &__title {
@@ -663,7 +801,6 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                width: 349px;
                 height: 43px;
                 padding: 0 15px;
                 margin-bottom: 20px;
@@ -703,10 +840,35 @@ body {
             &__description {
                 @include font-arial-italic();
 
-                width: 380px;
                 font-size: 12px;
                 line-height: 18px;
                 color: $color-dark-m;
+            }
+        }
+    }
+
+    @media (max-width: $screen-md) {
+        .section-inner {
+            .in-addition-donation {
+                &__card {
+                    width: 281px;
+                }
+                &__description {
+                    width: 280px;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) {
+        .section-inner {
+            .in-addition-donation {
+                &__card {
+                    width: 349px;
+                }
+                &__description {
+                    width: 380px;
+                }
             }
         }
     }
@@ -852,6 +1014,24 @@ body {
         }
     }
 
+    @media (max-width: $screen-md-max) {
+        .section-inner {
+            .footer-visit {
+                margin: 0 10px;
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) {}
+
+    @media (min-width: $screen-md) and (max-width: $screen-lg) {
+        .section-inner {
+            .footer-visit {
+                margin: 0 30px;
+            }
+        }
+    }
+
     @media (max-width: $screen-lg) {
         .section-inner {
             flex-wrap: wrap;
@@ -859,10 +1039,6 @@ body {
             padding-top: 14px;
 
             .footer-questions {
-                margin: 0 30px;
-            }
-
-            .footer-visit {
                 margin: 0 30px;
             }
 
