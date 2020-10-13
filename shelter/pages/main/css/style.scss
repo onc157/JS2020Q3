@@ -61,25 +61,21 @@
     font-weight: 400;
 }
 
-@mixin after-footer-animation {
-    &::after {
-        position: absolute;
-        left: -10px;
-        width: 295px;
-        height: 40px;
-        padding: 5px 0;
-        content: "";
-        background-color: #0005;
-        border-radius: 10px;
-        opacity: 0;
-        transition: .4s;
+@mixin footer-items-animation {
+    transition: .4s;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .2);
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .8);
     }
 
-    &:hover::after {
-        opacity: .5;
+    &:active {
+        background-color: rgba(0, 0, 0, .3);
+        border-radius: 5px;
+        box-shadow: 0 0 3px 5px rgba(0, 0, 0, .4);
     }
 }
-
 // === / Mixins ===
 
 // === Variables ===
@@ -1095,7 +1091,7 @@ body {
                     letter-spacing: 0.06em;
                 }
 
-                @include after-footer-animation();
+                @include footer-items-animation();
             }
 
             &__phone {
@@ -1118,7 +1114,7 @@ body {
                     letter-spacing: 0.06em;
                 }
 
-                @include after-footer-animation();
+                @include footer-items-animation();
             }
         }
 
@@ -1151,7 +1147,7 @@ body {
                     letter-spacing: 0.06em;
                 }
 
-                @include after-footer-animation();
+                @include footer-items-animation();
             }
         }
 

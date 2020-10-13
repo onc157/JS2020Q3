@@ -920,7 +920,8 @@ body {
       display: flex;
       align-items: center;
       margin-bottom: 33px;
-      text-decoration: none; }
+      text-decoration: none;
+      transition: .4s; }
       .section-footer .section-inner .footer-questions__email--logo {
         padding-top: 3px;
         margin-right: 20px; }
@@ -932,24 +933,20 @@ body {
         line-height: 115%;
         color: #f1cdb3;
         letter-spacing: 0.06em; }
-      .section-footer .section-inner .footer-questions__email::after {
-        position: absolute;
-        left: -10px;
-        width: 295px;
-        height: 40px;
-        padding: 5px 0;
-        content: "";
-        background-color: #0005;
-        border-radius: 10px;
-        opacity: 0;
-        transition: .4s; }
-      .section-footer .section-inner .footer-questions__email:hover::after {
-        opacity: .5; }
+      .section-footer .section-inner .footer-questions__email:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8); }
+      .section-footer .section-inner .footer-questions__email:active {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.4); }
     .section-footer .section-inner .footer-questions__phone {
       position: relative;
       display: flex;
       align-items: center;
-      text-decoration: none; }
+      text-decoration: none;
+      transition: .4s; }
       .section-footer .section-inner .footer-questions__phone--logo {
         padding-top: 3px;
         margin-right: 20px; }
@@ -961,19 +958,14 @@ body {
         line-height: 115%;
         color: #f1cdb3;
         letter-spacing: 0.06em; }
-      .section-footer .section-inner .footer-questions__phone::after {
-        position: absolute;
-        left: -10px;
-        width: 295px;
-        height: 40px;
-        padding: 5px 0;
-        content: "";
-        background-color: #0005;
-        border-radius: 10px;
-        opacity: 0;
-        transition: .4s; }
-      .section-footer .section-inner .footer-questions__phone:hover::after {
-        opacity: .5; }
+      .section-footer .section-inner .footer-questions__phone:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8); }
+      .section-footer .section-inner .footer-questions__phone:active {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.4); }
     .section-footer .section-inner .footer-visit__title {
       font-family: Georgia, 'Times New Roman', Times, serif;
       font-style: normal;
@@ -985,7 +977,8 @@ body {
       position: relative;
       display: flex;
       align-items: center;
-      text-decoration: none; }
+      text-decoration: none;
+      transition: .4s; }
       .section-footer .section-inner .footer-visit__address--logo {
         margin-right: 19px; }
       .section-footer .section-inner .footer-visit__address--location {
@@ -996,19 +989,14 @@ body {
         line-height: 115%;
         color: #f1cdb3;
         letter-spacing: 0.06em; }
-      .section-footer .section-inner .footer-visit__address::after {
-        position: absolute;
-        left: -10px;
-        width: 295px;
-        height: 40px;
-        padding: 5px 0;
-        content: "";
-        background-color: #0005;
-        border-radius: 10px;
-        opacity: 0;
-        transition: .4s; }
-      .section-footer .section-inner .footer-visit__address:hover::after {
-        opacity: .5; }
+      .section-footer .section-inner .footer-visit__address:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8); }
+      .section-footer .section-inner .footer-visit__address:active {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.4); }
     .section-footer .section-inner .footer__photo img {
       display: block;
       width: 100%; }
