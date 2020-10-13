@@ -92,15 +92,11 @@ $color-dark-3xl: #292929;
 $color-primary: #f1cdb3;
 $color-primary-light: #fddcc4;
 
-$screen-sm: 576px;
-$screen-md: 768px;
-$screen-lg: 992px;
-$screen-xl: 1200px;
+$screen-md: 750px;
+$screen-lg: 1100px;
 
-$screen-xs-max: 575px;
-$screen-sm-max: 767px;
-$screen-md-max: 991px;
-$screen-lg-max: 1199px;
+$screen-sm-max: 749px;
+$screen-md-max: 1099px;
 
 // === / Variables ===
 
@@ -134,7 +130,6 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 30px 0;
 
         .header-logo {
             &__title {
@@ -197,10 +192,32 @@ body {
             }
         }
     }
+
+    // +++ branchmarks +++
+
+    @media (min-width: $screen-md) {
+        .section-inner {
+        }
+    }
+
+    @media (max-width: $screen-sm-max) {
+        .section-inner {
+            }
+    }
+
+    @media (min-width: $screen-lg) {
+        .section-inner {
+            padding: 30px 0;
+        }
+    }
+
+    @media (max-width: $screen-md-max) {
+        .section-inner {
+            padding: 30px 30px;
+        }
+    }
 }
-.one {
-    height: 5000px;
-}
+
 // === / Header ===
 
 // === Our-friends ===
@@ -211,13 +228,11 @@ body {
     .section-inner {
         display: flex;
         flex-direction: column;
-        padding: 80px 0 100px 0;
 
         .our-friends__title {
             @include font-georgia-normal();
 
             padding-left: 3px;
-            margin-bottom: 59px;
             font-size: 35px;
             line-height: 130%;
             color: $color-dark-l;
@@ -243,7 +258,6 @@ body {
                     width: 270px;
                     height: 435px;
                     padding-bottom: 30px;
-                    margin-bottom: 30px;
                     background: $color-light-s;
                     border-radius: 9px;
                     transition: .4s;
@@ -291,7 +305,6 @@ body {
         .slider-buttons {
             display: flex;
             justify-content: center;
-            padding-top: 30px;
 
             &__item {
                 @include font-georgia-normal();
@@ -339,8 +352,69 @@ body {
             }
         }
     }
-}
 
+    // +++ branchmarks +++
+
+    @media (min-width: $screen-md) {
+        .section-inner {
+        }
+    }
+
+    @media (max-width: $screen-sm-max) {
+        .section-inner {
+            }
+    }
+
+    @media (min-width: $screen-lg) {
+        .section-inner {
+            padding: 80px 0 100px 0;
+
+            .our-friends__title {
+                margin-bottom: 59px;
+            }
+
+            .slider-wrapper {
+                .items-wrapper {
+                    &__item {
+                        margin-bottom: 30px;
+                    }
+                }
+            }
+
+            .slider-buttons {
+                padding-top: 30px;
+            }
+        }
+    }
+
+    @media (max-width: $screen-md-max) {
+        .section-inner {
+            padding: 80px 0 76px 0;
+
+            .our-friends__title {
+                margin-bottom: 29px;
+            }
+
+            .slider-wrapper {
+                height: 1395px;
+                overflow: hidden;
+
+                .items-wrapper {
+                    align-self: flex-start;
+                    padding: 0 84px;
+
+                    &__item {
+                        margin: 0 10px 30px 10px;
+                    }
+                }
+            }
+
+            .slider-buttons {
+                padding-top: 10px;
+            }
+        }
+    }
+}
 // === / Our-friends ===
 
 // === / Footer ===
@@ -453,7 +527,7 @@ body {
 
     // +++ branchmarks +++
 
-    @media (max-width: $screen-md-max) {
+    @media (max-width: $screen-sm-max) {
         .section-inner {
             br {
                 display: none;
@@ -492,7 +566,7 @@ body {
         }
     }
 
-    @media (min-width: $screen-md-max) {
+    @media (min-width: $screen-md) {
         .section-inner {
             .footer-questions {
                 &__title {
@@ -516,7 +590,7 @@ body {
         }
     }
 
-    @media (min-width: $screen-md) and (max-width: $screen-lg) {
+    @media (min-width: $screen-md) and (max-width: $screen-md-max) {
         .section-inner {
             .footer-visit {
                 margin: 0 30px;
@@ -528,7 +602,7 @@ body {
         }
     }
 
-    @media (max-width: $screen-lg) {
+    @media (max-width: $screen-md-max) {
         .section-inner {
             flex-wrap: wrap;
             justify-content: center;
@@ -540,7 +614,7 @@ body {
         }
     }
 
-    @media (min-width: $screen-lg-max) {
+    @media (min-width: $screen-lg) {
         .section-inner {
             justify-content: space-between;
             padding-top: 40px;
