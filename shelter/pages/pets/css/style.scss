@@ -197,12 +197,31 @@ body {
 
     @media (min-width: $screen-md) {
         .section-inner {
+            .header-burger {
+                display: none;
+            }
         }
     }
 
     @media (max-width: $screen-sm-max) {
         .section-inner {
+            padding: 31px 10px 30px;
+
+            .header-menu {
+                display: none;
             }
+
+            .header-burger {
+                padding-top: 3px;
+                margin-right: 43px;
+            }
+        }
+    }
+
+    @media (min-width: $screen-md) and (max-width: $screen-md-max) {
+        .section-inner {
+            padding: 30px 30px;
+        }
     }
 
     @media (min-width: $screen-lg) {
@@ -211,11 +230,7 @@ body {
         }
     }
 
-    @media (max-width: $screen-md-max) {
-        .section-inner {
-            padding: 30px 30px;
-        }
-    }
+    @media (max-width: $screen-md-max) {}
 }
 
 // === / Header ===
@@ -233,7 +248,6 @@ body {
             @include font-georgia-normal();
 
             padding-left: 3px;
-            font-size: 35px;
             line-height: 130%;
             color: $color-dark-l;
             text-align: center;
@@ -312,10 +326,9 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 52px;
+                min-width: 52px;
                 height: 52px;
                 padding: 0 0 2px 1px;
-                margin: 0 10px 0;
                 font-size: 20px;
                 line-height: 115%;
                 color: $color-dark-3xl;
@@ -357,12 +370,61 @@ body {
 
     @media (min-width: $screen-md) {
         .section-inner {
+            .our-friends__title {
+                font-size: 35px;
+            }
+
+            .slider-buttons {
+                &__item {
+                    margin: 0 10px 0;
+                }
+            }
         }
     }
 
     @media (max-width: $screen-sm-max) {
         .section-inner {
+            padding: 42px 0 42px 0;
+
+            .our-friends__title {
+                margin-bottom: 42px;
+                font-size: 25px;
             }
+
+            .slider-wrapper {
+                .items-wrapper {
+                    padding: 0 15px;
+                }
+            }
+
+            .slider-buttons {
+                padding-top: 12px;
+
+                &__item {
+                    margin: 0 5px 0;
+                }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md) and (max-width: $screen-md-max) {
+        .section-inner {
+            padding: 80px 0 76px 0;
+
+            .our-friends__title {
+                margin-bottom: 29px;
+            }
+
+            .slider-wrapper {
+                .items-wrapper {
+                    padding: 0 84px;
+                }
+            }
+
+            .slider-buttons {
+                padding-top: 10px;
+            }
+        }
     }
 
     @media (min-width: $screen-lg) {
@@ -389,28 +451,17 @@ body {
 
     @media (max-width: $screen-md-max) {
         .section-inner {
-            padding: 80px 0 76px 0;
-
-            .our-friends__title {
-                margin-bottom: 29px;
-            }
-
             .slider-wrapper {
                 height: 1395px;
                 overflow: hidden;
 
                 .items-wrapper {
                     align-self: flex-start;
-                    padding: 0 84px;
 
                     &__item {
                         margin: 0 10px 30px 10px;
                     }
                 }
-            }
-
-            .slider-buttons {
-                padding-top: 10px;
             }
         }
     }
@@ -527,6 +578,30 @@ body {
 
     // +++ branchmarks +++
 
+    @media (min-width: $screen-md) {
+        .section-inner {
+            .footer-questions {
+                &__title {
+                    font-size: 35px;
+                }
+            }
+
+            .footer-visit {
+                padding-right: 6px;
+
+                &__title {
+                    padding-top: 17px;
+                    margin-bottom: 33px;
+                    font-size: 35px;
+                }
+
+                &__address {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+    }
+
     @media (max-width: $screen-sm-max) {
         .section-inner {
             br {
@@ -566,30 +641,6 @@ body {
         }
     }
 
-    @media (min-width: $screen-md) {
-        .section-inner {
-            .footer-questions {
-                &__title {
-                    font-size: 35px;
-                }
-            }
-
-            .footer-visit {
-                padding-right: 6px;
-
-                &__title {
-                    padding-top: 17px;
-                    margin-bottom: 33px;
-                    font-size: 35px;
-                }
-
-                &__address {
-                    margin-bottom: 30px;
-                }
-            }
-        }
-    }
-
     @media (min-width: $screen-md) and (max-width: $screen-md-max) {
         .section-inner {
             .footer-visit {
@@ -619,6 +670,12 @@ body {
             justify-content: space-between;
             padding-top: 40px;
         }
+    }
+}
+
+@media (max-width: $screen-sm-max) {
+    .section-footer {
+        padding: 0 10px;
     }
 }
 
