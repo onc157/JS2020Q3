@@ -894,20 +894,16 @@ body {
                 @include font-georgia-normal();
 
                 margin-bottom: 20px;
-                font-size: 35px;
                 line-height: 130%;
                 color: $color-dark-l;
                 letter-spacing: 0.06em;
             }
 
             &__bank {
-                @include font-georgia-normal();
 
                 margin-bottom: 20px;
                 font-size: 15px;
-                line-height: 110%;
                 color: $color-dark-l;
-                letter-spacing: 0.06em;
             }
 
             &__card {
@@ -929,8 +925,6 @@ body {
                 &--number {
                     @include font-georgia-normal();
 
-                    font-size: 20px;
-                    line-height: 115%;
                     color: $color-dark-l;
                     letter-spacing: 0.06em;
                 }
@@ -961,12 +955,38 @@ body {
 
     @media (max-width: $screen-md) {
         .section-inner {
+            padding: 42px 0 38px 0;
+
+            .in-addition__photo {
+                width: 260px;
+                padding: 43px 0 0 0;
+            }
+
             .in-addition-donation {
+                &__title {
+                    font-size: 25px;
+                    text-align: center;
+                }
+
+                &__bank {
+                    @include font-arial-normal();
+
+                    line-height: 160%;
+                    text-align: center;
+                }
+
                 &__card {
                     width: 281px;
+
+                    &--number {
+                        font-size: 15px;
+                        line-height: 110%;
+                    }
                 }
+
                 &__description {
                     width: 280px;
+                    text-align: justify;
                 }
             }
         }
@@ -975,12 +995,39 @@ body {
     @media (min-width: $screen-md-max) {
         .section-inner {
             .in-addition-donation {
+                &__title {
+                    font-size: 35px;
+                }
+
+                &__bank {
+                    @include font-georgia-normal();
+
+                    line-height: 110%;
+                    letter-spacing: 0.06em;
+                }
+
                 &__card {
                     width: 349px;
+
+                    &--number {
+                        font-size: 20px;
+                        line-height: 115%;
+                    }
                 }
+
                 &__description {
                     width: 380px;
                 }
+            }
+        }
+    }
+
+    @media (min-width: $screen-md-max) and (max-width: $screen-lg) {
+        .section-inner {
+            padding: 81px 0 96px 0;
+
+            .in-addition__photo {
+                padding: 60px 1px 0 0;
             }
         }
     }
@@ -989,11 +1036,6 @@ body {
         .section-inner {
             flex-direction: column-reverse;
             align-items: center;
-            padding: 81px 0 96px 0;
-        }
-
-        .in-addition__photo {
-            padding: 60px 1px 0 0;
         }
     }
 
@@ -1027,7 +1069,6 @@ body {
 
                 padding-top: 17px;
                 margin-bottom: 36px;
-                font-size: 35px;
                 line-height: 130%;
                 color: $color-light-xl;
                 letter-spacing: 0.06em;
@@ -1082,14 +1123,10 @@ body {
         }
 
         .footer-visit {
-            padding-right: 6px;
 
             &__title {
                 @include font-georgia-normal();
 
-                padding-top: 17px;
-                margin-bottom: 33px;
-                font-size: 35px;
                 line-height: 130%;
                 color: $color-light-xl;
                 letter-spacing: 0.06em;
@@ -1099,7 +1136,6 @@ body {
                 position: relative;
                 display: flex;
                 align-items: center;
-                margin-bottom: 30px;
                 text-decoration: none;
 
                 &--logo {
@@ -1122,24 +1158,84 @@ body {
         .footer__photo {
             img {
                 display: block;
+                width: 100%;
             }
         }
     }
+
+    // +++ branchmarks +++
 
     @media (max-width: $screen-md-max) {
         .section-inner {
+            br {
+                display: none;
+            }
+
+            .footer-questions {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                &__title {
+                    font-size: 25px;
+                    text-align: center;
+                }
+            }
+
             .footer-visit {
-                margin: 0 10px;
+                padding-right: 0;
+
+                &__title {
+                    padding-top: 36px;
+                    margin: 0 10px 40px 10px;
+                    font-size: 25px;
+                    text-align: center;
+                }
+
+                &__address {
+                    margin-bottom: 37px;
+                }
+            }
+
+            .footer__photo {
+                width: 260px;
+                padding-top: 2px;
             }
         }
     }
 
-    @media (min-width: $screen-md-max) {}
+    @media (min-width: $screen-md-max) {
+        .section-inner {
+            .footer-questions {
+                &__title {
+                    font-size: 35px;
+                }
+            }
+
+            .footer-visit {
+                padding-right: 6px;
+
+                &__title {
+                    padding-top: 17px;
+                    margin-bottom: 33px;
+                    font-size: 35px;
+                }
+
+                &__address {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+    }
 
     @media (min-width: $screen-md) and (max-width: $screen-lg) {
         .section-inner {
             .footer-visit {
                 margin: 0 30px;
+            }
+
+            .footer__photo {
+                padding-top: 33px;
             }
         }
     }
@@ -1152,10 +1248,6 @@ body {
 
             .footer-questions {
                 margin: 0 30px;
-            }
-
-            .footer__photo {
-                padding-top: 33px;
             }
         }
     }
