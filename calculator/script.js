@@ -58,7 +58,11 @@ class Calculator {
                 break
             case '÷':
                 computation = prev / current;
-                break
+                this.readyToReset = true;
+                this.currentOperand = computation
+                this.operation = undefined
+                this.previousOperand = ''
+                return
             case '^':
                 computation = prev ** current;
                 this.readyToReset = true;
