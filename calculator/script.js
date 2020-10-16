@@ -64,12 +64,9 @@ class Calculator {
                 this.previousOperand = ''
                 return
             case '^':
+                precision = precisionPrev * current;
                 computation = prev ** current;
-                this.readyToReset = true;
-                this.currentOperand = computation
-                this.operation = undefined
-                this.previousOperand = ''
-                return
+                break
             default:
                 return;
         }
