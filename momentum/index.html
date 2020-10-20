@@ -6,17 +6,30 @@
     <title>Momentum</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
-    <time id="time"></time>
-    <h1>
-        <span id="greeting"></span>
-        <span id="name" contenteditable="true"></span>
-    </h1>
-    <h2>What is your focus for today?</h2>
-    <h2 id="focus" contenteditable="true"></h2>
-
+    <button id="button-refresh-quote">
+        No work
+        <img src="/assets/images/refresh.png" alt="refresh">
+    </button>
+    <div class="content-wrapper">
+        <time id="fullDate"></time>
+        <time id="time"></time>
+        <div class="greeting-wrapper">
+            <h1><span id="greeting"></span></h1>
+            <div class="enter-name">
+                <input id="name" type="text" placeholder="Enter Name" autocomplete="off">
+                <div id="name-value"></div>
+            </div>
+        </div>
+        <h2>What is your focus for today?</h2>
+        <input id="focus" type="text" placeholder="Enter Focus" autocomplete="off">
+        <div id="focus-value"></div>
+    </div>
+    <button id="button-refresh-background">
+        <img src="/assets/images/refresh.png" alt="refresh">
+    </button>
     <script src="script.js"></script>
 </body>
 </html>

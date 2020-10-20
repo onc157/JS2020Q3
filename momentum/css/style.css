@@ -5,14 +5,28 @@
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
+    background-size: cover;
+    background-position: center center;
     height: 100vh;
     color: black;
+    text-shadow: 0px 0px 5px grey;
+    transition: background-image 1s ease-in-out;
+}
+
+.greeting-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+#fullDate {
+    font-size: 4rem;
 }
 
 #time {
@@ -20,12 +34,12 @@ body {
 }
 
 h1 {
-    margin-bottom: 3rem;
+    margin-right: 10px;
 }
 
 h2 {
     margin-bottom: 0.5rem;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 @media (max-width: 700px) {
@@ -37,4 +51,74 @@ h2 {
 #name,
 #focus {
     outline: none;
+}
+
+#name,
+#focus {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    height: 40px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#name {
+    width: 200px;
+}
+
+#focus {
+    width: 300px;
+}
+
+#name:focus,
+#focus:focus {
+    color: black;
+    border: 1px solid black;
+    font-weight: 300;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#name::placeholder,
+#focus::placeholder {
+    color: black;
+}
+
+#name-value,
+#focus-value {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#button-refresh-background,
+#button-refresh-quote {
+    padding: 4px 6px 4px 3px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 20px;
+    align-self: flex-start;
+    align-items: flex-end;
+    background: rgba(255, 255, 255, .4);
+    border: none;
+    border-radius: 50%;
+    transition: .5s;
+    outline: none;
+}
+
+#button-refresh-background:hover {
+    background: rgba(99, 207, 219, .8);
+}
+
+#button-refresh-background:active {
+    transform: scale(1.1) ;
+    background: rgba(99, 207, 219, .8);
+}
+
+#button-refresh-background:disabled {
+    background: rgba(99, 207, 219, .2);
 }
