@@ -75,28 +75,41 @@ const initBgGreat = () => {
     })
 
     const completeBgGreat = () => {
+        const body = document.querySelector('body');
+        let img = document.createElement('img');
         if (hour >= 24) {
             hour = 0;
         }
         if (hour < 6) {
             // Night
-            document.body.style.backgroundImage = `url('assets/images/night/${arr[hour]}')`;
+            img.src = `assets/images/night/${arr[hour]}`;
+            img.onload = () => {
+                body.style.backgroundImage = `url(${img.src})`;
+            }
             greeting.textContent = 'Good Night';
-            document.body.style.color = 'black';
+            document.body.style.color = 'white';
         } else if (hour < 12) {
             //Morning
-            document.body.style.backgroundImage = `url('assets/images/morning/${arr[hour]}')`;
+            img.src = `assets/images/morning/${arr[hour]}`;
+            img.onload = () => {
+                body.style.backgroundImage = `url(${img.src})`;
+            }
             greeting.textContent = 'Good Morning';
-            document.body.style.color = 'white';
         } else if (hour < 18) {
             // Day
-            document.body.style.backgroundImage = `url('assets/images/day/${arr[hour]}')`;
+            img.src = `assets/images/day/${arr[hour]}`;
+            img.onload = () => {
+                body.style.backgroundImage = `url(${img.src})`;
+            }
             greeting.textContent = 'Good Day';
         } else {
             // Evening
-            document.body.style.backgroundImage = `url('assets/images/evening/${arr[hour]}')`;
+            img.src = `assets/images/evening/${arr[hour]}`;
+            img.onload = () => {
+                body.style.backgroundImage = `url(${img.src})`;
+            }
             greeting.textContent = 'Good Evening';
-            document.body.style.color = 'black';
+            document.body.style.color = 'white';
         }
     }
     completeBgGreat();
