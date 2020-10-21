@@ -7,6 +7,10 @@ const nameDisplay = document.getElementById('name-value');
 const focus = document.getElementById('focus');
 const focusDisplay = document.getElementById('focus-value');
 const buttonBg = document.getElementById('button-refresh-background');
+const quote = document.getElementById('quote');
+const author = document.getElementById('author');
+const quoteBox = document.getElementById('quote-box');
+const buttonQuote = document.getElementById('button-refresh-quote');
 
 // Options
 const showAmPm = false;
@@ -115,6 +119,28 @@ const initBgGreat = () => {
     completeBgGreat();
 }
 
+// Create random number for getQuote
+const getRandomNumber = () => {
+    let randomNumber = 2 + Math.random() * (100 + 1 - 2);
+    return Math.floor(randomNumber);
+}
+
+// Promis for block qute
+async function loadQuote() {
+
+}
+
+// Get Quote and Show
+async function getQuote() {
+    const url = 'https://type.fit/api/quotes';
+    const src = await fetch(url);
+    const data = await src.json();
+    quoteBox.classList.remove('displayOff');
+    quoteBox.classList.add('displayOn');
+    quote.textContent = data[getRandomNumber()].text;
+    author.textContent = data[getRandomNumber()].author;
+}
+
 // Show Name Input
 const showNameInput = () => {
     name.style.display = 'block';
@@ -219,6 +245,8 @@ focus.addEventListener('blur', setFocus);
 // Run
 getRandomBgArray();
 showTime();
+getQuote();
+buttonQuote.addEventListener('click', getQuote);
 initBgGreat();
 getName();
 getFocus();

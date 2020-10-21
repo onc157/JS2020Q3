@@ -9,10 +9,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button id="button-refresh-quote">
-        No work
-        <img src="/assets/images/refresh.png" alt="refresh">
-    </button>
+    <div class="header-wrapper">
+        <div id="quote-box" class="displayOff">
+            <div id="quote"></div>
+            <div id="author"></div>
+        </div>
+        <button id="button-refresh-quote">
+            <img src="/assets/images/refresh.png" alt="refresh">
+        </button>
+        <div class="weather-wrapper">
+            <input id="#city" type="text" placeholder="Enter Your City">
+            <div id="city-value"></div>
+            <div class="weather__icon"></div>
+            <div class="weather__temperature"></div>
+            <div class="air-humidity">
+                <div class="air-humidity__icon"></div>
+                <div id="air-humidity__value"></div>
+            </div>
+            <div class="wind">
+                <div class="wind__icon"></div>
+                <div id="wind__value"></div>
+            </div>
+        </div>
+    </div>
     <div class="content-wrapper">
         <time id="fullDate"></time>
         <time id="time"></time>
