@@ -5,30 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Momentum</title>
 
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/owfont-regular.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="header-wrapper">
         <div id="quote-box" class="displayOff">
-            <div id="quote"></div>
+            <div class="quote-wrapper">
+                <div id="quote"></div>
+                <button id="button-refresh-quote">
+                    <span class="material-icons button">sync</span>
+                </button>
+            </div>
             <div id="author"></div>
         </div>
-        <button id="button-refresh-quote">
-            <img src="/assets/images/refresh.png" alt="refresh">
-        </button>
         <div class="weather-wrapper">
-            <input id="#city" type="text" placeholder="Enter Your City">
-            <div id="city-value"></div>
-            <div class="weather__icon"></div>
-            <div class="weather__temperature"></div>
-            <div class="air-humidity">
-                <div class="air-humidity__icon"></div>
-                <div id="air-humidity__value"></div>
-            </div>
-            <div class="wind">
-                <div class="wind__icon"></div>
-                <div id="wind__value"></div>
+            <input id="city" type="text" placeholder="Enter Your City" autocomplete="off">
+            <div id="weather-display-wrapper">
+                <div id="city-value">город</div>
+                <div class="weather-value-wrapper">
+                    <i class="weather__icon owf"></i>
+                    <div id="weather__temperature"></div>
+                </div>
+                <div class="air-humidity">
+                    <i class="material-icons humidity__icon">invert_colors</i>
+                    <div id="air-humidity__value"></div>
+                </div>
+                <div class="wind">
+                    <i class="material-icons wind__icon">camera</i>
+                    <div id="wind__value"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -47,7 +56,7 @@
         <div id="focus-value"></div>
     </div>
     <button id="button-refresh-background">
-        <img src="/assets/images/refresh.png" alt="refresh">
+        <span class="material-icons button">sync</span>
     </button>
     <script src="script.js"></script>
 </body>

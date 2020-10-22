@@ -11,6 +11,13 @@ const quote = document.getElementById('quote');
 const author = document.getElementById('author');
 const quoteBox = document.getElementById('quote-box');
 const buttonQuote = document.getElementById('button-refresh-quote');
+const city = document.getElementById('city');
+const cityValue = document.getElementById('city-value');
+const cityDisplay = document.getElementById('weather-display-wrapper');
+const weatherIcon  = document.querySelector('.weather__icon');
+const temperature = document.getElementById('weather__temperature');
+const airHumidity = document.getElementById('air-humidity__value');
+const wind = document.getElementById('wind__value');
 
 // Options
 const showAmPm = false;
@@ -91,7 +98,6 @@ const initBgGreat = () => {
                 body.style.backgroundImage = `url(${img.src})`;
             }
             greeting.textContent = 'Good Night';
-            document.body.style.color = 'white';
         } else if (hour < 12) {
             //Morning
             img.src = `assets/images/morning/${arr[hour]}`;
@@ -113,7 +119,6 @@ const initBgGreat = () => {
                 body.style.backgroundImage = `url(${img.src})`;
             }
             greeting.textContent = 'Good Evening';
-            document.body.style.color = 'white';
         }
     }
     completeBgGreat();
@@ -125,13 +130,8 @@ const getRandomNumber = () => {
     return Math.floor(randomNumber);
 }
 
-// Promis for block qute
-async function loadQuote() {
-
-}
-
 // Get Quote and Show
-async function getQuote() {
+const getQuote = async () => {
     const url = 'https://type.fit/api/quotes';
     const src = await fetch(url);
     const data = await src.json();
@@ -140,6 +140,92 @@ async function getQuote() {
     quote.textContent = data[getRandomNumber()].text;
     author.textContent = data[getRandomNumber()].author;
 }
+
+// Show City Input
+const showCityInput = () => {
+    city.style.display = 'block';
+    cityDisplay.style.display = 'none';
+}
+
+// Show City Display
+const showCityDisplay = () => {
+    city.style.display = 'none';
+    cityDisplay.style.display = 'flex';
+}
+
+// Get Wheater
+const getWeather = async () => {
+    if (localStorage.getItem('city') === null) {
+        showCityInput();
+        console.log('local pustoi, skrql display');
+    }
+
+    try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${localStorage.getItem('city')}&lang=en&appid=ec5896d708a7c66fd0614bd0376a488f&units=metric`;
+        const src = await fetch(url);
+        const data = await src.json();
+
+        weatherIcon.className = 'weather__icon owf';
+        weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+        temperature.innerText = `${Math.round(data.main.temp)}°C`;
+        airHumidity.innerText = `${data.main.humidity}%`;
+        wind.innerText = `${data.wind.speed} m/s`;
+        console.log(data);
+        console.log(data.main.humidity, data.wind.speed, data.main.temp);
+    } catch (e) {
+        showCityInput();
+        city.placeholder = 'Error City!'
+        console.log('otobrazil oshibku');
+        return;
+    }
+
+    if (localStorage.getItem('city') !== null) {
+        city.value = localStorage.getItem('city');
+        showCityDisplay();
+        cityValue.innerText = localStorage.getItem('city');
+        console.log('local ne pustoi, otobrazil display');
+    }
+
+    cityValue.addEventListener('click', () => {
+        showCityInput();
+        city.focus();
+        city.value = '';
+    })
+
+}
+
+// Set City
+const setCity = (e) => {
+    if (e.type === 'keypress') {
+        if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
+            showCityDisplay();
+            cityValue.innerHTML = e.target.value;
+            localStorage.setItem('city', e.target.value)
+            city.blur();
+            getWeather();
+            console.log('setCity, first if');
+        } else if ((e.which == 13 || e.keyCode == 13) && (e.target.value === '')) {
+            showCityDisplay();
+            getWeather();
+            console.log('setCity, otmena Enter');
+        }
+
+    } else if (e.target.value !== '') {
+        showCityDisplay();
+        cityValue.innerHTML = e.target.value;
+        localStorage.setItem('city', e.target.value);
+        console.log('setCity, second if');
+    } else if ((e.type === 'blur') && (city.value === '') && (localStorage.city === undefined)) {
+        showCityInput();
+        console.log('setCity, third if');
+    } else {
+        showCityDisplay();
+        console.log('setCity, else');
+    }
+}
+
+city.addEventListener('keypress', setCity);
+city.addEventListener('blur', setCity);
 
 // Show Name Input
 const showNameInput = () => {
@@ -171,7 +257,15 @@ const getName = () => {
         name.value = localStorage.getItem('name');
         showNameDisplay();
         nameDisplay.innerText = localStorage.getItem('name');
+        console.log('Get name first if');
+        console.log(/^\s+$/.test(localStorage.getItem('name')));
     }
+    // if (/^\s+$/.test(localStorage.getItem('name'))) {
+    //     showNameInput();
+    //     name.focus();
+    //     name.value = 'Ты шо дурной?';
+    //     console.log('Ты шо дурной?');
+    // }
 
     nameDisplay.addEventListener('click', () => {
         showNameInput();
@@ -182,6 +276,14 @@ const getName = () => {
 
 // Set Name
 const setName = (e) => {
+
+    // if (/^\s+$/.test(localStorage.getItem('name'))) {
+    //     showNameInput();
+    //     name.focus();
+    //     name.value = 'Ты шо дурной?';
+    //     console.log('Ты шо дурной?');
+    // }
+
     if (e.type === 'keypress') {
         if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
             showNameDisplay();
@@ -250,3 +352,4 @@ buttonQuote.addEventListener('click', getQuote);
 initBgGreat();
 getName();
 getFocus();
+getWeather();
