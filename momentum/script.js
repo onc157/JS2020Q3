@@ -36,7 +36,6 @@ const showTime = () => {
 
     // Set AM or PM
     const amPm = hour >= 12 ? 'PM' : 'AM';
-    console.log(amPm);
 
     // 12hr Format
     // hour = hour % 12 || 12;
@@ -46,6 +45,12 @@ const showTime = () => {
 
     // Output Time
     time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)} ${showAmPm ? amPm : ''}`;
+
+    // Update Bg Once An Hour
+    if (min === 0) {
+        initBgGreet();
+        getWeather();
+    }
 
     setTimeout(showTime, 1000);
 }
@@ -63,17 +68,14 @@ const getRandomBgArray = () => {
         arr.push(i + '.jpg');
     }
 
-    // console.log('This is random arr', arr)
     for (let i = arr.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-
-    // console.log('This is random arr', arr)
 }
 
 // Set background and Greeting
-const initBgGreat = () => {
+const initBgGreet = () => {
     let today = new Date();
     let hour = today.getHours();
 
@@ -81,11 +83,11 @@ const initBgGreat = () => {
     buttonBg.addEventListener('click', () => {
         buttonBg.disabled = true;
         hour = hour + 1;
-        completeBgGreat();
+        completeBg();
         setTimeout(function() { buttonBg.disabled = false }, 1000);
     })
 
-    const completeBgGreat = () => {
+    const completeBg = () => {
         const body = document.querySelector('body');
         let img = document.createElement('img');
         if (hour >= 24) {
@@ -97,31 +99,44 @@ const initBgGreat = () => {
             img.onload = () => {
                 body.style.backgroundImage = `url(${img.src})`;
             }
-            greeting.textContent = 'Good Night';
         } else if (hour < 12) {
             //Morning
             img.src = `assets/images/morning/${arr[hour]}`;
             img.onload = () => {
                 body.style.backgroundImage = `url(${img.src})`;
             }
-            greeting.textContent = 'Good Morning';
         } else if (hour < 18) {
             // Day
             img.src = `assets/images/day/${arr[hour]}`;
             img.onload = () => {
                 body.style.backgroundImage = `url(${img.src})`;
             }
-            greeting.textContent = 'Good Day';
         } else {
             // Evening
             img.src = `assets/images/evening/${arr[hour]}`;
             img.onload = () => {
                 body.style.backgroundImage = `url(${img.src})`;
             }
+        }
+    }
+
+    const completeGreet = () => {
+        if (hour < 6) {
+            // Night
+            greeting.textContent = 'Good Night';
+        } else if (hour < 12) {
+            //Morning
+            greeting.textContent = 'Good Morning';
+        } else if (hour < 18) {
+            // Day
+            greeting.textContent = 'Good Day';
+        } else {
+            // Evening
             greeting.textContent = 'Good Evening';
         }
     }
-    completeBgGreat();
+    completeBg();
+    completeGreet();
 }
 
 // Create random number for getQuote
@@ -157,7 +172,7 @@ const showCityDisplay = () => {
 const getWeather = async () => {
     if (localStorage.getItem('city') === null) {
         showCityInput();
-        console.log('local pustoi, skrql display');
+        return;
     }
 
     try {
@@ -170,12 +185,10 @@ const getWeather = async () => {
         temperature.innerText = `${Math.round(data.main.temp)}°C`;
         airHumidity.innerText = `${data.main.humidity}%`;
         wind.innerText = `${data.wind.speed} m/s`;
-        console.log(data);
-        console.log(data.main.humidity, data.wind.speed, data.main.temp);
     } catch (e) {
         showCityInput();
-        city.placeholder = 'Error City!'
-        console.log('otobrazil oshibku');
+        city.value = '';
+        city.placeholder = 'Error City!';
         return;
     }
 
@@ -183,7 +196,6 @@ const getWeather = async () => {
         city.value = localStorage.getItem('city');
         showCityDisplay();
         cityValue.innerText = localStorage.getItem('city');
-        console.log('local ne pustoi, otobrazil display');
     }
 
     cityValue.addEventListener('click', () => {
@@ -197,30 +209,30 @@ const getWeather = async () => {
 // Set City
 const setCity = (e) => {
     if (e.type === 'keypress') {
-        if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
+        if ((e.which == 13 || e.keyCode == 13) && (e.target.value.trim() === '')) {
+            showCityInput();
+            city.focus();
+            city.value = '';
+        } else if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
             showCityDisplay();
             cityValue.innerHTML = e.target.value;
             localStorage.setItem('city', e.target.value)
             city.blur();
             getWeather();
-            console.log('setCity, first if');
-        } else if ((e.which == 13 || e.keyCode == 13) && (e.target.value === '')) {
-            showCityDisplay();
-            getWeather();
-            console.log('setCity, otmena Enter');
         }
-
+    } else if ((e.type === 'blur') && (city.value.trim() === '')) {
+        showCityInput();
+        city.focus();
+        city.value = '';
     } else if (e.target.value !== '') {
         showCityDisplay();
         cityValue.innerHTML = e.target.value;
         localStorage.setItem('city', e.target.value);
-        console.log('setCity, second if');
+        getWeather();
     } else if ((e.type === 'blur') && (city.value === '') && (localStorage.city === undefined)) {
         showCityInput();
-        console.log('setCity, third if');
     } else {
         showCityDisplay();
-        console.log('setCity, else');
     }
 }
 
@@ -257,15 +269,7 @@ const getName = () => {
         name.value = localStorage.getItem('name');
         showNameDisplay();
         nameDisplay.innerText = localStorage.getItem('name');
-        console.log('Get name first if');
-        console.log(/^\s+$/.test(localStorage.getItem('name')));
     }
-    // if (/^\s+$/.test(localStorage.getItem('name'))) {
-    //     showNameInput();
-    //     name.focus();
-    //     name.value = 'Ты шо дурной?';
-    //     console.log('Ты шо дурной?');
-    // }
 
     nameDisplay.addEventListener('click', () => {
         showNameInput();
@@ -273,29 +277,28 @@ const getName = () => {
         name.value = '';
     })
 }
-
 // Set Name
 const setName = (e) => {
-
-    // if (/^\s+$/.test(localStorage.getItem('name'))) {
-    //     showNameInput();
-    //     name.focus();
-    //     name.value = 'Ты шо дурной?';
-    //     console.log('Ты шо дурной?');
-    // }
-
     if (e.type === 'keypress') {
-        if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
+        if ((e.which == 13 || e.keyCode == 13) && (e.target.value.trim() === '')) {
+            showNameInput();
+            name.focus();
+            name.value = '';
+        }
+        else if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
             showNameDisplay();
             nameDisplay.innerHTML = e.target.value;
-            localStorage.setItem('name', e.target.value)
+            localStorage.setItem('name', e.target.value);
             name.blur();
         }
-
+    } else if ((e.type === 'blur') && (name.value.trim() === '')) {
+        showNameInput();
+        name.focus();
+        name.value = '';
     } else if (e.target.value !== '') {
         showNameDisplay();
         nameDisplay.innerHTML = e.target.value;
-        localStorage.setItem('name', e.target.value)
+        localStorage.setItem('name', e.target.value);
     } else if ((e.type === 'blur') && (name.value === '') && (localStorage.name === undefined)) {
         showNameInput();
     } else {
@@ -321,17 +324,25 @@ const getFocus = () => {
 // Set Focus
 const setFocus = (e) => {
     if (e.type === 'keypress') {
-        if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
+        if ((e.which == 13 || e.keyCode == 13) && (e.target.value.trim() === '')) {
+            showFocusInput();
+            focus.focus();
+            focus.value = '';
+        }
+        else if ((e.which == 13 || e.keyCode == 13) && (e.target.value !== '')) {
             showFocusDisplay();
             focusDisplay.innerHTML = e.target.value;
-            localStorage.setItem('focus', e.target.value)
+            localStorage.setItem('focus', e.target.value);
             focus.blur();
         }
-
+    } else if ((e.type === 'blur') && (focus.value.trim() === '')) {
+        showFocusInput();
+        focus.focus();
+        focus.value = '';
     } else if (e.target.value !== '') {
         showFocusDisplay();
         focusDisplay.innerHTML = e.target.value;
-        localStorage.setItem('focus', e.target.value)
+        localStorage.setItem('focus', e.target.value);
     } else if ((e.type === 'blur') && (focus.value === '') && (localStorage.focus === undefined)) {
         showFocusInput();
     } else {
@@ -349,7 +360,7 @@ getRandomBgArray();
 showTime();
 getQuote();
 buttonQuote.addEventListener('click', getQuote);
-initBgGreat();
+initBgGreet();
 getName();
 getFocus();
 getWeather();
