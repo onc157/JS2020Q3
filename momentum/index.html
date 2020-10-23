@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/owfont-regular.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="header-wrapper">
+        <div id="quote-box" class="displayOff">
+            <div class="quote-wrapper">
+                <div id="quote"></div>
+                <button id="button-refresh-quote">
+                    <span class="material-icons button">sync</span>
+                </button>
+            </div>
+            <div id="author"></div>
+        </div>
+        <div class="weather-wrapper">
+            <input id="city" type="text" placeholder="Enter Your City" autocomplete="off">
+            <div id="weather-display-wrapper">
+                <div id="city-value"></div>
+                <div class="weather-value-wrapper">
+                    <i class="weather__icon owf"></i>
+                    <div id="weather__temperature"></div>
+                </div>
+                <div class="air-humidity">
+                    <i class="material-icons humidity__icon">invert_colors</i>
+                    <div id="air-humidity__value"></div>
+                </div>
+                <div class="wind">
+                    <i class="material-icons wind__icon">camera</i>
+                    <div id="wind__value"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <time id="fullDate"></time>
+        <time id="time"></time>
+        <div class="greeting-wrapper">
+            <h1><span id="greeting"></span></h1>
+            <div class="enter-name">
+                <input id="name" type="text" placeholder="Enter Name" autocomplete="off">
+                <div id="name-value"></div>
+            </div>
+        </div>
+        <h2>What is your focus for today?</h2>
+        <input id="focus" type="text" placeholder="Enter Focus" autocomplete="off">
+        <div id="focus-value"></div>
+    </div>
+    <button id="button-refresh-background">
+        <span class="material-icons button">sync</span>
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>
