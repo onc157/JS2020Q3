@@ -864,8 +864,7 @@ body {
       margin-left: 40px; } }
   @media (min-width: 1099px) {
     .section-our-friends .section-inner .slider-wrapper .items-wrapper {
-      justify-content: space-between;
-      width: 990px; } }
+      justify-content: space-between; } }
 
 .section-help .section-inner .help__title {
   font-family: Georgia, 'Times New Roman', Times, serif;

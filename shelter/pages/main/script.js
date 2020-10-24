@@ -22,40 +22,67 @@ burgerMenu.addEventListener('click', (event) => event.stopPropagation())
 
 // Slider
 let position = 0;
+const totalSlides = 24;
 const slidesToShow = 3;
 const slidesToScroll = 3;
 const sliderContainer = document.querySelector('.slider-container');
 const sliderTrack = document.querySelector('.slider-track');
 const btnPrev = document.querySelector('.slider-button__left');
 const btnNext = document.querySelector('.slider-button__right');
-const items = document.querySelectorAll('.slider-track__item');
-console.log(items);
-const itemsCount = items.length;
-console.log(itemsCount);
-// const itemWidth = sliderContainer.clientWidth / slidesToShow;
-const itemWidth = 1080 / slidesToShow; // Will add margins
+let items;
+const itemWidth = 1080 / slidesToShow;
 const movePosition = slidesToScroll * itemWidth;
+let pets;
 
-// items.forEach((item) => {
-//     item.style.minWidth = `${itemWidth}px`;
-// })
+// Add Slider Items On Slider-Track
+const generateItems = (pets) => {
+    for (let i = 0; i < 24 / 8; i = i + 1) {
+        pets.forEach((elem) => {
+            sliderTrack.insertAdjacentHTML('afterbegin', `<div class="slider-track__item">
+        <div class="slider-track__item--photo">
+            <img src="${elem.img}" alt="${elem.name}">
+        </div>
+        <div class="slider-track__item--name">${elem.name}</div>
+        <button class="slider-track__item--button">Learn more</button>
+        </div>`)})
+    }
+}
+
+// Parse Slider Items
+const parseSliderItems = async () => {
+    const src = '../../assets/json/pets.json'
+    const res = await fetch(src);
+    pets = await res.json();
+    console.log(pets);
+
+    generateItems(pets);
+
+    items = document.querySelectorAll('.slider-track__item');
+}
 
 btnPrev.addEventListener('click', () => {
-    const itemsLeft = Math.abs(position) / itemWidth;
+    if (position === 0) {
+        position = -7560;
+        setPosition();
+    } else {
+        position += movePosition;
+        console.log('position', position);
 
-    position += itemsLeft >= slidesToScroll ? movePosition : itemsLeft * itemWidth;;
-
-    setPosition();
-    checkButtons();
+        setPosition()
+    }
 })
 
 btnNext.addEventListener('click', () => {
-    const itemsLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
+    if ((position / itemWidth - slidesToShow) % totalSlides === 0) {
 
-    position -= itemsLeft >= slidesToScroll ? movePosition : itemsLeft * itemWidth;
+        generateItems(pets);
+        console.log(itemWidth);
+        console.log('Generate new items');
+    }
+    position -= movePosition;
+    console.log('position', position);
 
     setPosition();
-    checkButtons();
 })
 
 const setPosition = () => {
@@ -63,26 +90,4 @@ const setPosition = () => {
 }
 
 
-const checkButtons = () => {
-    btnPrev.disabled = position === 0;
-    btnNext.disabled = position <= -(itemsCount - slidesToShow) * itemWidth;
-}
-
-checkButtons();
-
-
-
-//Test
-
-// const src = '../../assets/pets.json'
-
-// async function getPets() {
-//     const res = await fetch(src);
-//     const pets = await res.json();
-
-//     // console.log(JSON.stringify(pets));
-//     console.log(pets);
-// }
-
-// getPets();
-// /Test
+parseSliderItems();
