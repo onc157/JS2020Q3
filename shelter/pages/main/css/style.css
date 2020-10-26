@@ -534,7 +534,7 @@ body.lock-scroll {
         .section-not-only .section-inner .burger-wrapper .header-burger-menu {
           position: fixed;
           top: 0;
-          right: -330px;
+          right: -320px;
           z-index: 150;
           width: 320px;
           height: 100vh;
@@ -722,8 +722,8 @@ body.lock-scroll {
       padding-top: 15px; } }
 
 .section-our-friends {
-  background: #f6f6f6;
-  position: relative; }
+  position: relative;
+  background: #f6f6f6; }
   .section-our-friends .section-inner {
     display: flex;
     flex-direction: column; }
@@ -803,6 +803,20 @@ body.lock-scroll {
               cursor: pointer;
               background-color: #fff;
               box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04); }
+      @media (min-width: 768px) and (max-width: 1279px) {
+        .section-our-friends .section-inner .slider-wrapper .slider-container {
+          width: 600px; }
+          .section-our-friends .section-inner .slider-wrapper .slider-container .slider-track__item {
+            margin: 0 15px; } }
+      @media (max-width: 767px) {
+        .section-our-friends .section-inner .slider-wrapper .slider-container {
+          width: 300px; }
+          .section-our-friends .section-inner .slider-wrapper .slider-container .slider-track__item {
+            margin: 0 15px; } }
+    @media (max-width: 750px) {
+      .section-our-friends .section-inner .slider-wrapper {
+        width: 300px;
+        margin: 0 auto; } }
     .section-our-friends .section-inner .our-friends__rest {
       display: flex;
       justify-content: center; }
@@ -863,9 +877,6 @@ body.lock-scroll {
           margin-left: 5px; }
       .section-our-friends .section-inner .our-friends__rest {
         padding-top: 60px; } }
-  @media (max-width: 1100px) {
-    .section-our-friends .section-inner .slider-wrapper .items-wrapper__item + .items-wrapper__item {
-      margin-left: 40px; } }
   @media (min-width: 1099px) {
     .section-our-friends .section-inner .slider-wrapper .items-wrapper {
       justify-content: space-between; } }
@@ -1213,7 +1224,6 @@ body.lock-scroll {
       position: relative;
       display: flex;
       width: 900px;
-      height: 500px;
       background-color: #fafafa;
       border-radius: 9px;
       transition: all .5s ease 0s;
@@ -1274,7 +1284,7 @@ body.lock-scroll {
           font-weight: 400;
           margin-bottom: 40px;
           font-size: 15px;
-          line-height: 115%;
+          line-height: 110%;
           color: #000;
           letter-spacing: 0.06em; }
         .popup-wrapper .popup .popup-body .popup-content__spec {
@@ -1291,3 +1301,42 @@ body.lock-scroll {
             letter-spacing: 0.06em; }
             .popup-wrapper .popup .popup-body .popup-content__spec li span {
               color: #000; }
+    @media (min-width: 1280px) {
+      .popup-wrapper .popup .popup-body {
+        height: 500px; } }
+    @media (min-width: 768px) and (max-width: 1279px) {
+      .popup-wrapper .popup .popup-body {
+        width: 630px;
+        height: 350px; }
+        .popup-wrapper .popup .popup-body .popup__photo {
+          min-width: 350px; }
+        .popup-wrapper .popup .popup-body .popup-content {
+          padding: 10px 9px 37px 11px; }
+          .popup-wrapper .popup .popup-body .popup-content__type {
+            margin-bottom: 20px; }
+          .popup-wrapper .popup .popup-body .popup-content__description {
+            margin-bottom: 20px;
+            font-size: 13px; }
+          .popup-wrapper .popup .popup-body .popup-content__spec li {
+            margin-bottom: 5px; } }
+    @media (max-width: 767px) {
+      .popup-wrapper .popup .popup-body {
+        width: 240px;
+        min-height: 350px; }
+        .popup-wrapper .popup .popup-body .popup-button {
+          right: -30px; }
+        .popup-wrapper .popup .popup-body .popup__photo {
+          display: none; }
+        .popup-wrapper .popup .popup-body .popup-content {
+          justify-content: flex-start;
+          padding: 10px 10px 10px 10px; }
+          .popup-wrapper .popup .popup-body .popup-content__name {
+            text-align: center; }
+          .popup-wrapper .popup .popup-body .popup-content__type {
+            margin-bottom: 20px;
+            text-align: center; }
+          .popup-wrapper .popup .popup-body .popup-content__description {
+            margin-bottom: 20px;
+            font-size: 13px; }
+          .popup-wrapper .popup .popup-body .popup-content__spec li {
+            margin-bottom: 5px; } }
