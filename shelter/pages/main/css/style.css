@@ -372,6 +372,7 @@ body.lock-scroll {
         font-style: normal;
         font-weight: 400;
         margin: 0 0 9px 0;
+        text-decoration: none;
         font-size: 32px;
         line-height: 110%;
         color: #f1cdb3;

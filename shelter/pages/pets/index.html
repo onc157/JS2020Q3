@@ -32,72 +32,14 @@
             <div class="our-friends__title">Our friends who </br>
                 are looking for a house
             </div>
-            <div class="slider-wrapper">
-                <div class="items-wrapper">
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/katrine.png" alt="katrine">
-                        </div>
-                        <div class="items-wrapper__item--name">Katrine</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/jeniffer.png" alt="jeniffer">
-                        </div>
-                        <div class="items-wrapper__item--name">Jennifer</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/woody.png" alt="woody">
-                        </div>
-                        <div class="items-wrapper__item--name">Woody</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/sophia.png" alt="sophia">
-                        </div>
-                        <div class="items-wrapper__item--name">Sophia</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/timmy.png" alt="timmy">
-                        </div>
-                        <div class="items-wrapper__item--name">Timmy</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/charly.png" alt="charly">
-                        </div>
-                        <div class="items-wrapper__item--name">Charly</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/scarlett.png" alt="scarlett">
-                        </div>
-                        <div class="items-wrapper__item--name">Scarlett</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                    <div class="items-wrapper__item">
-                        <div class="items-wrapper__item--photo">
-                            <img src="../../assets/images/freddie.png" alt="freddie">
-                        </div>
-                        <div class="items-wrapper__item--name">Freddie</div>
-                        <button class="items-wrapper__item--button">Learn more</button>
-                    </div>
-                </div>
+            <div class="pagination-wrapper">
             </div>
             <div class="slider-buttons">
-                <button class="slider-buttons__item slider-buttons__left" disabled>&lt;&lt;</button>
-                <button class="slider-buttons__item slider-buttons__left" disabled>&lt;</button>
-                <button class="slider-buttons__item slider-buttons__center">1</button>
-                <button class="slider-buttons__item slider-buttons__right">&gt;</button>
-                <button class="slider-buttons__item slider-buttons__right">&gt;&gt;</button>
+                <button id="button-first" class="slider-buttons__item slider-buttons__active">&lt;&lt;</button>
+                <button id="button-prev" class="slider-buttons__item slider-buttons__active">&lt;</button>
+                <button id="show-page" class="slider-buttons__item slider-buttons__center"></button>
+                <button id="button-next" class="slider-buttons__item slider-buttons__active">&gt;</button>
+                <button id="button-last" class="slider-buttons__item slider-buttons__active">&gt;&gt;</button>
             </div>
             <div class="burger-wrapper">
                 <div class="header-burger-menu">
@@ -115,6 +57,29 @@
                             <li class="burger-list__item"><a href="#" class="disabled">Contacts</a></li>
                         </ul>
                     </nav>
+                </div>
+            </div>
+        </div>
+        <div class="popup-wrapper">
+            <div class="popup">
+                <div class="popup-body">
+                    <button class="popup-button">
+                        <img src="../../assets/images/close.svg" alt="close">
+                    </button>
+                    <div class="popup__photo">
+                        <img id="popupImg" src="../../assets/images/jennifer.png" alt="jennifer">
+                    </div>
+                    <div class="popup-content">
+                        <div class="popup-content__name">Jennifer</div>
+                        <div class="popup-content__type">Dog - Labrador</div>
+                        <div class="popup-content__description">Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to play up a storm in the house if she has all of her favorite toys.</div>
+                        <ul class="popup-content__spec">
+                            <li><span><b>Age:</b> <span class="popup__age">2 months</span></span></li>
+                            <li><span><b>Inoculations:</b> <span class="popup__inoculations">none</span></span></li>
+                            <li><span><b>Diseases:</b> <span class="popup__diseases">none</span></span></li>
+                            <li><span><b>Parasites:</b> <span class="popup__parasites">none</span></span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
