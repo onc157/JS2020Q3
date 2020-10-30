@@ -169,6 +169,7 @@ textarea.output {
     letter-spacing: 1px;
     margin-top: 50px;
     margin-bottom: 10px;
+    outline: none;
 }
 
 .sub {
