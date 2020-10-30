@@ -56,7 +56,11 @@ export default class Keyboard {
     const keyDiv = e.target.closest('.keyboard__key');
     if (!keyDiv) return;
     const { dataset: { code } } = keyDiv;
-    keyDiv.addEventListener('mouseleave', this.resetButtonState);
+
+    if (!code.match(/Caps/) && !code.match(/Shift/)) {
+      keyDiv.addEventListener('mouseleave', this.resetButtonState);
+    }
+
     this.handlerEvent({ code, type: e.type });
   }
 
@@ -66,7 +70,7 @@ export default class Keyboard {
     keyObj.div.removeEventListener('mouseleave', this.resetButtonState);
   }
 
-
+  // Обработчик событий
   handlerEvent = (e) => {
     if (e.stopPropagation) e.stopPropagation();
     const { code, type } = e;
@@ -74,7 +78,7 @@ export default class Keyboard {
     if (!keyObj) return;
     this.output.focus();
 
-
+    // Нажатие кнопок клавиатуры / мыши
     if (type.match(/keydown|mousedown/)) {
       if (type.match(/key/)) e.preventDefault();
       if (code.match(/Shift/)) this.shiftKey = true;
@@ -82,7 +86,7 @@ export default class Keyboard {
 
       keyObj.div.classList.add('active');
 
-      // Handle Caprs down
+      // Handle Caps down
       if (code.match(/Caps/) && !this.isCaps) {
         this.isCaps = true;
         this.switchUpperCase(true);
@@ -93,6 +97,7 @@ export default class Keyboard {
         keyObj.div.classList.remove('active');
       }
 
+
       // Switch language
       if (code.match(/Control/)) this.ctrlKey = true;
       if (code.match(/Alt/)) this.altKey = true;
@@ -100,12 +105,17 @@ export default class Keyboard {
       if (code.match(/Control/) && this.altKey) this.switchLanguage();
       if (code.match(/Alt/) && this.ctrlKey) this.switchLanguage();
 
+      // Определяем, какой символ мы пишем в консоль (спец или основной)
       if (!this.isCaps) {
+        // если не зажат капс, смотрим не зажат ли шифт
         this.printToOutput(keyObj, this.shiftKey ? keyObj.shift : keyObj.small);
       } else if (this.isCaps) {
+        // если зажат капс
         if (this.shiftKey) {
+          // и при этом зажат шифт - то для кнопки со спецсимволом даем верхний регистр
           this.printToOutput(keyObj, keyObj.sub.innerHTML ? keyObj.shift : keyObj.small);
         } else {
+          // и при этом НЕ зажат шифт - то для кнопки без спецсивмола даем верхний регистр
           this.printToOutput(keyObj, !keyObj.sub.innerHTML ? keyObj.shift : keyObj.small);
         }
       }
@@ -149,25 +159,39 @@ export default class Keyboard {
   }
 
   switchUpperCase(isTrue) {
+    // Флаг - чтобы понимать, мы поднимаем регистр или опускаем
     if (isTrue) {
+      // Мы записывали наши кнопки в keyButtons, теперь можем легко итерироваться по ним
       this.keyButtons.forEach((button) => {
+        // Если у кнопки есть спецсивол - мы должны переопределить стили
         if (button.sub) {
+          // Если только это не капс, тогда поднимаем у спецсимволов
           if (this.shiftKey) {
             button.sub.classList.add('sub-active');
             button.letter.classList.add('sub-inactive');
           }
         }
 
+        // Не трогаем функциональные кнопки
+        // И если капс, и не шифт, и именно наша кнопка без спецсимвола
         if (!button.isFnKey && this.isCaps && !this.shiftKey && !button.sub.innerHTML) {
+          // тогда поднимаем регистр основного символа letter
           button.letter.innerHTML = button.shift;
+          // Если капс и зажат шифт
         } else if (!button.isFnKey && this.isCaps && this.shiftKey) {
+          // тогда опускаем регистр для основного симовла letter
           button.letter.innerHTML = button.small;
+          // а если это просто шифт - тогда поднимаем регистр у основного символа
+          // только у кнопок, без спецсимвола --- там уже выше отработал код для них
         } else if (!button.isFnKey && !button.sub.innerHTML) {
           button.letter.innerHTML = button.shift;
         }
       });
     } else {
+      // опускаем регистр в обратном порядке
       this.keyButtons.forEach((button) => {
+        // Не трогаем функциональные кнопки
+        // Если есть спецсимвол
         if (button.sub.innerHTML && !button.isFnKey) {
           button.sub.classList.remove('sub-active');
           button.letter.classList.remove('sub-inactive');
