@@ -49,6 +49,7 @@ export default class Keyboard {
     document.addEventListener('keyup', this.handlerEvent);
     this.container.onmousedown = this.preHandleEvent;
     this.container.onmouseup = this.preHandleEvent;
+    document.querySelector('.button-switch').addEventListener('mousedown', () => this.hideKeyboard());
   }
 
   preHandleEvent = (e) => {
@@ -131,6 +132,12 @@ export default class Keyboard {
 
       if (!code.match(/Caps/)) keyObj.div.classList.remove('active');
     }
+  }
+
+  // Show / Hide keyboard panel when click on the button
+  hideKeyboard = () => {
+    this.container.classList.toggle('keyboar--disabled');
+    document.querySelector('.button-switch').classList.toggle('button-switch-keyboard--disabled');
   }
 
   switchLanguage = () => {
