@@ -15,6 +15,7 @@ export default class Keyboard {
     this.rowsOrder = rowsOrder;
     this.keysPressed = {};
     this.isCaps = false;
+    this.shiftKey = false;
   }
 
   init(langCode) {
@@ -56,16 +57,29 @@ export default class Keyboard {
     e.stopPropagation();
     const keyDiv = e.target.closest('.keyboard__key');
     if (!keyDiv) return;
-    const { dataset: { code } } = keyDiv;
+    const {
+      dataset: {
+        code
+      }
+    } = keyDiv;
 
     if (!code.match(/Caps/) && !code.match(/Shift/)) {
       keyDiv.addEventListener('mouseleave', this.resetButtonState);
     }
 
-    this.handlerEvent({ code, type: e.type });
+    this.handlerEvent({
+      code,
+      type: e.type
+    });
   }
 
-  resetButtonState = ({ target: { dataset: { code } } }) => {
+  resetButtonState = ({
+    target: {
+      dataset: {
+        code
+      }
+    }
+  }) => {
     const keyObj = this.keyButtons.find((key) => key.code === code);
     keyObj.div.classList.remove('active');
     keyObj.div.removeEventListener('mouseleave', this.resetButtonState);
@@ -74,7 +88,10 @@ export default class Keyboard {
   // Обработчик событий
   handlerEvent = (e) => {
     if (e.stopPropagation) e.stopPropagation();
-    const { code, type } = e;
+    const {
+      code,
+      type
+    } = e;
     const keyObj = this.keyButtons.find((key) => key.code === code);
     if (!keyObj) return;
     this.output.focus();
@@ -82,29 +99,42 @@ export default class Keyboard {
     // Нажатие кнопок клавиатуры / мыши
     if (type.match(/keydown|mousedown/)) {
       if (type.match(/key/)) e.preventDefault();
-      if (code.match(/Shift/)) this.shiftKey = true;
-      if (this.shiftKey) this.switchUpperCase(true);
 
       keyObj.div.classList.add('active');
 
       // Handle Caps down
       if (code.match(/Caps/) && !this.isCaps) {
         this.isCaps = true;
-        this.switchUpperCase(true);
+        this.switchUpperCase();
       } else if (code.match(/Caps/) && this.isCaps) {
         this.isCaps = false;
-        this.switchUpperCase(false);
+        this.switchUpperCase();
 
         keyObj.div.classList.remove('active');
       }
 
+      // Handle Shift down
+      if (code.match(/Shift/) && !this.shiftKey) {
+        this.shiftKey = true;
+        this.switchUpperCase();
+      } else if (code.match(/Shift/) && this.shiftKey) {
+        this.shiftKey = false;
+        this.switchUpperCase();
+
+        keyObj.div.classList.remove('active');
+      }
 
       // Switch language
+      // Switch Ctrl + Alt
       if (code.match(/Control/)) this.ctrlKey = true;
       if (code.match(/Alt/)) this.altKey = true;
 
       if (code.match(/Control/) && this.altKey) this.switchLanguage();
       if (code.match(/Alt/) && this.ctrlKey) this.switchLanguage();
+
+      // Switch ppush LANG key
+      if (code.match(/Lang/)) this.switchLanguage();
+
 
       // Определяем, какой символ мы пишем в консоль (спец или основной)
       if (!this.isCaps) {
@@ -123,14 +153,10 @@ export default class Keyboard {
 
       // Release button
     } else if (type.match(/keyup|mouseup/)) {
-      if (code.match(/Shift/)) {
-        this.shiftKey = false;
-        this.switchUpperCase(false);
-      }
       if (code.match(/Control/)) this.ctrlKey = false;
       if (code.match(/Alt/)) this.altKey = false;
 
-      if (!code.match(/Caps/)) keyObj.div.classList.remove('active');
+      if (!code.match(/Caps/) && !code.match(/Shift/)) keyObj.div.classList.remove('active');
     }
   }
 
@@ -162,59 +188,53 @@ export default class Keyboard {
       button.letter.innerHTML = keyObj.small;
     });
 
-    if (this.isCaps) this.switchUpperCase(true);
+    if (this.isCaps || this.shiftKey) this.switchUpperCase();
   }
 
-  switchUpperCase(isTrue) {
-    // Флаг - чтобы понимать, мы поднимаем регистр или опускаем
-    if (isTrue) {
-      // Мы записывали наши кнопки в keyButtons, теперь можем легко итерироваться по ним
+  switchUpperCase() {
+    // Если нажат капс и НЕ нажат шифт:
+    if (this.isCaps && !this.shiftKey) {
+      // Перебираем все кнопки
       this.keyButtons.forEach((button) => {
-        // Если у кнопки есть спецсивол - мы должны переопределить стили
-        if (button.sub) {
-          // Если только это не капс, тогда поднимаем у спецсимволов
-          if (this.shiftKey) {
-            button.sub.classList.add('sub-active');
-            button.letter.classList.add('sub-inactive');
-          }
-        }
-
-        // Не трогаем функциональные кнопки
-        // И если капс, и не шифт, и именно наша кнопка без спецсимвола
+        // Убираем спецсимволы
+        button.sub.classList.remove('sub-active');
+        button.letter.classList.remove('sub-inactive');
+        // Отрисовываем заглавные кнопки
         if (!button.isFnKey && this.isCaps && !this.shiftKey && !button.sub.innerHTML) {
-          // тогда поднимаем регистр основного символа letter
           button.letter.innerHTML = button.shift;
-          // Если капс и зажат шифт
-        } else if (!button.isFnKey && this.isCaps && this.shiftKey) {
-          // тогда опускаем регистр для основного симовла letter
-          button.letter.innerHTML = button.small;
-          // а если это просто шифт - тогда поднимаем регистр у основного символа
-          // только у кнопок, без спецсимвола --- там уже выше отработал код для них
+        }
+      });
+      // Если НЕ нажат капс и нажат шифт:
+    } else if (!this.isCaps && this.shiftKey) {
+      // Перебираем все кнопки
+      this.keyButtons.forEach((button) => {
+        // Активируем спецсимволы
+        button.sub.classList.add('sub-active');
+        button.letter.classList.add('sub-inactive');
+        // Отрисовываем заглавные символы
+        if (!button.isFnKey && !this.isCaps && this.shiftKey && !button.sub.innerHTML) {
+          button.letter.innerHTML = button.shift;
         } else if (!button.isFnKey && !button.sub.innerHTML) {
           button.letter.innerHTML = button.shift;
         }
       });
-    } else {
-      // опускаем регистр в обратном порядке
+      // Если нажат капс и нажат шифт:
+    } else if (this.isCaps && this.shiftKey) {
+      // Перебираем все кнопки
       this.keyButtons.forEach((button) => {
-        // Не трогаем функциональные кнопки
-        // Если есть спецсимвол
-        if (button.sub.innerHTML && !button.isFnKey) {
-          button.sub.classList.remove('sub-active');
-          button.letter.classList.remove('sub-inactive');
-
-          if (!this.isCaps) {
-            button.letter.innerHTML = button.small;
-          } else if (!this.isCaps) { // Error?
-            button.letter.innerHTML = button.shift;
-          }
-        } else if (!button.isFnKey) {
-          if (this.isCaps) {
-            button.letter.innerHTML = button.shift;
-          } else {
-            button.letter.innerHTML = button.small;
-          }
-        }
+        // Активируем спецсимволы и отрисовываем строчные символы
+        button.sub.classList.add('sub-active');
+        button.letter.classList.add('sub-inactive');
+        button.letter.innerHTML = button.small;
+      });
+      // Если НЕ нажат капс и НЕ нажат шифт:
+    } else if (!this.isCaps && !this.shiftKey) {
+      // Перебираем все кнопки
+      this.keyButtons.forEach((button) => {
+        // Убираем спецсимволы и отрисовываем строчные символы
+        button.sub.classList.remove('sub-active');
+        button.letter.classList.remove('sub-inactive');
+        button.letter.innerHTML = button.small;
       });
     }
   }

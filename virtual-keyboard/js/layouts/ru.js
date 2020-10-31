@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 export default [{
     small: 'CapsLock',
     shift: null,
@@ -319,8 +320,8 @@ export default [{
     code: 'ArrowRight',
   },
   {
-    small: 'Win',
+    small: 'RU',
     shift: null,
-    code: 'Win',
+    code: 'Lang',
   },
 ];
