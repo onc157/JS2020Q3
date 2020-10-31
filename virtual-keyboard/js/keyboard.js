@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-param-reassign */
 import * as storage from './storage.js';
 import create from './utils/create.js';
@@ -9,6 +10,22 @@ const main = create('main', '',
     create('h3', 'subtitle', 'Windows keyboard that has been made under Linux'),
     create('p', 'hint', 'Use left <kbd>Ctrl</kbd> + <kbd>Alt</kbd> to switch language. Last language saves in localStorage')
   ]);
+const soundWrapper = create('div', 'sound-wrapper', [
+  create('audio', null, null, null, ['src', './assets/audio/ru-click.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/ru-shift.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/ru-caps-lock.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/ru-enter.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/ru-backspace.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/en-click.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/en-shift.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/en-caps-lock.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/en-enter.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/en-backspace.wav']),
+  create('audio', null, null, null, ['src', './assets/audio/hide-keyboard.ogg'])
+]);
+const keyboardShowButton = create('button', 'button-switch switch--active', [
+  create('span', 'material-icons md-48', 'loop')
+]);
 
 export default class Keyboard {
   constructor(rowsOrder) {
@@ -16,6 +33,8 @@ export default class Keyboard {
     this.keysPressed = {};
     this.isCaps = false;
     this.shiftKey = false;
+    this.keyboardShow = true;
+    this.soundButtons = true;
   }
 
   init(langCode) {
@@ -27,7 +46,7 @@ export default class Keyboard {
       ['spellcheck', false],
       ['autocorrect', 'off']);
     this.container = create('div', 'keyboard', null, main, ['language', langCode]);
-    document.body.prepend(main);
+    document.body.prepend(main, soundWrapper, keyboardShowButton);
     return this;
   }
 
@@ -50,36 +69,23 @@ export default class Keyboard {
     document.addEventListener('keyup', this.handlerEvent);
     this.container.onmousedown = this.preHandleEvent;
     this.container.onmouseup = this.preHandleEvent;
-    document.querySelector('.button-switch').addEventListener('mousedown', () => this.hideKeyboard());
+    keyboardShowButton.addEventListener('mousedown', () => this.hideKeyboard());
   }
 
   preHandleEvent = (e) => {
     e.stopPropagation();
     const keyDiv = e.target.closest('.keyboard__key');
     if (!keyDiv) return;
-    const {
-      dataset: {
-        code
-      }
-    } = keyDiv;
+    const { dataset: { code } } = keyDiv;
 
     if (!code.match(/Caps/) && !code.match(/Shift/)) {
       keyDiv.addEventListener('mouseleave', this.resetButtonState);
     }
 
-    this.handlerEvent({
-      code,
-      type: e.type
-    });
+    this.handlerEvent({ code, type: e.type });
   }
 
-  resetButtonState = ({
-    target: {
-      dataset: {
-        code
-      }
-    }
-  }) => {
+  resetButtonState = ({ target: { dataset: { code } } }) => {
     const keyObj = this.keyButtons.find((key) => key.code === code);
     keyObj.div.classList.remove('active');
     keyObj.div.removeEventListener('mouseleave', this.resetButtonState);
@@ -88,10 +94,7 @@ export default class Keyboard {
   // Обработчик событий
   handlerEvent = (e) => {
     if (e.stopPropagation) e.stopPropagation();
-    const {
-      code,
-      type
-    } = e;
+    const { code, type } = e;
     const keyObj = this.keyButtons.find((key) => key.code === code);
     if (!keyObj) return;
     this.output.focus();
@@ -124,6 +127,45 @@ export default class Keyboard {
         keyObj.div.classList.remove('active');
       }
 
+      // Sound keyboard
+      if (this.soundButtons) {
+        if (this.container.dataset.language === 'ru') {
+          if (code.match(/Shift/)) {
+            soundWrapper.childNodes[1].currentTime = 0;
+            soundWrapper.childNodes[1].play();
+          } else if (code.match(/Caps/)) {
+            soundWrapper.childNodes[2].currentTime = 0;
+            soundWrapper.childNodes[2].play();
+          } else if (code.match(/Enter/)) {
+            soundWrapper.childNodes[3].currentTime = 0;
+            soundWrapper.childNodes[3].play();
+          } else if (code.match(/Backspace/)) {
+            soundWrapper.childNodes[4].currentTime = 0;
+            soundWrapper.childNodes[4].play();
+          } else {
+            soundWrapper.childNodes[0].currentTime = 0;
+            soundWrapper.childNodes[0].play();
+          }
+        } else if (this.container.dataset.language === 'en') {
+          if (code.match(/Shift/)) {
+            soundWrapper.childNodes[6].currentTime = 0;
+            soundWrapper.childNodes[6].play();
+          } else if (code.match(/Caps/)) {
+            soundWrapper.childNodes[7].currentTime = 0;
+            soundWrapper.childNodes[7].play();
+          } else if (code.match(/Enter/)) {
+            soundWrapper.childNodes[8].currentTime = 0;
+            soundWrapper.childNodes[8].play();
+          } else if (code.match(/Backspace/)) {
+            soundWrapper.childNodes[9].currentTime = 0;
+            soundWrapper.childNodes[9].play();
+          } else {
+            soundWrapper.childNodes[5].currentTime = 0;
+            soundWrapper.childNodes[5].play();
+          }
+        }
+      }
+
       // Switch language
       // Switch Ctrl + Alt
       if (code.match(/Control/)) this.ctrlKey = true;
@@ -132,9 +174,11 @@ export default class Keyboard {
       if (code.match(/Control/) && this.altKey) this.switchLanguage();
       if (code.match(/Alt/) && this.ctrlKey) this.switchLanguage();
 
-      // Switch ppush LANG key
+      // Switch push LANG key
       if (code.match(/Lang/)) this.switchLanguage();
 
+      // Switch Sound keyboard
+      if (code.match(/Sound/)) this.switchSound();
 
       // Определяем, какой символ мы пишем в консоль (спец или основной)
       if (!this.isCaps) {
@@ -162,8 +206,19 @@ export default class Keyboard {
 
   // Show / Hide keyboard panel when click on the button
   hideKeyboard = () => {
+    // document.querySelector('body > audio').play();
+    soundWrapper.childNodes[10].currentTime = 0;
+    soundWrapper.childNodes[10].play();
+
     this.container.classList.toggle('keyboar--disabled');
     document.querySelector('.button-switch').classList.toggle('button-switch-keyboard--disabled');
+    // eslint-disable-next-line no-unused-expressions
+    this.keyboardShow === true ? this.keyboardShow = false : this.keyboardShow = true;
+    if (this.keyboardShow === false) {
+      this.output.addEventListener('click', this.hideKeyboard);
+    } else if (this.keyboardShow === true) {
+      this.output.removeEventListener('click', this.hideKeyboard);
+    }
   }
 
   switchLanguage = () => {
@@ -189,6 +244,18 @@ export default class Keyboard {
     });
 
     if (this.isCaps || this.shiftKey) this.switchUpperCase();
+  }
+
+  switchSound = () => {
+    const soundSwitch = this.keyButtons.find(key => key.code === 'Sound').div.lastChild;
+
+    if (this.soundButtons) {
+      this.soundButtons = false;
+      soundSwitch.innerHTML = '<span class="material-icons">music_off</span>';
+    } else {
+      this.soundButtons = true;
+      soundSwitch.innerHTML = '<span class="material-icons">music_note</span>';
+    }
   }
 
   switchUpperCase() {
@@ -225,6 +292,7 @@ export default class Keyboard {
         // Активируем спецсимволы и отрисовываем строчные символы
         button.sub.classList.add('sub-active');
         button.letter.classList.add('sub-inactive');
+        if (button.code.match(/Sound/)) return;
         button.letter.innerHTML = button.small;
       });
       // Если НЕ нажат капс и НЕ нажат шифт:
@@ -234,6 +302,7 @@ export default class Keyboard {
         // Убираем спецсимволы и отрисовываем строчные символы
         button.sub.classList.remove('sub-active');
         button.letter.classList.remove('sub-inactive');
+        if (button.code.match(/Sound/)) return;
         button.letter.innerHTML = button.small;
       });
     }
@@ -269,7 +338,7 @@ export default class Keyboard {
         this.output.value = `${left} ${right}`;
         cursorPos += 1;
       },
-    }
+    };
 
     if (fnButtonsHandler[keyObj.code]) fnButtonsHandler[keyObj.code]();
 

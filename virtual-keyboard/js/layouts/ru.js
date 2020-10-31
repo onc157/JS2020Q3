@@ -324,4 +324,9 @@ export default [{
     shift: null,
     code: 'Lang',
   },
+  {
+    small: '<span class="material-icons">music_note</span>',
+    shift: null,
+    code: 'Sound',
+  },
 ];
