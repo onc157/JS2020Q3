@@ -194,11 +194,12 @@ export default class Keyboard {
       // Switch Sound keyboard
       if (code.match(/Sound/)) this.switchSound();
 
-      // Handle Shift down
+      // Handle Voice down
       if (code.match(/Voice/) && !this.voiceRecording) {
         this.voiceRecording = true;
         this.setRecognition(true);
       } else if (code.match(/Voice/) && this.voiceRecording) {
+        console.log('this.voiceRecording', this.voiceRecording);
         this.voiceRecording = false;
         this.setRecognition(false);
         keyObj.div.classList.remove('active');
@@ -226,7 +227,7 @@ export default class Keyboard {
 
   // Voice text input
   setRecognition = (isTrue) => {
-    const recognitionInit = (e) => {
+    this.recognition.onresult = e => {
       let cursorPos = this.output.selectionStart;
       const left = this.output.value.slice(0, cursorPos);
       const right = this.output.value.slice(cursorPos);
@@ -248,13 +249,12 @@ export default class Keyboard {
         this.recognition.lang = 'en-US';
       }
 
-      this.recognition.addEventListener('result', recognitionInit);
-      this.recognition.addEventListener('end', this.recognition.start);
+      this.recognition.onend = () => this.recognition.start();
       this.recognition.start();
     } else {
-      this.recognition.removeEventListener('result', recognitionInit);
-      this.recognition.removeEventListener('end', this.recognition.start);
-      this.recognition.abort();
+      this.recognition.onresult = null;
+      this.recognition.onend = null;
+      this.recognition.stop();
     }
   }
 
