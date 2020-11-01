@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable comma-dangle */
 /* eslint-disable prefer-destructuring */
-/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable no-param-reassign */
 import * as storage from './storage.js';
 import create from './utils/create.js';
 import language from './layouts/index.js';
-import Key from './Key.js';
+import Key from './key.js';
 
 // Init DOM element
 const main = create('main', '',
