@@ -329,4 +329,9 @@ export default [{
     shift: null,
     code: 'Sound',
   },
+  {
+    small: '<span class="material-icons">mic</span>',
+    shift: null,
+    code: 'Voice',
+  },
 ];

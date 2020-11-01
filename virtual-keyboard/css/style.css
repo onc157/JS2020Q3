@@ -126,7 +126,7 @@ main {
 }
 
 [data-code="Space"] {
-  width: 420px;
+  width: 330px;
 }
 
 [data-code="AltLeft"],
@@ -134,15 +134,15 @@ main {
   width: 76px;
 }
 
-[data-code="ArrowLeft"],
-[data-code="ArrowUp"],
-[data-code="ArrowDown"],
-[data-code="ArrowRight"] {
+ {
   background: rgb(125, 253, 75);
 }
 
 [data-code="Lang"],
-[data-code="Sound"] {
+[data-code="Sound"],
+[data-code="ArrowLeft"],
+[data-code="ArrowRight"],
+[data-code="Voice"] {
   background-color: #0B34EC;
   color: #fff;
 }

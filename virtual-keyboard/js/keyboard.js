@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable comma-dangle */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable no-param-reassign */
 import * as storage from './storage.js';
@@ -5,6 +9,7 @@ import create from './utils/create.js';
 import language from './layouts/index.js';
 import Key from './Key.js';
 
+// Init DOM element
 const main = create('main', '',
   [create('h1', 'title', 'RSS Virtual Keyboard'),
     create('h3', 'subtitle', 'Windows keyboard that has been made under Linux'),
@@ -35,8 +40,14 @@ export default class Keyboard {
     this.shiftKey = false;
     this.keyboardShow = true;
     this.soundButtons = true;
+    this.voiceRecording = false;
+
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    this.recognition = new SpeechRecognition();
+    this.recognition.interimResults = true;
   }
 
+  // Create DOM element
   init(langCode) {
     this.keyBase = language[langCode]; // script.js: lang
     this.output = create('textarea', 'output', null, main,
@@ -50,6 +61,7 @@ export default class Keyboard {
     return this;
   }
 
+  // Draw keyboard
   generateLayout() {
     this.keyButtons = [];
     this.rowsOrder.forEach((row, i) => {
@@ -72,26 +84,28 @@ export default class Keyboard {
     keyboardShowButton.addEventListener('mousedown', () => this.hideKeyboard());
   }
 
+  // Add event listener mouselave
   preHandleEvent = (e) => {
     e.stopPropagation();
     const keyDiv = e.target.closest('.keyboard__key');
     if (!keyDiv) return;
     const { dataset: { code } } = keyDiv;
 
-    if (!code.match(/Caps/) && !code.match(/Shift/)) {
+    if (!code.match(/Caps/) && !code.match(/Shift/) && !code.match(/Voice/)) {
       keyDiv.addEventListener('mouseleave', this.resetButtonState);
     }
 
     this.handlerEvent({ code, type: e.type });
   }
 
+  // Remove event listener mouselave
   resetButtonState = ({ target: { dataset: { code } } }) => {
     const keyObj = this.keyButtons.find((key) => key.code === code);
     keyObj.div.classList.remove('active');
     keyObj.div.removeEventListener('mouseleave', this.resetButtonState);
   }
 
-  // Обработчик событий
+  // Handler event
   handlerEvent = (e) => {
     if (e.stopPropagation) e.stopPropagation();
     const { code, type } = e;
@@ -99,7 +113,7 @@ export default class Keyboard {
     if (!keyObj) return;
     this.output.focus();
 
-    // Нажатие кнопок клавиатуры / мыши
+    // Mouse or keyboard click
     if (type.match(/keydown|mousedown/)) {
       if (type.match(/key/)) e.preventDefault();
 
@@ -180,17 +194,23 @@ export default class Keyboard {
       // Switch Sound keyboard
       if (code.match(/Sound/)) this.switchSound();
 
-      // Определяем, какой символ мы пишем в консоль (спец или основной)
+      // Handle Shift down
+      if (code.match(/Voice/) && !this.voiceRecording) {
+        this.voiceRecording = true;
+        this.setRecognition(true);
+      } else if (code.match(/Voice/) && this.voiceRecording) {
+        this.voiceRecording = false;
+        this.setRecognition(false);
+        keyObj.div.classList.remove('active');
+      }
+
+      // Which symbol we write in console
       if (!this.isCaps) {
-        // если не зажат капс, смотрим не зажат ли шифт
         this.printToOutput(keyObj, this.shiftKey ? keyObj.shift : keyObj.small);
       } else if (this.isCaps) {
-        // если зажат капс
         if (this.shiftKey) {
-          // и при этом зажат шифт - то для кнопки со спецсимволом даем верхний регистр
           this.printToOutput(keyObj, keyObj.sub.innerHTML ? keyObj.shift : keyObj.small);
         } else {
-          // и при этом НЕ зажат шифт - то для кнопки без спецсивмола даем верхний регистр
           this.printToOutput(keyObj, !keyObj.sub.innerHTML ? keyObj.shift : keyObj.small);
         }
       }
@@ -200,19 +220,51 @@ export default class Keyboard {
       if (code.match(/Control/)) this.ctrlKey = false;
       if (code.match(/Alt/)) this.altKey = false;
 
-      if (!code.match(/Caps/) && !code.match(/Shift/)) keyObj.div.classList.remove('active');
+      if (!code.match(/Caps/) && !code.match(/Shift/) && !code.match(/Voice/)) keyObj.div.classList.remove('active');
+    }
+  }
+
+  // Voice text input
+  setRecognition = (isTrue) => {
+    const recognitionInit = (e) => {
+      let cursorPos = this.output.selectionStart;
+      const left = this.output.value.slice(0, cursorPos);
+      const right = this.output.value.slice(cursorPos);
+
+      const transcript = e.results[0][0].transcript;
+
+      if (e.results[0].isFinal) {
+        this.output.value = `${left} ${transcript}${right}`;
+        cursorPos = left.length + transcript.length + 1;
+
+        this.output.setSelectionRange(cursorPos, cursorPos);
+      }
+    };
+
+    if (isTrue) {
+      if (this.container.dataset.language === 'ru') {
+        this.recognition.lang = 'ru-Latn';
+      } else {
+        this.recognition.lang = 'en-US';
+      }
+
+      this.recognition.addEventListener('result', recognitionInit);
+      this.recognition.addEventListener('end', this.recognition.start);
+      this.recognition.start();
+    } else {
+      this.recognition.removeEventListener('result', recognitionInit);
+      this.recognition.removeEventListener('end', this.recognition.start);
+      this.recognition.abort();
     }
   }
 
   // Show / Hide keyboard panel when click on the button
   hideKeyboard = () => {
-    // document.querySelector('body > audio').play();
     soundWrapper.childNodes[10].currentTime = 0;
     soundWrapper.childNodes[10].play();
 
     this.container.classList.toggle('keyboar--disabled');
     document.querySelector('.button-switch').classList.toggle('button-switch-keyboard--disabled');
-    // eslint-disable-next-line no-unused-expressions
     this.keyboardShow === true ? this.keyboardShow = false : this.keyboardShow = true;
     if (this.keyboardShow === false) {
       this.output.addEventListener('click', this.hideKeyboard);
@@ -221,6 +273,7 @@ export default class Keyboard {
     }
   }
 
+  // Switch language on keyboard
   switchLanguage = () => {
     const langAbbr = Object.keys(language); // ['en', 'ru']
     let langIdx = langAbbr.indexOf(this.container.dataset.language); // 0 = 'en' | 1 = 'ru'
@@ -246,6 +299,7 @@ export default class Keyboard {
     if (this.isCaps || this.shiftKey) this.switchUpperCase();
   }
 
+  // Mute buttons
   switchSound = () => {
     const soundSwitch = this.keyButtons.find(key => key.code === 'Sound').div.lastChild;
 
@@ -258,48 +312,38 @@ export default class Keyboard {
     }
   }
 
+  // Switch symbol in upper case
   switchUpperCase() {
-    // Если нажат капс и НЕ нажат шифт:
     if (this.isCaps && !this.shiftKey) {
-      // Перебираем все кнопки
       this.keyButtons.forEach((button) => {
-        // Убираем спецсимволы
         button.sub.classList.remove('sub-active');
         button.letter.classList.remove('sub-inactive');
-        // Отрисовываем заглавные кнопки
+
         if (!button.isFnKey && this.isCaps && !this.shiftKey && !button.sub.innerHTML) {
           button.letter.innerHTML = button.shift;
         }
       });
-      // Если НЕ нажат капс и нажат шифт:
     } else if (!this.isCaps && this.shiftKey) {
-      // Перебираем все кнопки
       this.keyButtons.forEach((button) => {
-        // Активируем спецсимволы
         button.sub.classList.add('sub-active');
         button.letter.classList.add('sub-inactive');
-        // Отрисовываем заглавные символы
+
         if (!button.isFnKey && !this.isCaps && this.shiftKey && !button.sub.innerHTML) {
           button.letter.innerHTML = button.shift;
         } else if (!button.isFnKey && !button.sub.innerHTML) {
           button.letter.innerHTML = button.shift;
         }
       });
-      // Если нажат капс и нажат шифт:
     } else if (this.isCaps && this.shiftKey) {
-      // Перебираем все кнопки
       this.keyButtons.forEach((button) => {
-        // Активируем спецсимволы и отрисовываем строчные символы
         button.sub.classList.add('sub-active');
         button.letter.classList.add('sub-inactive');
+
         if (button.code.match(/Sound/)) return;
         button.letter.innerHTML = button.small;
       });
-      // Если НЕ нажат капс и НЕ нажат шифт:
     } else if (!this.isCaps && !this.shiftKey) {
-      // Перебираем все кнопки
       this.keyButtons.forEach((button) => {
-        // Убираем спецсимволы и отрисовываем строчные символы
         button.sub.classList.remove('sub-active');
         button.letter.classList.remove('sub-inactive');
         if (button.code.match(/Sound/)) return;
@@ -308,6 +352,7 @@ export default class Keyboard {
     }
   }
 
+  // Print symbol in keyboard output
   printToOutput(keyObj, symbol) {
     let cursorPos = this.output.selectionStart;
     const left = this.output.value.slice(0, cursorPos);
