@@ -11,10 +11,7 @@ import Key from './Key.js';
 
 // Init DOM element
 const main = create('main', '',
-  [create('h1', 'title', 'RSS Virtual Keyboard'),
-    create('h3', 'subtitle', 'Windows keyboard that has been made under Linux'),
-    create('p', 'hint', 'Use left <kbd>Ctrl</kbd> + <kbd>Alt</kbd> to switch language. Last language saves in localStorage')
-  ]);
+  [create('h1', 'title', 'Virtual Keyboard by onc157')]);
 const soundWrapper = create('div', 'sound-wrapper', [
   create('audio', null, null, null, ['src', './assets/audio/ru-click.wav']),
   create('audio', null, null, null, ['src', './assets/audio/ru-shift.wav']),
@@ -51,7 +48,7 @@ export default class Keyboard {
   init(langCode) {
     this.keyBase = language[langCode]; // script.js: lang
     this.output = create('textarea', 'output', null, main,
-      ['placeholder', 'Start type something:'],
+      ['placeholder', ''],
       ['rows', 5],
       ['cols', 50],
       ['spellcheck', false],

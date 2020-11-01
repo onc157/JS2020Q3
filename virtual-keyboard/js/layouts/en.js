@@ -65,7 +65,7 @@ export default [{
         code: 'Equal',
     },
     {
-        small: 'Backspace',
+        small: '<span class="material-icons">keyboard_backspace</span>',
         shift: null,
         code: 'Backspace',
     },
@@ -75,7 +75,7 @@ export default [{
         code: 'Delete',
     },
     {
-        small: 'Tab',
+        small: '<span class="material-icons">keyboard_tab</span>',
         shift: null,
         code: 'Tab',
     },
@@ -140,12 +140,12 @@ export default [{
         code: 'BracketRight',
     },
     {
-        small: 'Enter',
+        small: '<span class="material-icons">keyboard_return</span>',
         shift: null,
         code: 'Enter',
     },
     {
-        small: 'CapsLock',
+        small: '<span class="material-icons">keyboard_capslock</span>',
         shift: null,
         code: 'CapsLock',
     },
@@ -210,7 +210,7 @@ export default [{
         code: 'Backslash',
     },
     {
-        small: 'Shift',
+        small: '<span class="material-icons">keyboard_arrow_up</span>',
         shift: null,
         code: 'ShiftLeft',
     },
@@ -270,7 +270,7 @@ export default [{
         code: 'Slash',
     },
     {
-        small: 'Shift',
+        small: '<span class="material-icons">keyboard_arrow_up</span>',
         shift: null,
         code: 'ShiftRight',
     },
@@ -285,7 +285,7 @@ export default [{
         code: 'AltLeft',
     },
     {
-        small: ' ',
+        small: '<span class="material-icons">space_bar</span>',
         shift: null,
         code: 'Space',
     },
