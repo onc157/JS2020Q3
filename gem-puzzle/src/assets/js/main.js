@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable object-shorthand */
 /* eslint-disable arrow-body-style */
@@ -42,11 +43,12 @@ export default class Game {
       create('button', 'button back', 'Back'),
     ], this.fieldWrapper);
     this.buttonPress = create('div', 'button-press', null, this.fieldWrapper);
-    this.score = create('div', 'score-wrapper', 'score');
+    // this.score = create('div', 'score-wrapper', 'score');
     this.sizeCell = 100 / this.size;
     this.menuButton = create('div', 'count button-menu', '<span class="material-icons">build</span>', this.counts);
     this.soundOn = true;
     this.numbersOn = false;
+    this.menuFieldSizeOn = false;
     this.countMoves = 0;
     this.countTime = 0;
     this.backgroundImage = bgGenerate(1, 20);
@@ -54,7 +56,7 @@ export default class Game {
 
   // Add element on HTML markup
   init() {
-    document.body.prepend(this.main, this.counts, this.soundWrapper, this.score);
+    document.body.prepend(this.main, this.counts, this.soundWrapper);
     this.menuButton.addEventListener('click', this.handlerEvent);
     this.menu.addEventListener('mousedown', this.handlerEvent);
     this.menuFieldSize.addEventListener('mousedown', this.handlerEvent);
@@ -93,6 +95,7 @@ export default class Game {
     return this.generateRandomArray();
   }
 
+  // Generate random field
   generateField() {
     this.cells = [];
     this.randomNumbers = this.generateRandomArray();
@@ -123,10 +126,10 @@ export default class Game {
       this.cell.firstChild.style.fontSize = `${8 / this.size}rem`;
 
       this.cell.firstChild.addEventListener('click', () => this.cellMove(i));
+      this.cell.addEventListener('mousedown', (e) => this.cellDrag(e, i));
 
       // Add background img on cells
       this.cell.firstChild.style.backgroundImage = this.backgroundImage;
-      this.cell.firstChild.style.backgroundRepiat = 'no-repeat';
       this.cell.firstChild.style.backgroundSize = `${100 * this.size}%`;
       const numberCell = this.cells[this.cells.length - 1].number - 1;
       const multiplier = 100 / (this.size - 1);
@@ -165,6 +168,10 @@ export default class Game {
     if (e.target.className.match(/button-menu/)
         || e.target.innerText.match(/build/)) {
       this.menu.classList.toggle('menu--active');
+      if (this.menuFieldSizeOn) {
+        this.menuFieldSizeOn = false;
+        this.menuFieldSize.classList.toggle('menu-field-size--active');
+      }
     }
     if (e.target.className.match(/save-game/)) {
       this.saveGame();
@@ -179,7 +186,10 @@ export default class Game {
       this.changeFieldSize();
     }
     if (e.target.className.match(/back/)) {
-      this.menuFieldSize.classList.toggle('menu-field-size--active');
+      if (this.menuFieldSizeOn) {
+        this.menuFieldSizeOn = false;
+        this.menuFieldSize.classList.toggle('menu-field-size--active');
+      }
     }
     if (e.target.className.match(/button-size/)) {
       this.size = e.target.id;
@@ -209,11 +219,54 @@ export default class Game {
 
       [this.emptyCell.left, cell.left] = [cell.left, this.emptyCell.left];
       [this.emptyCell.top, cell.top] = [cell.top, this.emptyCell.top];
+
+      this.field.onmouseup = null;
+      this.field.onmousemove = null;
+      this.field.onmouseleave = null;
     } else return;
 
     // Check is finish
-    this.updateCountMove();
     this.checkFinish();
+    this.updateCountMove();
+  }
+
+  cellDrag(edrag, index) {
+    const cell = this.cells[index];
+    const leftDiff = Math.abs(this.emptyCell.left - cell.left);
+    const topDiff = Math.abs(this.emptyCell.top - cell.top);
+
+    if (leftDiff + topDiff <= 1) {
+      cell.item.style.zIndex = '50';
+      cell.item.style.transition = '0s';
+
+      this.field.onmouseleave = () => {
+        cell.item.style.transition = '.5s';
+        setTimeout(() => {
+          cell.item.style.zIndex = null;
+        }, 500);
+        this.cellMove(index);
+      };
+
+      const dragMove = (left, top) => {
+        cell.item.style.left = `${left}%`;
+        cell.item.style.top = `${top}%`;
+      };
+
+      this.field.onmousemove = (event) => {
+        const left = ((event.pageX - this.field.offsetLeft - edrag.offsetX - this.field.getBoundingClientRect().x - edrag.target.clientLeft) / this.field.clientWidth) * 100;
+        const top = ((event.pageY - this.field.offsetTop - edrag.offsetY - this.field.getBoundingClientRect().y - edrag.target.clientTop) / this.field.clientHeight) * 100;
+        dragMove(left, top);
+      };
+
+      this.field.onmouseup = () => {
+        cell.item.style.transition = '.5s';
+        setTimeout(() => {
+          cell.item.style.zIndex = null;
+        }, 500);
+        this.field.onmouseup = null;
+        this.field.onmousemove = null;
+      };
+    }
   }
 
   checkFinish() {
@@ -328,7 +381,6 @@ export default class Game {
 
         this.cell.style.width = `${this.sizeCell}%`;
         this.cell.style.height = `${this.sizeCell}%`;
-        console.log(this.cell.firstChild);
         if (this.numbersOn === true) {
           this.menu.lastChild.innerText = 'Hide Numbers';
           this.cell.firstChild.classList.add('cell-inner--show-numbers');
@@ -343,6 +395,9 @@ export default class Game {
         });
 
         this.cell.addEventListener('click', () => this.cellMove(i));
+        this.cell.onmousedown = (e) => {
+          this.cellDrag(e, i);
+        };
 
         this.cell.firstChild.style.backgroundImage = this.backgroundImage;
         this.cell.firstChild.style.backgroundRepiat = 'no-repeat';
@@ -357,7 +412,13 @@ export default class Game {
   }
 
   changeFieldSize() {
-    this.menuFieldSize.classList.toggle('menu-field-size--active');
+    if (this.menuFieldSizeOn) {
+      this.menuFieldSizeOn = false;
+      this.menuFieldSize.classList.toggle('menu-field-size--active');
+    } else {
+      this.menuFieldSizeOn = true;
+      this.menuFieldSize.classList.toggle('menu-field-size--active');
+    }
   }
 
   switchSound = (e) => {
@@ -374,7 +435,6 @@ export default class Game {
   }
 
   showNumbers = (e) => {
-    console.log(e);
     if (!this.numbersOn) {
       this.numbersOn = true;
       e.target.innerText = 'Hide Numbers';
@@ -409,12 +469,13 @@ export default class Game {
     this.timeOut = setTimeout(this.updateCountTimes, 1000);
   }
 
+  // Show message when we click on buttons in menu
   btnPress(str) {
     this.buttonPress.classList.toggle('button-press--active');
     this.buttonPress.innerText = `${str}`;
     setTimeout(() => {
       this.buttonPress.classList.toggle('button-press--active');
       this.buttonPress.innerText = '';
-    }, 1500);
+    }, 1000);
   }
 }
