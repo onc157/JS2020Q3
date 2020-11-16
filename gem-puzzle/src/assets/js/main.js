@@ -29,7 +29,7 @@ export default class Game {
       create('button', 'button save-game', 'Save Game'),
       create('button', 'button load-game', 'Load Game'),
       create('button', 'button sound', '<span class="material-icons">volume_up</span>'),
-      create('button', 'button score', 'Score'),
+      create('button', 'button score button-disabled', 'Score', null, ['disabled']),
       create('button', 'button field-size', 'Field Size'),
       create('button', 'button show-numbers', 'Show Numbers'),
     ], this.fieldWrapper);
@@ -43,7 +43,6 @@ export default class Game {
       create('button', 'button back', 'Back'),
     ], this.fieldWrapper);
     this.buttonPress = create('div', 'button-press', null, this.fieldWrapper);
-    // this.score = create('div', 'score-wrapper', 'score');
     this.sizeCell = 100 / this.size;
     this.menuButton = create('div', 'count button-menu', '<span class="material-icons">build</span>', this.counts);
     this.soundOn = true;
@@ -179,9 +178,10 @@ export default class Game {
     if (e.target.className.match(/load-game/)) {
       this.loadGame();
     }
-    if (e.target.className.match(/score/)) {
-      this.getScore();
-    }
+    // if (e.target.className.match(/score/)) {
+    //   this.scoreList.classList.toggle('score-list--active');
+    //   this.getScore();
+    // }
     if (e.target.className.match(/field-size/)) {
       this.changeFieldSize();
     }
@@ -193,6 +193,7 @@ export default class Game {
     }
     if (e.target.className.match(/button-size/)) {
       this.size = e.target.id;
+      this.menuFieldSizeOn = false;
       this.sizeCell = 100 / this.size;
       this.newGame();
       this.menuFieldSize.classList.toggle('menu-field-size--active');
@@ -207,15 +208,15 @@ export default class Game {
     const leftDiff = Math.abs(this.emptyCell.left - cell.left);
     const topDiff = Math.abs(this.emptyCell.top - cell.top);
 
-    if (this.soundOn) {
-      this.soundWrapper.childNodes[0].currentTime = 0;
-      this.soundWrapper.childNodes[0].play();
-    }
-
     // We process click of only adjacent cells horizontall or verticall
     if (leftDiff + topDiff <= 1) {
       cell.item.style.left = `${this.emptyCell.left * this.sizeCell}%`;
       cell.item.style.top = `${this.emptyCell.top * this.sizeCell}%`;
+
+      if (this.soundOn) {
+        this.soundWrapper.childNodes[0].currentTime = 0;
+        this.soundWrapper.childNodes[0].play();
+      }
 
       [this.emptyCell.left, cell.left] = [cell.left, this.emptyCell.left];
       [this.emptyCell.top, cell.top] = [cell.top, this.emptyCell.top];
@@ -289,11 +290,9 @@ export default class Game {
 
     if (isFinished) {
       // eslint-disable-next-line no-alert
-      const name = prompt('Enter your name');
       // eslint-disable-next-line no-implied-eval
-      setTimeout(`alert('${name}, you really good! Your results: ${this.minutes}m : ${this.seconds}s and ${this.countMoves} moves')`, 300);
+      setTimeout(`alert('Ура! Вы решили головоломку за ${this.minutes}м : ${this.seconds}с и ${this.countMoves} ходов')`, 300);
       const localResult = {
-        name: name,
         time: `${this.minutes}m : ${this.seconds}s`,
         moves: this.countMoves,
       };
@@ -301,10 +300,11 @@ export default class Game {
     }
   }
 
-  getScore() {
-    const { name, time, moves } = storage.get('Local result');
-    this.score.innerHTML = `${name}, ${time}, ${moves}`;
-  }
+  // getScore() {
+  //   const { time, moves } = storage.get('Local result');
+  //   this.score.innerHTML = `${time}, ${moves}`;
+  //   create('div', 'score-item', null, this.scoreList);
+  // }
 
   // Start New Game without reload page
   newGame() {

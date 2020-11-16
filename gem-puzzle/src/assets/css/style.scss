@@ -137,6 +137,13 @@ body {
                       inset -4px -4px 7px #253e52;
         }
       }
+
+      .button-disabled:hover,
+      .button-disabled:active {
+        background: linear-gradient(145deg, #132531, #102029);
+        box-shadow:  7px 7px 14px #0f1e27,
+                    -7px -7px 14px #152835;
+      }
     }
 
     .menu-field-size {
