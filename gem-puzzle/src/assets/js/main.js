@@ -51,6 +51,7 @@ export default class Game {
     this.countMoves = 0;
     this.countTime = 0;
     this.backgroundImage = bgGenerate(1, 20);
+    this.gameOver = false;
   }
 
   // Add element on HTML markup
@@ -124,8 +125,8 @@ export default class Game {
       // Set font size cells depend with cell size
       this.cell.firstChild.style.fontSize = `${8 / this.size}rem`;
 
-      this.cell.firstChild.addEventListener('click', () => this.cellMove(i));
-      this.cell.addEventListener('mousedown', (e) => this.cellDrag(e, i));
+      this.cell.firstChild.addEventListener('click', () => this.cellMove(i, this.gameOver));
+      this.cell.addEventListener('mousedown', (e) => this.cellDrag(e, i, this.gameOver));
 
       // Add background img on cells
       this.cell.firstChild.style.backgroundImage = this.backgroundImage;
@@ -203,70 +204,74 @@ export default class Game {
     }
   }
 
-  cellMove(index) {
-    const cell = this.cells[index];
-    const leftDiff = Math.abs(this.emptyCell.left - cell.left);
-    const topDiff = Math.abs(this.emptyCell.top - cell.top);
+  cellMove(index, gameOver) {
+    if (!gameOver) {
+      const cell = this.cells[index];
+      const leftDiff = Math.abs(this.emptyCell.left - cell.left);
+      const topDiff = Math.abs(this.emptyCell.top - cell.top);
 
-    // We process click of only adjacent cells horizontall or verticall
-    if (leftDiff + topDiff <= 1) {
-      cell.item.style.left = `${this.emptyCell.left * this.sizeCell}%`;
-      cell.item.style.top = `${this.emptyCell.top * this.sizeCell}%`;
+      // We process click of only adjacent cells horizontall or verticall
+      if (leftDiff + topDiff <= 1) {
+        cell.item.style.left = `${this.emptyCell.left * this.sizeCell}%`;
+        cell.item.style.top = `${this.emptyCell.top * this.sizeCell}%`;
 
-      if (this.soundOn) {
-        this.soundWrapper.childNodes[0].currentTime = 0;
-        this.soundWrapper.childNodes[0].play();
-      }
+        if (this.soundOn) {
+          this.soundWrapper.childNodes[0].currentTime = 0;
+          this.soundWrapper.childNodes[0].play();
+        }
 
-      [this.emptyCell.left, cell.left] = [cell.left, this.emptyCell.left];
-      [this.emptyCell.top, cell.top] = [cell.top, this.emptyCell.top];
+        [this.emptyCell.left, cell.left] = [cell.left, this.emptyCell.left];
+        [this.emptyCell.top, cell.top] = [cell.top, this.emptyCell.top];
 
-      this.field.onmouseup = null;
-      this.field.onmousemove = null;
-      this.field.onmouseleave = null;
-    } else return;
-
-    // Check is finish
-    this.checkFinish();
-    this.updateCountMove();
-  }
-
-  cellDrag(edrag, index) {
-    const cell = this.cells[index];
-    const leftDiff = Math.abs(this.emptyCell.left - cell.left);
-    const topDiff = Math.abs(this.emptyCell.top - cell.top);
-
-    if (leftDiff + topDiff <= 1) {
-      cell.item.style.zIndex = '50';
-      cell.item.style.transition = '0s';
-
-      this.field.onmouseleave = () => {
-        cell.item.style.transition = '.5s';
-        setTimeout(() => {
-          cell.item.style.zIndex = null;
-        }, 500);
-        this.cellMove(index);
-      };
-
-      const dragMove = (left, top) => {
-        cell.item.style.left = `${left}%`;
-        cell.item.style.top = `${top}%`;
-      };
-
-      this.field.onmousemove = (event) => {
-        const left = ((event.pageX - this.field.offsetLeft - edrag.offsetX - this.field.getBoundingClientRect().x - edrag.target.clientLeft) / this.field.clientWidth) * 100;
-        const top = ((event.pageY - this.field.offsetTop - edrag.offsetY - this.field.getBoundingClientRect().y - edrag.target.clientTop) / this.field.clientHeight) * 100;
-        dragMove(left, top);
-      };
-
-      this.field.onmouseup = () => {
-        cell.item.style.transition = '.5s';
-        setTimeout(() => {
-          cell.item.style.zIndex = null;
-        }, 500);
         this.field.onmouseup = null;
         this.field.onmousemove = null;
-      };
+        this.field.onmouseleave = null;
+      } else return;
+
+      // Check is finish
+      this.checkFinish();
+      this.updateCountMove();
+    }
+  }
+
+  cellDrag(edrag, index, gameOver) {
+    if (!gameOver) {
+      const cell = this.cells[index];
+      const leftDiff = Math.abs(this.emptyCell.left - cell.left);
+      const topDiff = Math.abs(this.emptyCell.top - cell.top);
+
+      if (leftDiff + topDiff <= 1) {
+        cell.item.style.zIndex = '50';
+        cell.item.style.transition = '0s';
+
+        this.field.onmouseleave = () => {
+          cell.item.style.transition = '.5s';
+          setTimeout(() => {
+            cell.item.style.zIndex = null;
+          }, 500);
+          this.cellMove(index);
+        };
+
+        const dragMove = (left, top) => {
+          cell.item.style.left = `${left}%`;
+          cell.item.style.top = `${top}%`;
+        };
+
+        this.field.onmousemove = (event) => {
+          const left = ((event.pageX - this.field.offsetLeft - edrag.offsetX - this.field.getBoundingClientRect().x - edrag.target.clientLeft) / this.field.clientWidth) * 100;
+          const top = ((event.pageY - this.field.offsetTop - edrag.offsetY - this.field.getBoundingClientRect().y - edrag.target.clientTop) / this.field.clientHeight) * 100;
+          dragMove(left, top);
+        };
+
+        this.field.onmouseup = () => {
+          cell.item.style.transition = '.5s';
+          setTimeout(() => {
+            cell.item.style.zIndex = null;
+          }, 500);
+          this.field.onmouseup = null;
+          this.field.onmousemove = null;
+        };
+      }
     }
   }
 
@@ -297,6 +302,8 @@ export default class Game {
         moves: this.countMoves,
       };
       storage.set('Local result', localResult);
+      this.gameOver = true;
+      clearTimeout(this.timeOut);
     }
   }
 
@@ -320,6 +327,7 @@ export default class Game {
       this.backgroundImage = bgGenerate(1, 20);
       this.generateField();
       this.btnPress('NEW GAME');
+      this.gameOver = false;
 
       if (this.numbersOn === true) {
         this.menu.lastChild.innerText = 'Hide Numbers';
@@ -338,6 +346,9 @@ export default class Game {
     storage.set('Field Size', this.size);
     storage.set('Background Image', this.backgroundImage);
     storage.set('numbersOn', this.numbersOn);
+    storage.set('Count Moves', this.countMoves);
+    storage.set('Count Time', this.countTime);
+    console.log(this.countMoves);
     this.btnPress('GAME SAVED');
   }
 
@@ -353,6 +364,10 @@ export default class Game {
     this.sizeCell = 100 / this.size;
     this.backgroundImage = storage.get('Background Image');
     this.numbersOn = storage.get('numbersOn');
+    this.countMoves = storage.get('Count Moves');
+    this.counts.firstChild.innerHTML = `Moves: ${this.countMoves}`;
+    this.countTime = storage.get('Count Time');
+    this.gameOver = false;
 
     this.menu.classList.toggle('menu--active');
 
@@ -394,9 +409,9 @@ export default class Game {
           active: false,
         });
 
-        this.cell.addEventListener('click', () => this.cellMove(i));
+        this.cell.addEventListener('click', () => this.cellMove(i, this.gameOver));
         this.cell.onmousedown = (e) => {
-          this.cellDrag(e, i);
+          this.cellDrag(e, i, this.gameOver);
         };
 
         this.cell.firstChild.style.backgroundImage = this.backgroundImage;
@@ -408,6 +423,8 @@ export default class Game {
       });
     }, 500);
 
+    clearTimeout(this.timeOut);
+    this.updateCountTimes();
     this.btnPress('GAME LOADED');
   }
 
