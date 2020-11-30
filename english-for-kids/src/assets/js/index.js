@@ -1,6 +1,8 @@
 import '../css/style.scss';
 import './utils/create';
 import './utils/storage';
-// import Game from './main';
+import dictionary from './data/dictionary'
+import Main from './main';
+import Card from './Card';
 
-// new Game(4).init().generateField();
+// new Main(4).init().generateField();
