@@ -1,8 +1,9 @@
 import '../css/style.scss';
 import './utils/create';
 import './utils/storage';
-import dictionary from './data/dictionary'
-import Main from './main';
-import Card from './Card';
+// import dictionary from './data/dictionary';
+// import groups from './data/groups';
+import Main from './Main';
+// import Card from './Card';
 
-// new Main(4).init().generateField();
+new Main().init().generateMain();

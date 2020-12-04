@@ -26,8 +26,6 @@ const optimization = () => {
   return config
 }
 
-const filename = (ext) => (isDev ? `assets/${ext}/[name].${ext}` : `assets/${ext}/[name].[hash].${ext}`)
-
 const cssLoaders = (...extra) => {
   const loaders = [
     {
@@ -35,9 +33,12 @@ const cssLoaders = (...extra) => {
       options: {
         hmr: isDev,
         reloadAll: true,
+        publicPath: '',
       },
     },
-    'css-loader',
+    {
+      loader: 'css-loader',
+    },
   ]
 
   if (extra) {
@@ -70,12 +71,11 @@ const jsLoader = () => {
 }
 
 module.exports = {
-  mode: 'development',
   entry: {
     main: ['@babel/polyfill', path.resolve(__dirname, 'src/assets/js/index.js')],
   },
   output: {
-    filename: filename('js'),
+    filename: isDev ? '[name].js' : '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
@@ -110,7 +110,7 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: filename('css'),
+      filename: isDev ? '[name].css' : '[name].[hash].css',
     }),
   ],
   module: {
@@ -146,12 +146,12 @@ module.exports = {
         ],
       },
       {
-        test: /\.wav$/,
+        test: /\.mp3$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              outputPath: './assets/audio',
+              outputPath: './assets/sounds',
             },
           },
         ],
