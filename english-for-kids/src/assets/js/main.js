@@ -2,12 +2,16 @@
 // import * as storage from './utils/storage';
 import dictionary from './data/dictionary';
 import groups from './data/groups';
+
 import header from './dom-components/header';
 import burger from './dom-components/burger';
 import field from './dom-components/field';
 import footer from './dom-components/footer';
+
 import Card from './Card';
+
 import clearField from './utils/clearField';
+import shuffle from './utils/shuffle';
 
 export default class Main {
   constructor() {
@@ -105,6 +109,7 @@ export default class Main {
     if (this.playMode) {
       this.gameMode();
     }
+    console.log('Before shuffle:', this.currentCards);
   }
 
   gameMode() {
@@ -115,7 +120,8 @@ export default class Main {
         elem.cardContentFront.classList.add('card-content--disable');
         elem.cardFaceFront.classList.add('card-face--game-mode');
       });
-      console.log(this.currentCards);
+      // setTimeout(shuffle(this.currentCards), 100);
+      setTimeout(console.log('After shuffle:', this.currentCards), 200);
     }
   }
 
