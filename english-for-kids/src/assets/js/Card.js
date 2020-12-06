@@ -12,6 +12,7 @@ export default class Card {
     this.translate = elem.translate || null;
     this.image = elem.img;
     this.sound = new Audio(elem.sound);
+    this.gameType = 'train';
   }
 
   init() {
@@ -40,7 +41,9 @@ export default class Card {
       this.elementInner = create('div', 'card-inner', [this.cardFaceFront, this.cardFaceBack], this.element);
 
       this.cardFaceFront.addEventListener('click', () => {
-        this.sound.play();
+        if (this.gameType === 'train') {
+          this.sound.play();
+        }
       });
 
       this.cardButtonFront.addEventListener('click', (e) => {
@@ -58,8 +61,7 @@ export default class Card {
     return this;
   }
 
-  // playFront() {}
-  // playBack() {}
-  // trainFront() {}
-  // trainBack() {}
+  playMode(type) {
+    this.gameType = `${type}`;
+  }
 }
