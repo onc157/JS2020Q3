@@ -34,63 +34,80 @@ body.lock-scroll {
   padding: 2% 10% 0;
 
   .burger-wrapper {
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     position: absolute;
-    width: 320px;
-    height: 100vh;
+    z-index: 2;
     top: 0;
-    left: -320px;
-    background-color: rgba(255, 255, 255, .8);
-    opacity: .8;
-    transition: .8s;
+    left: 0;
+    transition: 1s;
 
     &--active {
+        position: fixed;
+        // top: 0;
+        // left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(41, 41, 41, .6);
+    }
+
+    .burger-inner {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      width: 320px;
+      height: 100vh;
       top: 0;
-      left: 0;
-    }
+      left: -320px;
+      background-color: rgba(255, 255, 255, .8);
+      opacity: .8;
+      transition: .8s;
 
-    .burger-header {
-      margin: 5% 0 10% 5%;
-    }
+      &--active {
+        top: 0;
+        left: 0;
+      }
 
-    .burger-main {
-      margin: 0 5%;
+      .burger-header {
+        margin: 5% 0 10% 5%;
+      }
 
-      .burger-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        list-style: none;
-        height: 80vh;
+      .burger-main {
+        margin: 0 5%;
 
-        &__item {
-          padding: 1% 0 1% 4%;
-          font-size: 22px;
-          width: 150px;
-          color: white;
-          border: 1px solid #4698fc;
-          border-radius: 15px;
-          background-color: #4698fc;
-          transition: .4s;
-          cursor: pointer;
+        .burger-list {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          list-style: none;
+          height: 80vh;
 
-          &--active {
+          &__item {
+            padding: 1% 0 1% 4%;
+            font-size: 22px;
+            width: 150px;
+            color: white;
+            border: 2px solid #4698fc;
+            border-radius: 15px;
+            background-color: #4698fc;
+            transition: .4s;
+            cursor: pointer;
+
+            &--active {
+              color: #4698fc;
+              background: none;
+            }
+          }
+
+          li:hover {
             color: #4698fc;
             background: none;
           }
-        }
 
-        li:hover {
-          color: #4698fc;
-          background: none;
-        }
-
-        li:active {
-          transform: translate(2px, 2px);
+          li:active {
+            transform: translate(2px, 2px);
+          }
         }
       }
     }
@@ -102,10 +119,15 @@ body.lock-scroll {
     background: none;
     border: none;
     outline: none;
+    transition: .7s;
 
     span {
       color: #4698fc;
       font-size: 40px;
+    }
+
+    &--active {
+      transform: rotateY(720deg) rotateZ(90deg);
     }
   }
 

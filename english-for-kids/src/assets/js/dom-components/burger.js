@@ -12,11 +12,13 @@ export default function burger() {
   burgerListArr.push(statisctics);
   const burgerMain = create('div', 'burger-main', burgerList);
   const burgerHeader = create('div', 'burger-header', null);
-  const burgerElement = create('div', 'burger-wrapper', [burgerHeader, burgerMain]);
+  const burgerScreen = create('div', 'burger-inner', [burgerHeader, burgerMain]);
+  const burgerElement = create('div', 'burger-wrapper', burgerScreen);
 
   return {
     burgerElement,
     burgerListArr,
+    burgerScreen,
     burgerList,
     burgerHeader,
     burgerMain,

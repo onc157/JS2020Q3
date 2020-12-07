@@ -19,7 +19,7 @@ export default class Main {
   constructor() {
     /* Create DOM element */
     [this.header, this.burgerButton, this.modeSwitcher] = Object.values(header());
-    [this.burger, this.itemBurger] = Object.values(burger());
+    [this.burger, this.itemBurger, this.burgerScreen] = Object.values(burger());
     [this.footer, this.footerButton, this.footerRating] = Object.values(footer());
     [this.win, this.winText] = Object.values(win());
     [this.lose, this.loseText] = Object.values(lose());
@@ -40,6 +40,7 @@ export default class Main {
       document.body.classList.toggle('lock-scroll');
       this.burger.classList.toggle('burger-wrapper--active');
       this.burgerButton.classList.toggle('button-burger--active');
+      this.burgerScreen.classList.toggle('burger-inner--active');
     });
 
     this.itemBurger.forEach((elem) => {
@@ -58,17 +59,29 @@ export default class Main {
         document.body.classList.toggle('lock-scroll');
         this.burger.classList.toggle('burger-wrapper--active');
         this.burgerButton.classList.toggle('button-burger--active');
+        this.burgerScreen.classList.toggle('burger-inner--active');
       });
     });
+
+    this.burger.addEventListener('click', () => {
+      document.body.classList.toggle('lock-scroll');
+      this.burger.classList.toggle('burger-wrapper--active');
+      this.burgerButton.classList.toggle('button-burger--active');
+      this.burgerScreen.classList.toggle('burger-inner--active');
+    });
+
+    this.burgerScreen.addEventListener('click', (e) => e.stopPropagation());
 
     this.modeSwitcher.onclick = () => {
       this.modeSwitcher.classList.toggle('mode-switcher--move');
       if (!this.playMode) {
         this.playMode = true;
         this.gameMode();
+        console.log('включил');
       } else {
         this.playMode = false;
         this.gameModeOff();
+        console.log('отключил');
       }
     };
 
@@ -238,6 +251,7 @@ export default class Main {
       this.footerButton.innerHTML = '<span class="material-icons">replay</span>';
     } else {
       this.footerButton.removeEventListener('click', this.repeatWord);
+      this.footerButton.removeEventListener('click', this.start);
       this.footerButton.classList.remove('footer-button--repeater');
       this.footerButton.innerHTML = 'START GAME';
     }
