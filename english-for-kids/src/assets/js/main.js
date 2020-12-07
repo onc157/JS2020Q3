@@ -1,4 +1,4 @@
-// import create from './utils/create';
+import create from './utils/create';
 // import * as storage from './utils/storage';
 import dictionary from './data/dictionary';
 import groups from './data/groups';
@@ -7,6 +7,8 @@ import header from './dom-components/header';
 import burger from './dom-components/burger';
 import field from './dom-components/field';
 import footer from './dom-components/footer';
+import win from './dom-components/win';
+import lose from './dom-components/lose';
 
 import Card from './Card';
 
@@ -18,19 +20,24 @@ export default class Main {
     /* Create DOM element */
     [this.header, this.burgerButton, this.modeSwitcher] = Object.values(header());
     [this.burger, this.itemBurger] = Object.values(burger());
-    [this.footer, this.footerButton] = Object.values(footer());
+    [this.footer, this.footerButton, this.footerRating] = Object.values(footer());
+    [this.win, this.winText] = Object.values(win());
+    [this.lose, this.loseText] = Object.values(lose());
     this.field = field;
     /* */
-
     this.playMode = false;
     this.menu = false;
+
+    /* Play mode */
+    this.correctCardCounter = 0;
+    this.wrongCardCounter = 0;
   }
 
   init() {
     document.body.prepend(this.header, this.field);
     this.header.prepend(this.burger);
-
     this.burgerButton.addEventListener('click', () => {
+      document.body.classList.toggle('lock-scroll');
       this.burger.classList.toggle('burger-wrapper--active');
       this.burgerButton.classList.toggle('button-burger--active');
     });
@@ -43,10 +50,12 @@ export default class Main {
           setTimeout(() => {
             this.generateMain();
           }, 500);
+          this.footer.remove();
         } else {
           this.generateCurrent(burgerItemName);
         }
-
+        this.burgerItemsActive(burgerItemName);
+        document.body.classList.toggle('lock-scroll');
         this.burger.classList.toggle('burger-wrapper--active');
         this.burgerButton.classList.toggle('button-burger--active');
       });
@@ -68,6 +77,7 @@ export default class Main {
 
   generateMain() {
     this.menu = true;
+    this.burgerItemsActive('Main');
     const mainCards = [];
 
     groups.forEach((elem) => {
@@ -82,18 +92,16 @@ export default class Main {
     });
   }
 
-  generateCurrent(itemObj) {
+  generateCurrent(itemWord) {
     this.menu = false;
-    console.log('this.menu', this.menu, 'this.playMode', this.playMode);
     clearField();
 
+    const nameCategory = typeof itemWord === 'string' ? itemWord : itemWord.word;
     let currentArr = [];
 
-    if (typeof itemObj === 'string') {
-      currentArr = dictionary.filter((elem) => elem.group === itemObj);
-    } else {
-      currentArr = dictionary.filter((elem) => elem.group === itemObj.word);
-    }
+    currentArr = dictionary.filter((elem) => elem.group === nameCategory);
+
+    this.burgerItemsActive(nameCategory);
 
     this.currentCards = [];
 
@@ -107,32 +115,131 @@ export default class Main {
     });
 
     if (this.playMode) {
+      this.gameModeOff();
       this.gameMode();
     }
-    console.log('Before shuffle:', this.currentCards);
   }
 
   gameMode() {
+    this.playMode = true;
     if (!this.menu) {
       this.field.after(this.footer);
+
       this.currentCards.forEach((elem) => {
         elem.playMode('play');
         elem.cardContentFront.classList.add('card-content--disable');
         elem.cardFaceFront.classList.add('card-face--game-mode');
       });
-      // setTimeout(shuffle(this.currentCards), 100);
-      setTimeout(console.log('After shuffle:', this.currentCards), 200);
+
+      this.shuffleCards = shuffle(this.currentCards);
+
+      this.start = () => {
+        this.startGame(this.shuffleCards);
+      };
+      this.footerButton.addEventListener('click', this.start);
     }
+  }
+
+  startGame(shuffleCards) {
+    console.log('check');
+    this.footerButton.removeEventListener('click', this.start);
+    let currentCard = shuffleCards[this.correctCardCounter];
+    this.refreshCurrentCard = () => {
+      currentCard = shuffleCards[this.correctCardCounter];
+    };
+
+    this.changeFooterButton('start');
+
+    this.playWord();
+
+    this.handlerEvent = (e) => {
+      if (e.target.dataset.word === currentCard.word) {
+        currentCard.cardFaceFront.classList.add('card-face--game-mode-right');
+        this.playAudio('correct');
+        this.playWord();
+        this.footerRating.prepend(create('div', 'star', '<span class="material-icons">star</span>'));
+        e.target.removeEventListener('click', this.handlerEvent);
+        this.correctCardCounter += 1;
+        this.refreshCurrentCard();
+      } else {
+        this.playAudio('wrong');
+        this.wrongCardCounter += 1;
+        this.footerRating.prepend(create('div', 'star', '<span class="material-icons">star_border</span>'));
+      }
+
+      if (this.correctCardCounter === 8) {
+        if (this.wrongCardCounter) {
+          this.playAudio('lose');
+          document.body.prepend(this.lose);
+          this.loseText.innerHTML = `YOU LOSE </br> YOU WRONG ANSWERS: ${this.wrongCardCounter}`;
+          setTimeout(() => {
+            this.gameModeOff();
+            this.gameMode();
+            this.lose.remove();
+          }, 5000);
+        } else {
+          this.playAudio('win');
+          document.body.prepend(this.win);
+          setTimeout(() => {
+            this.gameModeOff();
+            this.gameMode();
+            this.win.remove();
+          }, 5000);
+        }
+      }
+    };
+
+    shuffleCards.forEach((card) => card.elementImgFront.addEventListener('click', this.handlerEvent));
   }
 
   gameModeOff() {
     if (!this.menu) {
+      this.changeFooterButton('stop');
       this.footer.remove();
+      this.footerRating.innerHTML = '';
       this.currentCards.forEach((elem) => {
         elem.playMode('train');
         elem.cardContentFront.classList.remove('card-content--disable');
+        elem.cardFaceFront.classList.remove('card-face--game-mode-right');
         elem.cardFaceFront.classList.remove('card-face--game-mode');
+        elem.elementImgFront.removeEventListener('click', this.handlerEvent);
       });
+      this.correctCardCounter = 0;
+      this.wrongCardCounter = 0;
+    }
+  }
+
+  playAudio(sound) {
+    this.audio = new Audio(`./assets/audio/${sound}.mp3`);
+    this.audio.play();
+  }
+
+  playWord() {
+    setTimeout(() => this.shuffleCards[this.correctCardCounter].sound.play(), 1000);
+  }
+
+  burgerItemsActive(word) {
+    this.itemBurger.forEach((item) => {
+      item.classList.remove('burger-list__item--active');
+      if (item.innerHTML === word) {
+        item.classList.toggle('burger-list__item--active');
+      }
+    });
+  }
+
+  changeFooterButton(active) {
+    this.repeatWord = () => {
+      this.playWord();
+    };
+
+    if (active === 'start') {
+      this.footerButton.addEventListener('click', this.repeatWord);
+      this.footerButton.classList.add('footer-button--repeater');
+      this.footerButton.innerHTML = '<span class="material-icons">replay</span>';
+    } else {
+      this.footerButton.removeEventListener('click', this.repeatWord);
+      this.footerButton.classList.remove('footer-button--repeater');
+      this.footerButton.innerHTML = 'START GAME';
     }
   }
 }

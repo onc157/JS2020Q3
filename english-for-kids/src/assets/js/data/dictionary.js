@@ -56,7 +56,7 @@ const dictionary = [
     sound: './assets/audio/wash.mp3',
   },
   {
-    group: 'animals',
+    group: 'Animals',
     word: 'camel',
     translate: 'верблюд',
     img: './assets/img/animals/camel.jpg',

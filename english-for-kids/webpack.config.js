@@ -107,6 +107,10 @@ module.exports = {
           from: './src/assets/img',
           to: './assets/img',
         },
+        {
+          from: './src/assets/audio',
+          to: './assets/audio',
+        },
       ],
     }),
     new MiniCssExtractPlugin({
@@ -151,7 +155,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              outputPath: './assets/sounds',
+              outputPath: './assets/audio',
             },
           },
         ],

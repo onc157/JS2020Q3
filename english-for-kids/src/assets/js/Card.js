@@ -24,7 +24,8 @@ export default class Card {
   createElement() {
     this.element = create('div', 'card', null);
     // FrontSide
-    this.elementImgFront = create('div', 'card-img', create('img', null, null, null, ['src', `${this.image}`]));
+    this.elementImgFront = create('img', null, null, null, ['src', `${this.image}`], ['word', `${this.word.toLowerCase()}`]);
+    this.imgFront = create('div', 'card-img', this.elementImgFront);
     this.cardContentFront = create('div', 'card-content', null);
     this.cardWordFront = create('div', 'card-word', `${this.word}`, this.cardContentFront);
     // BackSide
@@ -35,7 +36,7 @@ export default class Card {
     if (!this.type) {
       this.cardButtonFront = create('button', 'card-button', '<span class="material-icons">cached</span>', this.cardContentFront);
 
-      this.cardFaceFront = create('div', 'card-face card-face__front', [this.elementImgFront, this.cardContentFront]);
+      this.cardFaceFront = create('div', 'card-face card-face__front', [this.imgFront, this.cardContentFront]);
       this.cardFaceBack = create('div', 'card-face card-face__back', [this.elementImgBack, this.cardContentBack]);
 
       this.elementInner = create('div', 'card-inner', [this.cardFaceFront, this.cardFaceBack], this.element);
@@ -54,7 +55,7 @@ export default class Card {
         });
       });
     } else {
-      this.cardFaceFront = create('div', 'card-face card-face__front', [this.elementImgFront, this.cardContentFront]);
+      this.cardFaceFront = create('div', 'card-face card-face__front', [this.imgFront, this.cardContentFront]);
       this.elementInner = create('div', 'card-inner', this.cardFaceFront, this.element);
     }
 

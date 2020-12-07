@@ -1,4 +1,5 @@
 export default function shuffle(arr) {
-  arr.sort(() => Math.random() - 0.5);
-  return arr;
+  const arrShuffle = arr.concat();
+  arrShuffle.sort(() => Math.random() - 0.5);
+  return arrShuffle;
 }
