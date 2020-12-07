@@ -11,8 +11,8 @@ export default function burger() {
   const statisctics = create('li', 'burger-list__item', 'Statistics', burgerList);
   burgerListArr.push(statisctics);
   const burgerMain = create('div', 'burger-main', burgerList);
-  const burgerHeader = create('div', 'burger-header', null);
-  const burgerScreen = create('div', 'burger-inner', [burgerHeader, burgerMain]);
+  // const burgerHeader = create('div', 'burger-header', null);
+  const burgerScreen = create('div', 'burger-inner', [burgerMain]);
   const burgerElement = create('div', 'burger-wrapper', burgerScreen);
 
   return {
@@ -20,7 +20,7 @@ export default function burger() {
     burgerListArr,
     burgerScreen,
     burgerList,
-    burgerHeader,
+    // burgerHeader,
     burgerMain,
   };
 }

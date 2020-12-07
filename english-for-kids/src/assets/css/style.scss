@@ -25,27 +25,32 @@ body.lock-scroll {
   overflow: hidden;
 }
 
+.section-outer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
 // === Header ===
 .header-wrapper {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2% 10% 0;
+  padding-top: 20px;
 
   .burger-wrapper {
-    position: absolute;
+    position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
-    transition: 1s;
+    width: 100%;
+    height: 100%;
+    transition: .4s;
+    visibility: hidden;
 
     &--active {
-        position: fixed;
-        // top: 0;
-        // left: 0;
-        width: 100%;
-        height: 100%;
+        visibility: visible;
         background-color: rgba(41, 41, 41, .6);
     }
 
@@ -60,31 +65,23 @@ body.lock-scroll {
       top: 0;
       left: -320px;
       background-color: rgba(255, 255, 255, .8);
-      opacity: .8;
       transition: .8s;
 
       &--active {
-        top: 0;
         left: 0;
       }
 
-      .burger-header {
-        margin: 5% 0 10% 5%;
-      }
-
       .burger-main {
-        margin: 0 5%;
-
         .burger-list {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
           list-style: none;
-          height: 80vh;
+          height: 70vh;
 
           &__item {
-            padding: 1% 0 1% 4%;
+            padding: 3px 0 3px 12px;
             font-size: 22px;
             width: 150px;
             color: white;
@@ -127,13 +124,11 @@ body.lock-scroll {
     }
 
     &--active {
-      transform: rotateY(720deg) rotateZ(90deg);
+      transform: rotateY(720deg);
     }
   }
 
-  .button-burger--active {
-    margin-left: 8%;
-  }
+  .button-burger--active {}
 
   .button-slider {
     @include font-main();
@@ -189,8 +184,6 @@ body.lock-scroll {
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
-  padding: 0 60px;
-  max-width: 1600px;
   transition: 1s;
 
   &--clear {
@@ -202,9 +195,9 @@ body.lock-scroll {
     display: flex;
     flex-direction: column;
     margin: 30px 20px;
-    width: 300px;
-    height: 300px;
-    perspective: 500px;
+    width: 250px;
+    height: 250px;
+    perspective: 700px;
 
     .card-inner {
       position: relative;
@@ -237,7 +230,6 @@ body.lock-scroll {
         }
 
         &:hover {
-          // transform: translateY(-6px);
           box-shadow:  10px 10px 20px #81777d,
                       -7px -7px 20px #b1b1b1;
         }
@@ -316,7 +308,7 @@ body.lock-scroll {
 .footer-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 0 10% 2%;
+  padding-bottom: 20px;
 
   .footer-button {
     @include font-main();
@@ -351,6 +343,7 @@ body.lock-scroll {
 
   .footer-rating {
     display: flex;
+    overflow: hidden;
 
     span {
       font-size: 40px;
@@ -363,15 +356,54 @@ body.lock-scroll {
 
 // === /Footer ===
 
+// === Description ===
+.description-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  color: #4698fc;
+  text-shadow: 1px 1px 1px #8cbffc;
+  margin-bottom: 20px;
+
+  .description-github {
+    text-decoration: none;
+    color: #4698fc;
+    margin-right: 20px;
+    transition: .4s;
+
+    &:hover {
+      text-shadow: none;
+    }
+  }
+
+  .description-year {
+
+    margin-right: 20px;
+  }
+  .description-logo {
+    width: 50px;
+
+    img {
+      transition: .4s;
+    }
+
+    :hover {
+      transform: scale(1.1);
+    }
+  }
+}
+// === /Description ===
+
 // === Win ===
 .win,
 .lose {
   z-index: 3;
   position: absolute;
   top: 0;
-  bottom: 0;
+  // bottom: 0;
   left: 0;
-  right: 0;
+  // right: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(255, 255, 255, 0.9);
 
   .win-content,
@@ -382,38 +414,56 @@ body.lock-scroll {
     width: 100%;
     height: 100%;
 
-    .win-content {
-      background-image: url('../img/win.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    .lose-content {
-      background-image: url('../img/win.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
     &__text {
       @include font-main();
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      width: 600px;
-      height: 400px;
-      background-color: rgba(199, 128, 23, .4);
-      border: 3px solid rgb(199, 128, 23);
+      width: 500px;
+      height: 500px;
       font-size: 45px;
-      border-radius: 20px;
       color: #ffffff;
-      text-shadow: 1px 2px 2px rgba(150, 150, 150, 1);
+      text-shadow: 1px 2px 2px black;
 
+    }
+  }
+
+  .win-content {
+    background-image: url('../img/win.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &__text {
+      background-image: url('../img/win.jpg');
+      background-size: cover;
+      border-radius: 50%;
+    }
+  }
+
+  .lose-content {
+    background-image: url('../img/lose.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &__text {
+      background-image: url('../img/lose.jpg');
+      background-size: cover;
+      border-radius: 20%;
     }
   }
 }
 // === /Win ===
 
-// === Burger logo ===
-
-// === /Burger logo ===
+@media (max-width: 600px) {
+  .win,
+  .lose {
+    .win-content,
+    .lose-content {
+      &__text {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+}

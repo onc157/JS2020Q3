@@ -6,7 +6,7 @@ export default function header() {
   const trainButton = create('div', 'button-train', 'TRAIN');
   const sliderButton = create('div', 'button-slider', [trainButton, playButton, modeSwitcher]);
   const burgerButton = create('button', 'button-burger', '<span class="material-icons">menu</span>');
-  const headerElement = create('div', 'header-wrapper', [burgerButton, sliderButton]);
+  const headerElement = create('div', 'header-wrapper section-outer', [burgerButton, sliderButton]);
 
   return {
     headerElement,

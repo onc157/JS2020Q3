@@ -9,6 +9,7 @@ import field from './dom-components/field';
 import footer from './dom-components/footer';
 import win from './dom-components/win';
 import lose from './dom-components/lose';
+import description from './dom-components/description';
 
 import Card from './Card';
 
@@ -24,6 +25,7 @@ export default class Main {
     [this.win, this.winText] = Object.values(win());
     [this.lose, this.loseText] = Object.values(lose());
     this.field = field;
+    this.description = description();
     /* */
     this.playMode = false;
     this.menu = false;
@@ -34,13 +36,10 @@ export default class Main {
   }
 
   init() {
-    document.body.prepend(this.header, this.field);
+    document.body.prepend(this.header, this.field, this.description);
     this.header.prepend(this.burger);
     this.burgerButton.addEventListener('click', () => {
-      document.body.classList.toggle('lock-scroll');
-      this.burger.classList.toggle('burger-wrapper--active');
-      this.burgerButton.classList.toggle('button-burger--active');
-      this.burgerScreen.classList.toggle('burger-inner--active');
+      this.changeBurgerState();
     });
 
     this.itemBurger.forEach((elem) => {
@@ -52,22 +51,19 @@ export default class Main {
             this.generateMain();
           }, 500);
           this.footer.remove();
+        } else if (burgerItemName === 'Statistics') {
+          this.showStatistics();
+          console.log('chibupelya');
         } else {
           this.generateCurrent(burgerItemName);
         }
         this.burgerItemsActive(burgerItemName);
-        document.body.classList.toggle('lock-scroll');
-        this.burger.classList.toggle('burger-wrapper--active');
-        this.burgerButton.classList.toggle('button-burger--active');
-        this.burgerScreen.classList.toggle('burger-inner--active');
+        this.changeBurgerState();
       });
     });
 
     this.burger.addEventListener('click', () => {
-      document.body.classList.toggle('lock-scroll');
-      this.burger.classList.toggle('burger-wrapper--active');
-      this.burgerButton.classList.toggle('button-burger--active');
-      this.burgerScreen.classList.toggle('burger-inner--active');
+      this.changeBurgerState();
     });
 
     this.burgerScreen.addEventListener('click', (e) => e.stopPropagation());
@@ -186,17 +182,13 @@ export default class Main {
           document.body.prepend(this.lose);
           this.loseText.innerHTML = `YOU LOSE </br> YOU WRONG ANSWERS: ${this.wrongCardCounter}`;
           setTimeout(() => {
-            this.gameModeOff();
-            this.gameMode();
-            this.lose.remove();
+            this.clearGameResult(this.lose);
           }, 5000);
         } else {
           this.playAudio('win');
           document.body.prepend(this.win);
           setTimeout(() => {
-            this.gameModeOff();
-            this.gameMode();
-            this.win.remove();
+            this.clearGameResult(this.win);
           }, 5000);
         }
       }
@@ -221,6 +213,10 @@ export default class Main {
       this.wrongCardCounter = 0;
     }
   }
+
+  // showStatistics() {
+  //   console.log('chibupelya 2');
+  // }
 
   playAudio(sound) {
     this.audio = new Audio(`./assets/audio/${sound}.mp3`);
@@ -255,5 +251,21 @@ export default class Main {
       this.footerButton.classList.remove('footer-button--repeater');
       this.footerButton.innerHTML = 'START GAME';
     }
+  }
+
+  changeBurgerState() {
+    document.body.classList.toggle('lock-scroll');
+    this.burger.classList.toggle('burger-wrapper--active');
+    this.burgerButton.classList.toggle('button-burger--active');
+    this.burgerScreen.classList.toggle('burger-inner--active');
+  }
+
+  clearGameResult(type) {
+    this.gameModeOff();
+    this.gameMode();
+    type.remove();
+    this.field.innerHTML = '';
+    this.footer.remove();
+    this.generateMain();
   }
 }
