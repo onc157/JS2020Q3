@@ -1,6 +1,6 @@
 import create from '../utils/create';
 
-const specialItems = ['Category', 'Word', 'Translate', 'Attempt', 'Right', 'Wrong', '%'];
+const specialItems = ['Group', 'Word', 'Translate', 'Attempt', 'Right', 'Wrong', '%'];
 
 export default function lose() {
   const statisticsBody = create('tbody', 'statistics-table__body', null);
@@ -20,5 +20,6 @@ export default function lose() {
     statisticsBody,
     repeatButton,
     resetButton,
+    statisticsTitle,
   };
 }

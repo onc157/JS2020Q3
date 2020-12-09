@@ -28,12 +28,13 @@ export default class Main {
     [this.footer, this.footerButton, this.footerRating] = Object.values(footer());
     [this.win, this.winText] = Object.values(win());
     [this.lose, this.loseText] = Object.values(lose());
-    [this.statistics, this.statisticsBody, this.statisticsRepeatButton, this.statisticsResetButton] = Object.values(statistics());
+    [this.statistics, this.statisticsBody, this.statisticsRepeatButton, this.statisticsResetButton, this.statisticsTitle] = Object.values(statistics());
     this.field = field;
     this.description = description();
     /* */
     this.playMode = false;
     this.menu = false;
+    this.sortFlag = false;
 
     /* Play mode */
     this.correctCardCounter = 0;
@@ -94,7 +95,7 @@ export default class Main {
         elem.attempt = 0;
         elem.right = 0;
         elem.wrong = 0;
-        elem.percent = '-';
+        elem.percent = 0;
       });
       storage.set('Statistics', this.statisticsObj);
     }
@@ -102,6 +103,12 @@ export default class Main {
     this.statisticsResetButton.addEventListener('click', () => {
       storage.set('Statistics', this.statisticsObj);
       this.showStatistics();
+    });
+
+    console.log(this.statisticsTitle);
+    this.statisticsTitle.addEventListener('click', (e) => {
+      console.log(e.target.innerHTML);
+      this.statisticsSort(e.target.innerHTML);
     });
 
     return this;
@@ -337,6 +344,50 @@ export default class Main {
         if (elem.wrong === 0 && elem.right > 0) elem.percent = 100;
       }
     });
+    console.log(currentStorage);
+
     storage.set('Statistics', currentStorage);
+  }
+
+  statisticsSort(title) {
+    console.log('egegei');
+    if (title === '%') title = 'percent';
+
+    const currentStorage = storage.get('Statistics');
+
+    if (!this.sortFlag) {
+      this.sortFlag = true;
+      currentStorage.sort((a, b) => (a[title.toLowerCase()] > b[title.toLowerCase()] ? 1 : -1));
+      this.statisticsBody.innerHTML = '';
+
+      console.log(currentStorage);
+      currentStorage.forEach((elem) => {
+        create('tr', 'statistics-table__body--row', [
+          create('td', 'statistics-table__body--row-element', `${elem.group}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.word}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.translate}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.attempt}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.right}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.wrong}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.percent}`, this.statisticsBody),
+        ], this.statisticsBody);
+      });
+    } else {
+      this.sortFlag = false;
+      currentStorage.sort((a, b) => (a[title.toLowerCase()] < b[title.toLowerCase()] ? 1 : -1));
+      this.statisticsBody.innerHTML = '';
+      console.log(currentStorage);
+      currentStorage.forEach((elem) => {
+        create('tr', 'statistics-table__body--row', [
+          create('td', 'statistics-table__body--row-element', `${elem.group}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.word}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.translate}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.attempt}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.right}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.wrong}`, this.statisticsBody),
+          create('td', 'statistics-table__body--row-element', `${elem.percent}`, this.statisticsBody),
+        ], this.statisticsBody);
+      });
+    }
   }
 }
