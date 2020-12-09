@@ -1,5 +1,8 @@
+/* eslint-disable max-len */
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-param-reassign */
 import create from './utils/create';
-// import * as storage from './utils/storage';
+import * as storage from './utils/storage';
 import dictionary from './data/dictionary';
 import groups from './data/groups';
 
@@ -10,6 +13,7 @@ import footer from './dom-components/footer';
 import win from './dom-components/win';
 import lose from './dom-components/lose';
 import description from './dom-components/description';
+import statistics from './dom-components/statistics';
 
 import Card from './Card';
 
@@ -24,6 +28,7 @@ export default class Main {
     [this.footer, this.footerButton, this.footerRating] = Object.values(footer());
     [this.win, this.winText] = Object.values(win());
     [this.lose, this.loseText] = Object.values(lose());
+    [this.statistics, this.statisticsBody, this.statisticsRepeatButton, this.statisticsResetButton] = Object.values(statistics());
     this.field = field;
     this.description = description();
     /* */
@@ -33,6 +38,10 @@ export default class Main {
     /* Play mode */
     this.correctCardCounter = 0;
     this.wrongCardCounter = 0;
+
+    if (storage.get('Statistics') === null) {
+      this.statisticsObj = [...dictionary];
+    }
   }
 
   init() {
@@ -53,7 +62,6 @@ export default class Main {
           this.footer.remove();
         } else if (burgerItemName === 'Statistics') {
           this.showStatistics();
-          console.log('chibupelya');
         } else {
           this.generateCurrent(burgerItemName);
         }
@@ -80,6 +88,21 @@ export default class Main {
         console.log('отключил');
       }
     };
+
+    if (storage.get('Statistics') === null) {
+      this.statisticsObj.forEach((elem) => {
+        elem.attempt = 0;
+        elem.right = 0;
+        elem.wrong = 0;
+        elem.percent = '-';
+      });
+      storage.set('Statistics', this.statisticsObj);
+    }
+
+    this.statisticsResetButton.addEventListener('click', () => {
+      storage.set('Statistics', this.statisticsObj);
+      this.showStatistics();
+    });
 
     return this;
   }
@@ -166,12 +189,14 @@ export default class Main {
         currentCard.cardFaceFront.classList.add('card-face--game-mode-right');
         this.playAudio('correct');
         this.playWord();
+        this.setStorageObj(currentCard.word, 'Right');
         this.footerRating.prepend(create('div', 'star', '<span class="material-icons">star</span>'));
         e.target.removeEventListener('click', this.handlerEvent);
         this.correctCardCounter += 1;
         this.refreshCurrentCard();
       } else {
         this.playAudio('wrong');
+        this.setStorageObj(currentCard.word, 'Wrong');
         this.wrongCardCounter += 1;
         this.footerRating.prepend(create('div', 'star', '<span class="material-icons">star_border</span>'));
       }
@@ -214,9 +239,27 @@ export default class Main {
     }
   }
 
-  // showStatistics() {
-  //   console.log('chibupelya 2');
-  // }
+  showStatistics() {
+    clearField();
+    this.footer.remove();
+    setTimeout(() => {
+      this.field.prepend(this.statistics);
+    }, 500);
+    this.statisticsBody.innerHTML = '';
+    const currentStorage = storage.get('Statistics');
+
+    currentStorage.forEach((elem) => {
+      create('tr', 'statistics-table__body--row', [
+        create('td', 'statistics-table__body--row-element', `${elem.group}`, this.statisticsBody),
+        create('td', 'statistics-table__body--row-element', `${elem.word}`, this.statisticsBody),
+        create('td', 'statistics-table__body--row-element', `${elem.translate}`, this.statisticsBody),
+        create('td', 'statistics-table__body--row-element', `${elem.attempt}`, this.statisticsBody),
+        create('td', 'statistics-table__body--row-element', `${elem.right}`, this.statisticsBody),
+        create('td', 'statistics-table__body--row-element', `${elem.wrong}`, this.statisticsBody),
+        create('td', 'statistics-table__body--row-element', `${elem.percent}`, this.statisticsBody),
+      ], this.statisticsBody);
+    });
+  }
 
   playAudio(sound) {
     this.audio = new Audio(`./assets/audio/${sound}.mp3`);
@@ -264,8 +307,36 @@ export default class Main {
     this.gameModeOff();
     this.gameMode();
     type.remove();
-    this.field.innerHTML = '';
+    clearField();
     this.footer.remove();
-    this.generateMain();
+    setTimeout(() => {
+      this.generateMain();
+    }, 500);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  setStorageObj(word, action) {
+    const currentStorage = storage.get('Statistics');
+    currentStorage.forEach((elem) => {
+      if (elem.word === word) {
+        switch (action) {
+          case 'Attempt':
+            elem.attempt += 1;
+            break;
+          case 'Right':
+            elem.right += 1;
+            elem.percent = Math.floor(((elem.right * 100) / elem.wrong) * 100) / 100;
+            break;
+          case 'Wrong':
+            elem.wrong += 1;
+            elem.percent = Math.floor(((elem.right * 100) / elem.wrong) * 100) / 100;
+            break;
+          default:
+            console.log('bed action');
+        }
+        if (elem.wrong === 0 && elem.right > 0) elem.percent = 100;
+      }
+    });
+    storage.set('Statistics', currentStorage);
   }
 }

@@ -1,4 +1,7 @@
+/* eslint-disable import/no-cycle */
 import create from './utils/create';
+
+import Main from './main';
 // import { dictionary } from './data/dictionary';
 // import { groups } from './data/groups';
 
@@ -44,11 +47,13 @@ export default class Card {
       this.cardFaceFront.addEventListener('click', () => {
         if (this.gameType === 'train') {
           this.sound.play();
+          new Main().setStorageObj(this.word, 'Attempt');
         }
       });
 
       this.cardButtonFront.addEventListener('click', (e) => {
         e.stopPropagation();
+        new Main().setStorageObj(this.word, 'Attempt');
         this.elementInner.classList.add('is-flipped');
         this.element.addEventListener('mouseleave', () => {
           this.elementInner.classList.remove('is-flipped');
