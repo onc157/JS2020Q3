@@ -3,6 +3,8 @@
 /* eslint-disable no-param-reassign */
 import create from './utils/create';
 import * as storage from './utils/storage';
+import createStatisticsElement from './utils/createStatisticsElement';
+
 import dictionary from './data/dictionary';
 import groups from './data/groups';
 
@@ -254,18 +256,7 @@ export default class Main {
     }, 500);
     this.statisticsBody.innerHTML = '';
     const currentStorage = storage.get('Statistics');
-
-    currentStorage.forEach((elem) => {
-      create('tr', 'statistics-table__body--row', [
-        create('td', 'statistics-table__body--row-element', `${elem.group}`, this.statisticsBody),
-        create('td', 'statistics-table__body--row-element', `${elem.word}`, this.statisticsBody),
-        create('td', 'statistics-table__body--row-element', `${elem.translate}`, this.statisticsBody),
-        create('td', 'statistics-table__body--row-element', `${elem.attempt}`, this.statisticsBody),
-        create('td', 'statistics-table__body--row-element', `${elem.right}`, this.statisticsBody),
-        create('td', 'statistics-table__body--row-element', `${elem.wrong}`, this.statisticsBody),
-        create('td', 'statistics-table__body--row-element', `${elem.percent}`, this.statisticsBody),
-      ], this.statisticsBody);
-    });
+    createStatisticsElement(currentStorage, this.statisticsBody);
   }
 
   playAudio(sound) {
@@ -361,33 +352,13 @@ export default class Main {
       this.statisticsBody.innerHTML = '';
 
       console.log(currentStorage);
-      currentStorage.forEach((elem) => {
-        create('tr', 'statistics-table__body--row', [
-          create('td', 'statistics-table__body--row-element', `${elem.group}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.word}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.translate}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.attempt}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.right}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.wrong}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.percent}`, this.statisticsBody),
-        ], this.statisticsBody);
-      });
+      createStatisticsElement(currentStorage, this.statisticsBody);
     } else {
       this.sortFlag = false;
       currentStorage.sort((a, b) => (a[title.toLowerCase()] < b[title.toLowerCase()] ? 1 : -1));
       this.statisticsBody.innerHTML = '';
-      console.log(currentStorage);
-      currentStorage.forEach((elem) => {
-        create('tr', 'statistics-table__body--row', [
-          create('td', 'statistics-table__body--row-element', `${elem.group}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.word}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.translate}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.attempt}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.right}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.wrong}`, this.statisticsBody),
-          create('td', 'statistics-table__body--row-element', `${elem.percent}`, this.statisticsBody),
-        ], this.statisticsBody);
-      });
+      console.log('ura');
+      createStatisticsElement(currentStorage, this.statisticsBody);
     }
   }
 }
