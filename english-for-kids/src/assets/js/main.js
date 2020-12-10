@@ -42,9 +42,7 @@ export default class Main {
     this.correctCardCounter = 0;
     this.wrongCardCounter = 0;
 
-    if (storage.get('Statistics') === null) {
-      this.statisticsObj = [...dictionary];
-    }
+    this.statisticsObj = [...dictionary];
   }
 
   init() {
@@ -92,13 +90,13 @@ export default class Main {
       }
     };
 
-    if (storage.get('Statistics') === null) {
-      this.statisticsObj.forEach((elem) => {
-        elem.attempt = 0;
-        elem.right = 0;
-        elem.wrong = 0;
-        elem.percent = 0;
-      });
+    this.statisticsObj.forEach((elem) => {
+      elem.attempt = 0;
+      elem.right = 0;
+      elem.wrong = 0;
+      elem.percent = 0;
+    });
+    if (!storage.get('Statistics')) {
       storage.set('Statistics', this.statisticsObj);
     }
 
@@ -111,6 +109,10 @@ export default class Main {
     this.statisticsTitle.addEventListener('click', (e) => {
       console.log(e.target.innerHTML);
       this.statisticsSort(e.target.innerHTML);
+    });
+
+    this.statisticsRepeatButton.addEventListener('click', () => {
+      this.generateDifficult();
     });
 
     return this;
@@ -154,6 +156,8 @@ export default class Main {
         this.field.prepend(item.element);
       }, 500);
     });
+
+    console.log(this.currentCards);
 
     if (this.playMode) {
       this.gameModeOff();
@@ -330,7 +334,7 @@ export default class Main {
             elem.percent = Math.floor(((elem.right * 100) / elem.wrong) * 100) / 100;
             break;
           default:
-            console.log('bed action');
+            console.log('bad action');
         }
         if (elem.wrong === 0 && elem.right > 0) elem.percent = 100;
       }
@@ -359,6 +363,36 @@ export default class Main {
       this.statisticsBody.innerHTML = '';
       console.log('ura');
       createStatisticsElement(currentStorage, this.statisticsBody);
+    }
+  }
+
+  generateDifficult() {
+    this.menu = false;
+    clearField();
+
+    const currentStorage = storage.get('Statistics');
+
+    let currentArr = [];
+    currentArr = currentStorage.filter((elem) => (elem.wrong !== 0));
+    currentArr.sort((a, b) => (a.wrong < b.wrong ? 1 : -1));
+
+    this.currentCards = [];
+
+    currentArr.forEach((elem, i) => {
+      if (i > 7) return;
+      const item = new Card(elem).createElement();
+      this.currentCards.push(item);
+
+      setTimeout(() => {
+        this.field.prepend(item.element);
+      }, 500);
+    });
+
+    console.log(this.currentCards);
+
+    if (this.playMode) {
+      this.gameModeOff();
+      this.gameMode();
     }
   }
 }
