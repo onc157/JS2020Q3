@@ -367,7 +367,7 @@ export default class Main {
 
     let currentArr = [];
     currentArr = currentStorage.filter((elem) => (elem.wrong !== 0));
-    currentArr.sort((a, b) => (a.wrong < b.wrong ? 1 : -1));
+    currentArr.sort((a, b) => (a.wrong - b.wrong));
 
     this.currentCards = [];
 
