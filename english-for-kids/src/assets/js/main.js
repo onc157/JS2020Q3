@@ -155,8 +155,7 @@ export default class Main {
     });
 
     if (this.playMode) {
-      this.gameModeOff();
-      this.gameMode();
+      this.resetGame();
     }
   }
 
@@ -300,14 +299,18 @@ export default class Main {
   }
 
   clearGameResult(type) {
-    this.gameModeOff();
-    this.gameMode();
+    this.resetGame();
     type.remove();
     clearField();
     this.footer.remove();
     setTimeout(() => {
       this.generateMain();
     }, 500);
+  }
+
+  resetGame() {
+    this.gameModeOff();
+    this.gameMode();
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -379,8 +382,7 @@ export default class Main {
     });
 
     if (this.playMode) {
-      this.gameModeOff();
-      this.gameMode();
+      this.resetGame();
     }
   }
 }
