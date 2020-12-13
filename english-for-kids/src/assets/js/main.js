@@ -59,8 +59,8 @@ export default class Main {
     });
 
     this.itemBurger.forEach((elem) => {
-      elem.addEventListener('click', (e) => {
-        const burgerItemName = e.target.innerHTML;
+      const burgerItemName = elem.innerHTML;
+      elem.addEventListener('click', () => {
         if (burgerItemName === 'Main') {
           clearField();
           setTimeout(() => {
