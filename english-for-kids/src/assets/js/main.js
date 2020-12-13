@@ -86,7 +86,6 @@ export default class Main {
     this.modeSwitcher.onclick = () => {
       this.modeSwitcher.classList.toggle('mode-switcher--move');
       if (!this.playMode) {
-        this.playMode = true;
         this.gameMode();
       } else {
         this.playMode = false;
