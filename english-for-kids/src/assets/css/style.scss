@@ -544,3 +544,20 @@ body.lock-scroll {
     }
   }
 }
+
+@media (max-width: 800px) {
+  .statistics-wrapper {
+    .statistics-table {
+      &__header{
+        &--element {
+        }
+      }
+      &__body {
+        &--row {
+          &-element {
+          }
+        }
+      }
+    }
+  }
+}
