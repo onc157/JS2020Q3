@@ -208,7 +208,7 @@ export default class Main {
         this.footerRating.prepend(create('div', 'star', '<span class="material-icons">star_border</span>'));
       }
 
-      if (this.correctCardCounter === 8) {
+      if (this.correctCardCounter === shuffleCards.length) {
         if (this.wrongCardCounter) {
           this.playAudio('lose');
           document.body.prepend(this.lose);
