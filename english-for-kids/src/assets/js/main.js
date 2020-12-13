@@ -48,7 +48,7 @@ export default class Main {
     this.correctCardCounter = 0;
     this.wrongCardCounter = 0;
 
-    this.statisticsObj = [...dictionary];
+    this.dictionaryObj = [...dictionary];
   }
 
   init() {
@@ -93,12 +93,10 @@ export default class Main {
       }
     };
 
-    this.statisticsObj.forEach((elem) => {
-      elem.attempt = 0;
-      elem.right = 0;
-      elem.wrong = 0;
-      elem.percent = 0;
-    });
+    this.statisticsObj = this.dictionaryObj.map((elem) => ({
+      ...elem, attempt: 0, right: 0, wrong: 0, percent: 0,
+    }));
+
     if (!storage.get('Statistics')) {
       storage.set('Statistics', this.statisticsObj);
     }
