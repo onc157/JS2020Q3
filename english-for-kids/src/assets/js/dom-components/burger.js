@@ -2,6 +2,7 @@ import create from '../utils/create';
 import groups from '../data/groups';
 
 export default function burger() {
+  const burgerBtn = create('button', 'button-burger', '<span class="material-icons">menu</span>');
   const burgerList = create('nav', 'burger-list', null);
   const mainPage = create('li', 'burger-list__item', 'Main', burgerList);
   const burgerListArr = [mainPage];
@@ -22,5 +23,6 @@ export default function burger() {
     burgerList,
     // burgerHeader,
     burgerMain,
+    burgerBtn,
   };
 }
