@@ -120,11 +120,9 @@ export default class Main {
   generateMain() {
     this.menu = true;
     this.burgerItemsActive('Main');
-    const mainCards = [];
 
     groups.forEach((elem) => {
       const item = new Card(elem).createElement();
-      mainCards.push(item);
 
       item.element.addEventListener('click', () => {
         this.generateCurrent(item);
