@@ -1,0 +1,71 @@
+%block {
+  width: 100%;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  text-shadow: 1px 2px 2px black;
+  padding: 5px;
+}
+
+.summary-section {
+  grid-area: s;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: $sections-background;
+  color: $sections-text-color;
+  position: relative;
+
+  &-wrapper {
+    width: 100%;
+    height: 100%;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      text-align: center;
+    }
+
+    .cases {
+      @extend %block;
+      color: orange;
+    }
+
+    .deaths {
+      @extend %block;
+      color: red;
+    }
+
+    .recovered {
+      @extend %block;
+      color: green;
+      border-top: 2px solid black;
+      border-bottom: 2px solid black;
+    }
+
+    @media screen and (max-width: $second-grid-breakpoint) {
+      flex-direction: row;
+      .recovered {
+        border-top: none;
+        border-bottom: none;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+      }
+    }
+  }
+}

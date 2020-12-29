@@ -1,0 +1,205 @@
+.countries-section {
+  grid-area: c;
+
+  width: 100%;
+  height: 100%;
+
+  &-wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 0.5em;
+
+    background-color: $sections-background;
+    color: $sections-text-color;
+    position: relative;
+
+    .search-wrapper {
+      display: flex;
+      justify-content: center;
+
+      &__input {
+        width: 80%;
+        background: none;
+        border: 1px solid #12232e;
+        border-radius: 5px;
+        outline: none;
+        transition: 0.4s;
+
+        &:focus {
+          border: 1px solid #007cc7;
+        }
+      }
+
+      &__button {
+        background: none;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+
+        span {
+          display: flex;
+          align-items: center;
+          font-size: 1.5em;
+          color: #fff;
+          transition: 0.4s;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          span {
+            color: #007cc7;
+            transform: rotate(-90deg);
+          }
+        }
+
+        &:active {
+          cursor: pointer;
+
+          span {
+            color: #005d97;
+            transform: rotate(-180deg);
+          }
+        }
+      }
+    }
+
+    .countries-wrapper {
+      width: 100%;
+      height: 85%;
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.2em;
+
+        &__name,
+        &__cases {
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          width: 50%;
+          transition: 0.3s;
+
+          &:hover {
+            cursor: pointer;
+            color: #007cc7;
+          }
+        }
+      }
+
+      &-list {
+        position: relative;
+
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border: 1px solid #12232e;
+        padding: 0 0;
+
+        &__item {
+          font-size: 0.9em;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-top: 1px solid #12232e;
+          padding: 0.1em 0;
+          transition: 0.4s;
+
+          &--flag {
+            display: flex;
+            align-items: center;
+            padding-left: 1em;
+            width: 2.5em;
+            img {
+              min-width: 100%;
+            }
+          }
+
+          &--name {
+            padding: 0 0.5em;
+            width: 8em;
+            text-align: left;
+
+            flex-grow: 1;
+          }
+
+          &--cases {
+            padding-right: 1em;
+            text-align: right;
+            width: 6em;
+          }
+
+          &:first-child {
+            border: none;
+          }
+          &:last-child {
+            border-bottom: 1px solid #12232e;
+          }
+
+          &:hover {
+            cursor: pointer;
+            background: #007cc7;
+            box-shadow: inset -2px -2px 6px #005d97, inset 2px 2px 6px #005d97;
+          }
+        }
+
+        &::-webkit-scrollbar {
+          width: 1em;
+        }
+
+        &::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #12232e;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    @media  (max-width: 700px) {
+      .search-wrapper {
+        &__input {
+          width: 70%;
+          font-size: 0.8em;
+        }
+      }
+
+      .countries-wrapper {
+        &-title {
+          font-size: 0.77em;
+          padding: 3px 0;
+        }
+
+        &-list {
+          font-size: 0.8em;
+
+          &__item {
+            &--flag {
+              min-width: 2em;
+            }
+          }
+        }
+      }
+    }
+
+    #openKeyboardButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-right: 6px;
+    }
+  }
+}

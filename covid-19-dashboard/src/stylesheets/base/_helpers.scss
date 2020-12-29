@@ -1,0 +1,42 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.section-name {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(0,0,0,0.5);
+}
+
+.full-screen {
+  position: fixed !important;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: auto !important;
+  height: auto !important;
+  z-index: 2000;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.light {
+  background-color: #8baca8 !important;
+  color: #100d0d !important;
+}

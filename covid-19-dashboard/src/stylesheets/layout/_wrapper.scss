@@ -1,0 +1,42 @@
+.wrapper {
+  width: 100%;
+  height: calc(100% - 50px);
+
+  padding: 5px;
+
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+
+  grid-template-areas:
+    "c c m m m m s s"
+    "c c m m m m s s"
+    "c c m m m m s s"
+    "c c m m m m g g"
+    "c c m m m m g g";
+
+  background-color: orange;
+
+  @media screen and (max-width: $first-grid-breakpoint){
+    grid-template-columns: repeat(6, 1fr);
+
+    grid-template-areas:
+      "s s m m m m"
+      "s s m m m m"
+      "c c m m m m"
+      "c c g g g g"
+      "c c g g g g";
+  }
+
+  @media screen and (max-width: $second-grid-breakpoint){
+    grid-template-columns: repeat(5, 1fr);
+
+    grid-template-areas:
+      "m m m m m"
+      "m m m m m"
+      "s s s s s"
+      "c c g g g"
+      "c c g g g";
+  }
+}

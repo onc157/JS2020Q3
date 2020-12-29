@@ -1,0 +1,17 @@
+@import './stylesheets/abstracts/variables';
+
+@import './stylesheets/base/base',
+        './stylesheets/base/helpers';
+
+@import './stylesheets/components/buttons',
+        './stylesheets/components/keyboard';
+
+@import './stylesheets/layout/wrapper',
+        './stylesheets/layout/countries-section',
+        './stylesheets/layout/graph-section',
+        './stylesheets/layout/mapSection',
+        './stylesheets/layout/summary-section',
+        './stylesheets/layout/footer';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+@import '~material-icons/css/material-icons.scss';

@@ -1,0 +1,393 @@
+export const BASE_COVID_API_URL = 'https://api.covid19api.com';
+export const BASE_COUNTRIES_ADDITIONAL_DATA_URL =
+  'https://restcountries.eu/rest/v2/all';
+export const WORLD_DATE_STATISTICS_API_URL = 'https://disease.sh/v3/covid-19';
+
+export const mapboxAccessToken =
+  'pk.eyJ1IjoiZnIzdWQiLCJhIjoiY2tpb2tmZzJnMGpnZTJybWx0ZTh5NWYxZSJ9.RKJIPCGSe_61i43huG3hQA';
+
+export const FETCH_COVID_CASES_REQUEST = 'FETCH_COVID_CASES_REQUEST';
+export const FETCH_COVID_CASES_FAILED = 'FETCH_COVID_CASES_FAILED';
+export const FETCH_COVID_CASES_SUCCESS = 'FETCH_COVID_CASES_SUCCESS';
+
+export const FETCH_COUNTRY_DAY_ONE_DATA_REQUEST =
+  'FETCH_COUNTRY_DAY_ONE_DATA_REQUEST';
+export const FETCH_COUNTRY_DAY_ONE_DATA_FAILED =
+  'FETCH_COUNTRY_DAY_ONE_DATA_FAILED';
+export const FETCH_COUNTRY_DAY_ONE_DATA_SUCCESS =
+  'FETCH_COUNTRY_DAY_ONE_DATA_SUCCESS';
+
+export const SET_CURRENT_COUNTRY = 'SET_CURRENT_COUNTRY';
+export const RESET_CURRENT_COUNTRY = 'RESET_CURRENT_COUNTRY';
+export const SET_STATISTIC_TYPE_POSITION = 'SET_STATISTIC_TYPE_POSITION';
+export const TOGGLE_IS_LAST_DAY_STAT = 'TOGGLE_IS_LAST_DAY_STAT';
+export const TOGGLE_IS_100_POPULATION = 'TOGGLE_IS_100_POPULATION';
+
+export const totalCases = 'TotalConfirmed';
+export const lastDayCases = 'NewConfirmed';
+export const totalDeaths = 'TotalDeaths';
+export const lastDayDeaths = 'NewDeaths';
+export const totalRecovered = 'TotalRecovered';
+export const lastDayRecovered = 'NewRecovered';
+
+export const humanPopulation = 7827000000;
+
+export const statisticTypesData = [
+  ['All cases', totalCases, 'confirmed', 'cases'],
+  ['All deaths', totalDeaths, 'deaths', 'deaths'],
+  ['All recovered', totalRecovered, 'recovered', 'recovered'],
+  ['Last day cases', lastDayCases, 'confirmed', 'cases'],
+  ['Last day deaths', lastDayDeaths, 'deaths', 'deaths'],
+  ['Last day recovered', lastDayRecovered, 'recovered', 'recovered'],
+  ['All cases / 100K', totalCases, 'confirmed', 'cases'],
+  ['All deaths / 100K', totalDeaths, 'deaths', 'deaths'],
+  ['All recovered / 100K', totalRecovered, 'recovered', 'recovered'],
+  ['Last day cases / 100K', lastDayCases, 'confirmed', 'cases'],
+  ['Last day deaths / 100K', lastDayDeaths, 'deaths', 'deaths'],
+  ['Last day recovered / 100K', lastDayRecovered, 'recovered', 'recovered'],
+];
+
+export const initialState = {
+  isLoading: true,
+  global: {},
+  countries: [],
+  message: '',
+  isOneDayStat: false,
+  is100Population: false,
+  currentCountry: {},
+  worldDateStatistics: {},
+  statisticTypePosition: 0,
+};
+
+export const KEY_LAYOUT = {
+  en: {
+    base: [
+      [
+        '`',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0',
+        '-',
+        '=',
+        'backspace',
+      ],
+      [
+        'keyboard_tab',
+        'q',
+        'w',
+        'e',
+        'r',
+        't',
+        'y',
+        'u',
+        'i',
+        'o',
+        'p',
+        '[',
+        ']',
+        '\\',
+      ],
+      [
+        'keyboard_capslock',
+        'a',
+        's',
+        'd',
+        'f',
+        'g',
+        'h',
+        'j',
+        'k',
+        'l',
+        ';',
+        `'`,
+        'keyboard_return',
+      ],
+      [
+        'upgrade',
+        'z',
+        'x',
+        'c',
+        'v',
+        'b',
+        'n',
+        'm',
+        ',',
+        '.',
+        '/',
+        'keyboard_arrow_up',
+        'language',
+      ],
+      [
+        'keyboard_hide',
+        'keyboard_voice',
+        'space_bar',
+        'keyboard_arrow_left',
+        'keyboard_arrow_down',
+        'keyboard_arrow_right',
+      ],
+    ],
+    shift: [
+      [
+        '~',
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+        '^',
+        '&',
+        '*',
+        '(',
+        ')',
+        '_',
+        '+',
+        'backspace',
+      ],
+      [
+        'keyboard_tab',
+        'Q',
+        'W',
+        'E',
+        'R',
+        'T',
+        'Y',
+        'U',
+        'I',
+        'O',
+        'P',
+        '{',
+        '}',
+        '|',
+      ],
+      [
+        'keyboard_capslock',
+        'A',
+        'S',
+        'D',
+        'F',
+        'G',
+        'H',
+        'J',
+        'K',
+        'L',
+        ':',
+        `"`,
+        'keyboard_return',
+      ],
+      [
+        'upgrade',
+        'Z',
+        'X',
+        'C',
+        'V',
+        'B',
+        'N',
+        'M',
+        '<',
+        '>',
+        '?',
+        'keyboard_arrow_up',
+        'language',
+      ],
+      [
+        'keyboard_hide',
+        'keyboard_voice',
+        'space_bar',
+        'keyboard_arrow_left',
+        'keyboard_arrow_down',
+        'keyboard_arrow_right',
+      ],
+    ],
+  },
+  ru: {
+    base: [
+      [
+        'ё',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0',
+        '-',
+        '=',
+        'backspace',
+      ],
+      [
+        'keyboard_tab',
+        'й',
+        'ц',
+        'у',
+        'к',
+        'е',
+        'н',
+        'г',
+        'ш',
+        'щ',
+        'з',
+        'х',
+        'ъ',
+        '\\',
+      ],
+      [
+        'keyboard_capslock',
+        'ф',
+        'ы',
+        'в',
+        'а',
+        'п',
+        'р',
+        'о',
+        'л',
+        'д',
+        'ж',
+        'э',
+        'keyboard_return',
+      ],
+      [
+        'upgrade',
+        'я',
+        'ч',
+        'с',
+        'м',
+        'и',
+        'т',
+        'ь',
+        'б',
+        'ю',
+        '.',
+        'keyboard_arrow_up',
+        'language',
+      ],
+      [
+        'keyboard_hide',
+        'keyboard_voice',
+        'space_bar',
+        'keyboard_arrow_left',
+        'keyboard_arrow_down',
+        'keyboard_arrow_right',
+      ],
+    ],
+    shift: [
+      [
+        'Ё',
+        '!',
+        '"',
+        '№',
+        ';',
+        '%',
+        ':',
+        '?',
+        '*',
+        '(',
+        ')',
+        '_',
+        '+',
+        'backspace',
+      ],
+      [
+        'keyboard_tab',
+        'Й',
+        'Ц',
+        'У',
+        'К',
+        'Е',
+        'Н',
+        'Г',
+        'Ш',
+        'Щ',
+        'З',
+        'Х',
+        'Ъ',
+        '/',
+      ],
+      [
+        'keyboard_capslock',
+        'Ф',
+        'Ы',
+        'В',
+        'А',
+        'П',
+        'Р',
+        'О',
+        'Л',
+        'Д',
+        'Ж',
+        'Э',
+        'keyboard_return',
+      ],
+      [
+        'upgrade',
+        'Я',
+        'Ч',
+        'С',
+        'М',
+        'И',
+        'Т',
+        'Ь',
+        'Б',
+        'Ю',
+        ',',
+        'keyboard_arrow_up',
+        'language',
+      ],
+      [
+        'keyboard_hide',
+        'keyboard_voice',
+        'space_bar',
+        'keyboard_arrow_left',
+        'keyboard_arrow_down',
+        'keyboard_arrow_right',
+      ],
+    ],
+  },
+};
+
+export const KEYS_WITH_ICONS = [
+  'backspace',
+  'keyboard_tab',
+  'keyboard_capslock',
+  'keyboard_return',
+  'upgrade',
+  'keyboard_arrow_up',
+  'language',
+  'keyboard_hide',
+  'keyboard_voice',
+  'space_bar',
+  'keyboard_arrow_left',
+  'keyboard_arrow_down',
+  'keyboard_arrow_right',
+];
+
+export const KEYS_FG1 = [
+  'backspace',
+  'keyboard_tab',
+  'keyboard_capslock',
+  'keyboard_return',
+  'upgrade',
+  'space_bar',
+];
+
+export const KEYBOARD_SPECIAL_KEYS_MAP = {
+  backspace: 'Backspace',
+  keyboard_tab: 'Tab',
+  keyboard_capslock: 'CapsLock',
+  keyboard_return: 'Enter',
+  upgrade: 'Shift',
+  space_bar: ' ',
+  keyboard_arrow_up: 'ArrowUp',
+  keyboard_arrow_left: 'ArrowLeft',
+  keyboard_arrow_down: 'ArrowDown',
+  keyboard_arrow_right: 'ArrowRight',
+};

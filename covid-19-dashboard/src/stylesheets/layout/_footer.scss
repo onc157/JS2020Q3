@@ -1,0 +1,57 @@
+.footer-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  border: 5px solid orange;
+  border-top: none;
+  background: $sections-background;
+  color: $sections-text-color;
+
+  .button-42 {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: red;
+    color: white !important;
+
+    box-shadow: 0 0 5px 2px black;
+    text-shadow: 1px 3px 4px white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__developers {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5px;
+    max-width: 230px;
+
+    &--item {
+      font-size: 14px;
+      padding: 0 5px;
+      color: #2b6da0;
+      transition: .4s;
+
+      &:hover {
+        color: #007cc7;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__year {
+    font-size: 18px;
+    color: #2b6da0;
+  }
+
+  &__school {
+    display: flex;
+    justify-content: center;
+    height: 25px;
+    width: 80px;
+  }
+}
