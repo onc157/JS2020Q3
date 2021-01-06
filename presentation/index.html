@@ -1,0 +1,514 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/sky.css" id="theme">
+
+		<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+					rel="stylesheet">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div>
+						<a href='https://rs.school/' target='_blank'>Rolling Scopes School</a> / Presentation Task
+					</div>
+					<h1>
+						<span style='color: #3492FF'>_</span>.LODASH
+					</h1>
+					<p>
+						by <a href='https://github.com/onc157' target='_blank'>@onc157</a> (Kulev Aleksandr)
+					</p>
+					<p>
+						<ol  class="list__first-slide" style='opacity: .4'>
+							<li>Use
+								<span class="material-icons md-24"> keyboard_arrow_left </span> ,
+								<span class="material-icons md-24"> keyboard_arrow_right </span> ,
+								<span class="material-icons md-24"> keyboard_arrow_up </span> ,
+								<span class="material-icons md-24"> keyboard_arrow_down </span>
+								on your keyboard to change slides.</li>
+							<li>Press the <b>ESC</b> or <b>O</b>  keys to toggle the overview mode on and off.</li>
+						</ol>
+					</p>
+				</section>
+				<section>
+					<section>
+						<h2>
+							What is Lodash?
+						</h2>
+						<img src='img/lodash_logo.png'>
+					</section>
+					<section>
+						<h2>
+							What is Lodash?
+						</h2>
+						<ol>
+							<li>
+								Lodash is a JavaScript library that helps programmers write more concise
+								and maintainable JavaScript.
+							</li>
+							<li>
+								Lodash helps programmers write more concise and maintainable JavaScript.
+							</li>
+						</ol>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							A little history...
+						</h2>
+					</section>
+					<section>
+						<img src='img/underscore_logo.png'>
+						<p class='fragment fade-down'>
+							In 2009, the Underscore library appeared. This library gained great popularity and at one
+							time was one of the best tools for a Javascript developer.
+						</p>
+						<img src='img/underscore_init.png' class='fragment fade-left'>
+					</section>
+					<section>
+						<p>
+							<img src='img/underscore_logo.png' style='width: 400px; opacity: .3'>
+						</p>
+						<p class='fragment  fade-left'>
+							<img src='img/lodash_logo.png' style='width: 200px'>
+						</p>
+						<p class='fragment  fade-right'>
+							But the popularity of Underscore library began to decline, and thus on April 23, 2012 the Lodash library appeared
+						</p>
+						<img src='img/lodash_init.png' class='fragment fade-up'>
+					</section>
+					<section>
+						<p>
+							Lodash draws most of its ideas from Underscore.js and now receives maintenance
+							from the original contributors to Underscore.js.
+						</p>
+						<p  class='fragment fade-down'>
+							Lodash joined the Dojo Foundation in 2013, and via the jQuery Foundation and JS Foundation,
+							is now part of the OpenJS Foundation.
+						</p>
+					</section>
+					<section>
+						<p>
+							The last update for Underscore was released on April 2, 2015.
+						</p>
+						<img src='img/underscore_last.png' class='fragment fade-up'>
+						<p class='fragment fade-left'>
+							Currently, Lodash has active support and if you believe the information from the official website,
+							in 2021 a large update of version 5.0.0 should be released, which will contain many interesting features.
+						</p>
+						<img src='img/lodash_last.png' class='fragment fade-up'>
+					</section>
+					<section>
+						<p>
+							Lodash is effectively a play on words on underscore - "low dash",
+							what does a dash - look like when it's a bit lower to the ground? Of course as underscore
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							Why lodash?
+						</h2>
+					</section>
+					<section>
+						<p>
+							Lodash makes JavaScript easier by taking the hassle out of working with arrays,
+							numbers, objects, strings and other data types, enhancing productivity and code readability.
+						</p>
+						<p  class='fragment fade-up'>
+							Lodash’s modular methods are great for:
+						</p>
+						<ul>
+							<li  class='fragment fade-left'>Iterating arrays, objects, & strings</li>
+							<li  class='fragment fade-right'>Manipulating & testing values</li>
+							<li  class='fragment fade-down'>Creating composite functions</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							How install Lodash?
+						</h2>
+					</section>
+					<section>
+						<h5>
+							In a browser:
+						</h5>
+						<pre class='fragment fade-left'>
+							<code data-trim>
+								<script src="lodash.js"></script>
+							</code>
+						</pre>
+						<h5  class='fragment fade-right'>
+							Use CDN:
+						</h5>
+						<img src='img/lodash_cdn.png'  class='fragment fade-down'>
+					</section>
+					<section>
+						<h5>
+							Using npm:
+						</h5>
+						<pre  class='fragment fade-left'>
+							<code data-trim>
+								$ npm i -g npm
+								$ npm i --save lodash
+							</code>
+						</pre>
+						<h5 class='fragment fade-right'>
+							In Node.js:
+						</h5>
+						<pre  class='fragment fade-left'>
+							<code data-trim>
+								// Load the full build.
+								var _ = require('lodash');
+								// Load the core build.
+								var _ = require('lodash/core');
+								// Load the FP build for immutable auto-curried
+								// iteratee-first data-last methods.
+								var fp = require('lodash/fp');
+
+								// Load method categories.
+								var array = require('lodash/array');
+								var object = require('lodash/fp/object');
+
+								// Cherry-pick methods for smaller browserify/rollup/webpack bundles.
+								var at = require('lodash/at');
+								var curryN = require('lodash/fp/curryN');
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							Arrays
+						</h2>
+					</section>
+					<section>
+						<p>_.findIndex</p>
+						<div class='methods__description fragment fade-down'>
+							This method is like _.find except that it returns the index of the first element
+							predicate returns truthy for instead of the element itself.
+						</div>
+						<pre   class='fragment fade-down'>
+							<code data-trim>
+								var users = [
+								{ 'user': 'barney',  'active': false },
+								{ 'user': 'fred',    'active': false },
+								{ 'user': 'pebbles', 'active': true }
+								];
+
+								_.findIndex(users, function(o) { return o.user == 'barney'; });
+								// => 0
+
+								// The `_.matches` iteratee shorthand.
+								_.findIndex(users, { 'user': 'fred', 'active': false });
+								// => 1
+
+								// The `_.matchesProperty` iteratee shorthand.
+								_.findIndex(users, ['active', false]);
+								// => 0
+
+								// The `_.property` iteratee shorthand.
+								_.findIndex(users, 'active');
+								// => 2
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>_.compact</p>
+						<div class='methods__description fragment fade-left'>
+							Creates an array with all falsey values removed.
+							The values false, null, 0, "", undefined, and NaN are falsey.
+						</div>
+						<pre class='fragment fade-left'>
+							<code data-trim>
+								_.compact([0, 1, false, 2, '', 3]);
+								// => [1, 2, 3]
+							</code>
+						</pre>
+						<p   class='fragment fade-right'>_.intersection</p>
+						<div class='methods__description fragment fade-right'>
+							Creates an array of unique values that are included in all given arrays using SameValueZero
+							for equality comparisons.	The order and references of result values are determined by the first array.
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								_.intersection([2, 1], [2, 3]);
+								// => [2]
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>_.union</p>
+						<div class='methods__description fragment fade-left'>
+							Creates an array of unique values, in order,
+							from all given arrays using SameValueZero for equality comparisons.
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								_.union([2], [1, 2]);
+								// => [2, 1]
+							</code>
+						</pre>
+						<p class='fragment fade-left'>_.concat</p>
+						<div class='methods__description fragment fade-right'>
+							Creates a new array concatenating array with any additional arrays and/or values.
+						</div>
+						<pre class='fragment fade-left'>
+							<code data-trim>
+								var array = [1];
+								var other = _.concat(array, 2, [3], [[4]]);
+
+								console.log(other);
+								// => [1, 2, 3, [4]]
+
+								console.log(array);
+								// => [1]]
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							Objects
+						</h2>
+					</section>
+					<section>
+						<p>_.get</p>
+						<div class='methods__description fragment fade-left'>
+							Gets the value at path of object.
+							If the resolved value is undefined, the defaultValue is returned in its place.
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								var object = { 'a': [{ 'b': { 'c': 3 } }] };
+
+								_.get(object, 'a[0].b.c');
+								// => 3
+
+								_.get(object, ['a', '0', 'b', 'c']);
+								// => 3
+
+								_.get(object, 'a.b.c', 'default');
+								// => 'default'
+							</code>
+						</pre>
+						<p  class='fragment fade-right'>_.omit</p>
+						<div class='methods__description fragment fade-left'>
+							The opposite of _.pick; this method creates an object composed of the own and
+							inherited enumerable property paths of object that are not omitted.
+						</div>
+						<pre  class='fragment fade-right'>
+							<code data-trim>
+								var object = { 'a': 1, 'b': '2', 'c': 3 };
+
+								_.omit(object, ['a', 'c']);
+								// => { 'b': '2' }
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>_.mapKeys</p>
+						<div class='methods__description fragment fade-left'>
+							The opposite of _.mapValues; this method creates an object with the same values
+							as object and keys generated by running each own enumerable string keyed property of
+							object thru iteratee. The iteratee is invoked with three arguments: (value, key, object).
+						</div>
+						<pre  class='fragment fade-right'>
+							<code data-trim>
+								_.mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {
+									return key + value;
+								});
+								// => { 'a1': 1, 'b2': 2 }
+							</code>
+						</pre>
+						<p class='fragment fade-right'>_.mapValues</p>
+						<div class='methods__description fragment fade-left'>
+							Creates an object with the same keys as object and values generated by running each
+							own enumerable string keyed property of object thru iteratee. The iteratee is invoked
+							with three arguments: (value, key, object).
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								var users = {
+									'fred':    { 'user': 'fred',    'age': 40 },
+									'pebbles': { 'user': 'pebbles', 'age': 1 }
+								};
+
+								// The `_.property` iteratee shorthand.
+								_.mapValues(users, 'age');
+								// => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							Collections
+						</h2>
+					</section>
+					<section>
+						<p>_.map</p>
+						<div class='methods__description fragment fade-left'>
+							Creates an array of values by running each element in collection thru iteratee.
+							The iteratee is invoked with three arguments:
+							(value, index|key, collection).
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								function square(n) {
+									return n * n;
+								}
+
+								_.map([4, 8], square);
+								// => [16, 64]
+
+								_.map({ 'a': 4, 'b': 8 }, square);
+								// => [16, 64] (iteration order is not guaranteed)
+
+								var users = [
+									{ 'user': 'barney' },
+									{ 'user': 'fred' }
+								];
+
+								// The `_.property` iteratee shorthand.
+								_.map(users, 'user');
+								// => ['barney', 'fred']
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>_.find</p>
+						<div class='methods__description fragment fade-left'>
+							Iterates over elements of collection, returning the first element predicate returns truthy for.
+							The predicate is invoked with three arguments: (value, index|key, collection).
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								var users = [
+									{ 'user': 'barney',  'age': 36, 'active': true },
+									{ 'user': 'fred',    'age': 40, 'active': false },
+									{ 'user': 'pebbles', 'age': 1,  'active': true }
+								];
+
+								_.find(users, function(o) { return o.age < 40; });
+								// => object for 'barney'
+
+								// The `_.matches` iteratee shorthand.
+								_.find(users, { 'age': 1, 'active': true });
+								// => object for 'pebbles'
+
+								// The `_.matchesProperty` iteratee shorthand.
+								_.find(users, ['active', false]);
+								// => object for 'fred'
+
+								// The `_.property` iteratee shorthand.
+								_.find(users, 'active');
+								// => object for 'barney'
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>_.filter</p>
+						<div class='methods__description fragment fade-left'>
+							Iterates over elements of collection, returning an array of all elements predicate returns truthy for.
+							The predicate is invoked with three arguments: (value, index|key, collection).
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								var users = [
+									{ 'user': 'barney', 'age': 36, 'active': true },
+									{ 'user': 'fred',   'age': 40, 'active': false }
+								];
+
+								_.filter(users, function(o) { return !o.active; });
+								// => objects for ['fred']
+
+								// The `_.matches` iteratee shorthand.
+								_.filter(users, { 'age': 36, 'active': true });
+								// => objects for ['barney']
+
+								// The `_.matchesProperty` iteratee shorthand.
+								_.filter(users, ['active', false]);
+								// => objects for ['fred']
+
+								// The `_.property` iteratee shorthand.
+								_.filter(users, 'active');
+								// => objects for ['barney']
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>_.groupBy</p>
+						<div class='methods__description fragment fade-left'>
+							Creates an object composed of keys generated from the results of running each element of collection thru iteratee.
+							The order of grouped values is determined by the order they occur in collection.
+							The corresponding value of each key is an array of elements responsible for generating the key.
+							The iteratee is invoked with one argument: (value).
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								_.groupBy([6.1, 4.2, 6.3], Math.floor);
+								// => { '4': [4.2], '6': [6.1, 6.3] }
+
+								// The `_.property` iteratee shorthand.
+								_.groupBy(['one', 'two', 'three'], 'length');
+								// => { '3': ['one', 'two'], '5': ['three'] }
+							</code>
+						</pre>
+						<p class='fragment fade-right'>_.sample</p>
+						<div class='methods__description fragment fade-left'>
+							Gets a random element from collection.
+						</div>
+						<pre class='fragment fade-right'>
+							<code data-trim>
+								_.sample([1, 2, 3, 4]);
+								// => 2
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>
+							Conclusion
+						</h2>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
