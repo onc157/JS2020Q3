@@ -1,1 +1,23 @@
-# JS2020Q3
+## School projects:
+
+- ### English for kids
+  - Deploy: https://rolling-scopes-school.github.io/onc157-JS2020Q3/english-for-kids/
+  - [Screenshot](http://joxi.ru/ZrJ960xHnljzXA.png)
+- ### Gem puzzle
+  - [Screenshot](http://dl4.joxi.net/drive/2020/11/17/0029/0326/1954118/18/fcb966e398.png)
+  - Deploy: https://rolling-scopes-school.github.io/onc157-JS2020Q3/gem-puzzle/
+- ### Covid 19 dashboard
+  - [Screenshot](http://joxi.ru/ZrJ960asdfgadfgxHn8qg8A.png)
+  - Deploy: https://rolling-scopes-school.github.io/onc157-JS2020Q3/covid-19-dashboard
+- ### Virtual keyboard
+  - [Screenshot](http://joxi.ru/LmGBY0OtlKG4Jr.png)
+  - Deploy: https://rolling-scopes-school.github.io/onc157-JS2020Q3/virtual-keyboard/
+- ### Calculator
+  - [Screenshot](http://joxi.ru/YmEB40ltMLQL62)
+  - Deploy: https://rolling-scopes-school.github.io/onc157-JS2020Q3/calculator/
+- ### Shelter
+  - [Screenshot](http://joxi.ru/L21E7dgc0Lo9N2)
+  - Deploy: https://rolling-scopes-school.github.io/onc157-JS2020Q3/shelter/pages/main/
+- ### Momentum
+  - [Screenshot](http://joxi.ru/brR93pqHO34lDA)
+  - Deploy: https://rolling-scopes-school.github.io/onc157-JS2020Q3/momentum/
